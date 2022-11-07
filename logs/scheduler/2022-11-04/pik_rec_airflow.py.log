@@ -1,0 +1,515 @@
+[2022-11-04T06:46:13.056+0000] {processor.py:156} INFO - Started process (PID=49) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:13.057+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:46:13.057+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:13.057+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:18.283+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:18.602+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.602+0000] {manager.py:508} INFO - Created Permission View: can edit on DAG:pik_rec_airflow
+[2022-11-04T06:46:18.617+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.617+0000] {manager.py:508} INFO - Created Permission View: can read on DAG:pik_rec_airflow
+[2022-11-04T06:46:18.631+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.630+0000] {manager.py:508} INFO - Created Permission View: can delete on DAG:pik_rec_airflow
+[2022-11-04T06:46:18.631+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.631+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:46:18.648+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.647+0000] {dag.py:2594} INFO - Creating ORM DAG for pik_rec_airflow
+[2022-11-04T06:46:18.667+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:18.667+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:46:18.693+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 5.640 seconds
+[2022-11-04T06:46:49.241+0000] {processor.py:156} INFO - Started process (PID=246) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:49.252+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:46:49.254+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:49.253+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:52.528+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:46:52.571+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:52.570+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:46:52.600+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:46:52.600+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:46:52.641+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.407 seconds
+[2022-11-04T06:47:23.054+0000] {processor.py:156} INFO - Started process (PID=443) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:47:23.065+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:47:23.066+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:47:23.066+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:47:26.339+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:47:26.381+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:47:26.380+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:47:26.409+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:47:26.409+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:47:26.435+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.388 seconds
+[2022-11-04T06:47:56.820+0000] {processor.py:156} INFO - Started process (PID=640) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:47:56.821+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:47:56.822+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:47:56.822+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:48:00.140+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:48:00.190+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:48:00.189+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:48:00.221+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:48:00.221+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:48:00.259+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.445 seconds
+[2022-11-04T06:48:30.761+0000] {processor.py:156} INFO - Started process (PID=837) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:48:30.772+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:48:30.772+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:48:30.772+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:48:34.037+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:48:34.082+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:48:34.082+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:48:34.114+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:48:34.114+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:48:34.149+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.391 seconds
+[2022-11-04T06:49:04.410+0000] {processor.py:156} INFO - Started process (PID=1034) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:04.420+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:49:04.421+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:04.421+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:07.763+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:07.808+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:07.805+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:49:07.838+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:07.838+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:49:07.866+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.461 seconds
+[2022-11-04T06:49:37.946+0000] {processor.py:156} INFO - Started process (PID=1231) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:37.957+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:49:37.957+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:37.957+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:41.499+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:49:41.551+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:41.551+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:49:41.588+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:49:41.587+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:49:41.640+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.697 seconds
+[2022-11-04T06:50:11.803+0000] {processor.py:156} INFO - Started process (PID=1428) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:11.812+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:50:11.813+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:11.813+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:15.326+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:15.379+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:15.378+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:50:15.429+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:15.429+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:50:15.485+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.685 seconds
+[2022-11-04T06:50:45.557+0000] {processor.py:156} INFO - Started process (PID=1625) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:45.567+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:50:45.568+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:45.568+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:48.887+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:50:48.957+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:48.956+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:50:49.003+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:50:49.003+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:50:49.049+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.495 seconds
+[2022-11-04T06:51:19.179+0000] {processor.py:156} INFO - Started process (PID=1822) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:19.189+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:51:19.190+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:19.190+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:22.417+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:22.460+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:22.459+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:51:22.495+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:22.494+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:51:22.540+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.364 seconds
+[2022-11-04T06:51:52.783+0000] {processor.py:156} INFO - Started process (PID=2019) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:52.794+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:51:52.794+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:52.794+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:56.000+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:51:56.041+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:56.041+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:51:56.077+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:51:56.077+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:51:56.118+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.338 seconds
+[2022-11-04T06:52:26.226+0000] {processor.py:156} INFO - Started process (PID=2216) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:52:26.237+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:52:26.237+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:52:26.237+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:52:29.358+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:52:29.401+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:52:29.401+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:52:29.431+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:52:29.431+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:52:29.470+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.247 seconds
+[2022-11-04T06:52:59.748+0000] {processor.py:156} INFO - Started process (PID=2413) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:52:59.757+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:52:59.758+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:52:59.758+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:53:02.834+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:53:02.897+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:53:02.896+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:53:02.928+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:53:02.928+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:53:02.955+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.211 seconds
+[2022-11-04T06:53:33.687+0000] {processor.py:156} INFO - Started process (PID=2610) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:53:33.688+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:53:33.689+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:53:33.689+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:53:36.712+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:53:36.753+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:53:36.753+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:53:36.783+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:53:36.783+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:53:36.820+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.137 seconds
+[2022-11-04T06:54:07.031+0000] {processor.py:156} INFO - Started process (PID=2807) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:07.042+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:54:07.042+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:07.042+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:10.180+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:10.259+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:10.258+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:54:10.319+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:10.319+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:54:10.362+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.336 seconds
+[2022-11-04T06:54:40.451+0000] {processor.py:156} INFO - Started process (PID=3004) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:40.454+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:54:40.454+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:40.454+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:43.538+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:54:43.596+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:43.595+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:54:43.638+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:54:43.638+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:54:43.685+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.237 seconds
+[2022-11-04T06:55:14.726+0000] {processor.py:156} INFO - Started process (PID=3201) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:14.737+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:55:14.738+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:14.738+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:18.101+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:18.144+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:18.142+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:55:18.174+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:18.173+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:55:18.199+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.479 seconds
+[2022-11-04T06:55:49.256+0000] {processor.py:156} INFO - Started process (PID=3399) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:49.266+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:55:49.268+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:49.268+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:52.357+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:55:52.400+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:52.399+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:55:52.429+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:55:52.429+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:55:52.463+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.211 seconds
+[2022-11-04T06:56:22.851+0000] {processor.py:156} INFO - Started process (PID=3597) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:22.862+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:56:22.862+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:22.862+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:25.987+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:26.027+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:26.027+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:56:26.055+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:26.055+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:56:26.089+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.245 seconds
+[2022-11-04T06:56:56.715+0000] {processor.py:156} INFO - Started process (PID=3794) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:56.726+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:56:56.727+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:56.727+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:59.818+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:56:59.862+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:59.861+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:56:59.892+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:56:59.892+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:56:59.920+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.208 seconds
+[2022-11-04T06:57:30.936+0000] {processor.py:156} INFO - Started process (PID=3991) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:57:30.946+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:57:30.947+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:57:30.946+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:57:34.081+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:57:34.122+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:57:34.121+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:57:34.153+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:57:34.152+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:57:34.179+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.246 seconds
+[2022-11-04T06:58:05.013+0000] {processor.py:156} INFO - Started process (PID=4188) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:05.022+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:58:05.023+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:05.023+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:08.152+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:08.195+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:08.193+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:58:08.225+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:08.225+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:58:08.260+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.250 seconds
+[2022-11-04T06:58:38.866+0000] {processor.py:156} INFO - Started process (PID=4385) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:38.867+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:58:38.867+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:38.867+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:41.940+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:58:41.983+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:41.982+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:58:42.012+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:58:42.012+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:58:42.046+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.184 seconds
+[2022-11-04T06:59:12.123+0000] {processor.py:156} INFO - Started process (PID=4582) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:12.133+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:59:12.133+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:12.133+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:15.357+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:15.431+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:15.430+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:59:15.473+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:15.473+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:59:15.517+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.397 seconds
+[2022-11-04T06:59:45.613+0000] {processor.py:156} INFO - Started process (PID=4779) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:45.622+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T06:59:45.623+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:45.623+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:48.893+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T06:59:48.947+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:48.946+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T06:59:48.982+0000] {logging_mixin.py:117} INFO - [2022-11-04T06:59:48.981+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:00:00+00:00, run_after=2022-11-04T06:30:00+00:00
+[2022-11-04T06:59:49.020+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.412 seconds
+[2022-11-04T07:00:19.561+0000] {processor.py:156} INFO - Started process (PID=4976) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:19.562+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:00:19.562+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:19.562+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:22.745+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:22.789+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:22.788+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:00:22.823+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:22.822+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:00:22.851+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.294 seconds
+[2022-11-04T07:00:53.070+0000] {processor.py:156} INFO - Started process (PID=5173) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:53.081+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:00:53.082+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:53.081+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:56.040+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:00:56.076+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:56.075+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:00:56.104+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:00:56.104+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:00:56.130+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.067 seconds
+[2022-11-04T07:01:26.965+0000] {processor.py:156} INFO - Started process (PID=5370) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:01:26.975+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:01:26.976+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:01:26.975+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:01:29.941+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:01:29.984+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:01:29.983+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:01:30.024+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:01:30.023+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:01:30.055+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.094 seconds
+[2022-11-04T07:02:00.675+0000] {processor.py:156} INFO - Started process (PID=5567) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:00.685+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:02:00.686+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:00.686+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:03.570+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:03.633+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:03.632+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:02:03.673+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:03.673+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:02:03.713+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.043 seconds
+[2022-11-04T07:02:34.316+0000] {processor.py:156} INFO - Started process (PID=5764) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:34.327+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:02:34.329+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:34.329+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:37.251+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:02:37.324+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:37.323+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:02:37.379+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:02:37.379+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:02:37.426+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.116 seconds
+[2022-11-04T07:03:07.786+0000] {processor.py:156} INFO - Started process (PID=5961) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:07.787+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:03:07.788+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:07.788+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:10.854+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:10.896+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:10.895+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:03:10.927+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:10.927+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:03:10.963+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.180 seconds
+[2022-11-04T07:03:41.100+0000] {processor.py:156} INFO - Started process (PID=6158) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:41.110+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:03:41.111+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:41.111+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:44.145+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:03:44.186+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:44.186+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:03:44.217+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:03:44.217+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:03:44.244+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.147 seconds
+[2022-11-04T07:04:14.973+0000] {processor.py:156} INFO - Started process (PID=6355) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:14.983+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:04:14.983+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:14.983+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:18.041+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:18.086+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:18.085+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:04:18.117+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:18.116+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:04:18.153+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.183 seconds
+[2022-11-04T07:04:48.507+0000] {processor.py:156} INFO - Started process (PID=6552) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:48.515+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:04:48.516+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:48.515+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:51.405+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:04:51.464+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:51.463+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:04:51.514+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:04:51.514+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:04:51.561+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.058 seconds
+[2022-11-04T07:05:22.158+0000] {processor.py:156} INFO - Started process (PID=6749) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:22.169+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:05:22.170+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:22.170+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:25.393+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:25.435+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:25.435+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:05:25.466+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:25.466+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:05:25.492+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.340 seconds
+[2022-11-04T07:05:55.565+0000] {processor.py:156} INFO - Started process (PID=6946) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:55.575+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:05:55.576+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:55.576+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:58.369+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:05:58.413+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:58.412+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:05:58.444+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:05:58.444+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:05:58.482+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 2.920 seconds
+[2022-11-04T07:06:28.986+0000] {processor.py:156} INFO - Started process (PID=7143) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:06:28.987+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:06:28.988+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:06:28.988+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:06:32.018+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:06:32.061+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:06:32.060+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:06:32.092+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:06:32.092+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:06:32.119+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.136 seconds
+[2022-11-04T07:07:02.688+0000] {processor.py:156} INFO - Started process (PID=7340) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:02.697+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:07:02.698+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:02.698+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:05.497+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:05.534+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:05.534+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:07:05.559+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:05.559+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:07:05.592+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 2.908 seconds
+[2022-11-04T07:07:36.323+0000] {processor.py:156} INFO - Started process (PID=7537) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:36.323+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:07:36.324+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:36.324+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:39.140+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:07:39.174+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:39.174+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:07:39.199+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:07:39.199+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:07:39.232+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 2.913 seconds
+[2022-11-04T07:08:09.757+0000] {processor.py:156} INFO - Started process (PID=7734) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:09.767+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:08:09.768+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:09.768+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:12.775+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:12.818+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:12.818+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:08:12.853+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:12.853+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:08:12.900+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.147 seconds
+[2022-11-04T07:08:43.425+0000] {processor.py:156} INFO - Started process (PID=7931) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:43.435+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:08:43.435+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:43.435+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:46.447+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:08:46.513+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:46.512+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:08:46.546+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:08:46.545+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:08:46.573+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.151 seconds
+[2022-11-04T07:09:16.830+0000] {processor.py:156} INFO - Started process (PID=8128) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:16.840+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:09:16.841+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:16.841+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:19.831+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:19.874+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:19.873+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:09:19.905+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:19.905+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:09:19.929+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.102 seconds
+[2022-11-04T07:09:50.018+0000] {processor.py:156} INFO - Started process (PID=8325) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:50.029+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:09:50.030+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:50.030+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:53.111+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:09:53.177+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:53.174+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:09:53.229+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:09:53.228+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:09:53.273+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.259 seconds
+[2022-11-04T07:10:23.469+0000] {processor.py:156} INFO - Started process (PID=8522) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:10:23.470+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:10:23.471+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:10:23.470+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:10:27.273+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:10:27.346+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:10:27.344+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:10:27.392+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:10:27.391+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T06:30:00+00:00, run_after=2022-11-04T07:00:00+00:00
+[2022-11-04T07:10:27.428+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.962 seconds
+[2022-11-04T07:10:57.962+0000] {processor.py:156} INFO - Started process (PID=8719) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:10:57.963+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:10:57.964+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:10:57.964+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:11:02.394+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:11:02.441+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:11:02.440+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:11:02.484+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:11:02.484+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:11:02.522+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.564 seconds
+[2022-11-04T07:11:33.249+0000] {processor.py:156} INFO - Started process (PID=8918) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:11:33.250+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:11:33.251+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:11:33.251+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:11:36.813+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:11:36.863+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:11:36.862+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:11:36.901+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:11:36.901+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:11:36.929+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.684 seconds
+[2022-11-04T07:12:07.244+0000] {processor.py:156} INFO - Started process (PID=9115) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:07.254+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:12:07.254+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:07.254+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:10.836+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:10.901+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:10.900+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:12:10.947+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:10.947+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:12:10.997+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.756 seconds
+[2022-11-04T07:12:41.322+0000] {processor.py:156} INFO - Started process (PID=9312) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:41.332+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:12:41.332+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:41.332+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:44.800+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:12:44.849+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:44.847+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:12:44.883+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:12:44.883+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:12:44.920+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.601 seconds
+[2022-11-04T07:13:15.017+0000] {processor.py:156} INFO - Started process (PID=9509) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:15.018+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:13:15.019+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:15.018+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:18.576+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:18.634+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:18.633+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:13:18.669+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:18.668+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:13:18.697+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.683 seconds
+[2022-11-04T07:13:49.169+0000] {processor.py:156} INFO - Started process (PID=9706) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:49.170+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:13:49.171+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:49.171+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:53.536+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:13:53.617+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:53.616+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:13:53.678+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:13:53.677+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:13:53.738+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.575 seconds
+[2022-11-04T07:14:23.909+0000] {processor.py:156} INFO - Started process (PID=9903) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:14:23.920+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:14:23.921+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:14:23.921+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:14:27.497+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:14:27.544+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:14:27.543+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:14:27.578+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:14:27.578+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:14:27.609+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.705 seconds
+[2022-11-04T07:14:57.789+0000] {processor.py:156} INFO - Started process (PID=10100) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:14:57.799+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:14:57.799+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:14:57.799+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:15:01.162+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:15:01.204+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:15:01.203+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:15:01.236+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:15:01.235+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:15:01.269+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.487 seconds
+[2022-11-04T07:15:31.363+0000] {processor.py:156} INFO - Started process (PID=10297) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:15:31.373+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:15:31.374+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:15:31.374+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:15:35.090+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:15:35.139+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:15:35.139+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:15:35.175+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:15:35.175+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:15:35.211+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.852 seconds
+[2022-11-04T07:16:05.628+0000] {processor.py:156} INFO - Started process (PID=10494) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:05.638+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:16:05.638+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:05.638+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:10.090+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:10.136+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:10.136+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:16:10.171+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:10.171+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:16:10.209+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.585 seconds
+[2022-11-04T07:16:40.564+0000] {processor.py:156} INFO - Started process (PID=10691) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:40.574+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:16:40.575+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:40.575+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:44.089+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:16:44.139+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:44.138+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:16:44.173+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:16:44.172+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:16:44.212+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.652 seconds
+[2022-11-04T07:17:14.692+0000] {processor.py:156} INFO - Started process (PID=10888) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:14.703+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:17:14.703+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:14.703+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:18.897+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:18.962+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:18.961+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:17:19.010+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:19.010+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:17:19.057+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.368 seconds
+[2022-11-04T07:17:49.256+0000] {processor.py:156} INFO - Started process (PID=11085) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:49.266+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:17:49.267+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:49.267+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:52.062+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:17:52.098+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:52.098+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:17:52.124+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:17:52.124+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:17:52.147+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 2.895 seconds
+[2022-11-04T07:18:22.492+0000] {processor.py:156} INFO - Started process (PID=11282) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:18:22.502+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:18:22.502+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:18:22.502+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:18:26.462+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:18:26.510+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:18:26.509+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:18:26.548+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:18:26.548+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:18:26.590+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.103 seconds
+[2022-11-04T07:18:56.677+0000] {processor.py:156} INFO - Started process (PID=11479) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:18:56.688+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:18:56.689+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:18:56.689+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:19:00.138+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:19:00.219+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:19:00.218+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:19:00.274+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:19:00.274+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:19:00.308+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.635 seconds
+[2022-11-04T07:19:30.996+0000] {processor.py:156} INFO - Started process (PID=11676) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:19:30.997+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:19:30.997+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:19:30.997+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:19:34.262+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:19:34.306+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:19:34.305+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:19:34.337+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:19:34.336+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:19:34.377+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.385 seconds
+[2022-11-04T07:20:04.583+0000] {processor.py:156} INFO - Started process (PID=11873) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:04.584+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:20:04.585+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:04.585+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:07.491+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:07.542+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:07.540+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:20:07.583+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:07.583+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:20:07.620+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.041 seconds
+[2022-11-04T07:20:37.866+0000] {processor.py:156} INFO - Started process (PID=12069) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:37.876+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:20:37.876+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:37.876+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:41.465+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:20:41.519+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:41.518+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:20:41.564+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:20:41.563+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:20:41.595+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.735 seconds
+[2022-11-04T07:21:11.722+0000] {processor.py:156} INFO - Started process (PID=12247) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:11.723+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:21:11.723+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:11.723+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:15.728+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:15.768+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:15.767+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:21:15.798+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:15.798+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:21:15.822+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.104 seconds
+[2022-11-04T07:21:45.931+0000] {processor.py:156} INFO - Started process (PID=12444) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:45.932+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:21:45.933+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:45.932+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:49.177+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:21:49.216+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:49.215+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:21:49.242+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:21:49.242+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:21:49.276+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.349 seconds
+[2022-11-04T07:22:20.053+0000] {processor.py:156} INFO - Started process (PID=12641) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:20.054+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:22:20.055+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:20.054+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:23.079+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:23.123+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:23.122+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:22:23.156+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:23.156+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:22:23.194+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.146 seconds
+[2022-11-04T07:22:54.456+0000] {processor.py:156} INFO - Started process (PID=12857) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:54.465+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:22:54.466+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:54.466+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:59.378+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:22:59.435+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:59.434+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:22:59.489+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:22:59.488+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:22:59.558+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 5.107 seconds
+[2022-11-04T07:23:32.012+0000] {processor.py:156} INFO - Started process (PID=13035) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:23:32.013+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:23:32.014+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:23:32.013+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:23:36.934+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:23:37.035+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:23:37.034+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:23:37.099+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:23:37.098+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:23:37.152+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 5.146 seconds
+[2022-11-04T07:24:07.440+0000] {processor.py:156} INFO - Started process (PID=13251) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:07.452+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:24:07.454+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:07.454+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:11.819+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:11.889+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:11.888+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:24:11.969+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:11.968+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:24:12.014+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.585 seconds
+[2022-11-04T07:24:42.333+0000] {processor.py:156} INFO - Started process (PID=13448) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:42.335+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:24:42.337+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:42.336+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:46.712+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:24:46.824+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:46.814+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:24:46.898+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:24:46.897+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:24:46.958+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.633 seconds
+[2022-11-04T07:25:17.244+0000] {processor.py:156} INFO - Started process (PID=13646) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:17.254+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:25:17.255+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:17.255+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:20.310+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:20.350+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:20.350+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:25:20.378+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:20.378+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:25:20.403+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.163 seconds
+[2022-11-04T07:25:50.652+0000] {processor.py:156} INFO - Started process (PID=13843) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:50.655+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:25:50.656+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:50.656+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:53.816+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:25:53.855+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:53.855+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:25:53.883+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:25:53.883+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:25:53.916+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.268 seconds
+[2022-11-04T07:26:25.650+0000] {processor.py:156} INFO - Started process (PID=14039) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:26:25.651+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:26:25.651+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:26:25.651+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:26:29.826+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:26:29.875+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:26:29.875+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:26:29.917+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:26:29.917+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:26:29.950+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 4.304 seconds
+[2022-11-04T07:27:00.171+0000] {processor.py:156} INFO - Started process (PID=14236) to work on /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:27:00.182+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/pik_rec_airflow.py for tasks to queue
+[2022-11-04T07:27:00.182+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:27:00.182+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:27:03.955+0000] {processor.py:768} INFO - DAG(s) dict_keys(['pik_rec_airflow']) retrieved from /opt/airflow/dags/pik_rec_airflow.py
+[2022-11-04T07:27:04.028+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:27:04.027+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-11-04T07:27:04.079+0000] {logging_mixin.py:117} INFO - [2022-11-04T07:27:04.079+0000] {dag.py:3324} INFO - Setting next_dagrun for pik_rec_airflow to 2022-11-04T07:00:00+00:00, run_after=2022-11-04T07:30:00+00:00
+[2022-11-04T07:27:04.135+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/pik_rec_airflow.py took 3.968 seconds
