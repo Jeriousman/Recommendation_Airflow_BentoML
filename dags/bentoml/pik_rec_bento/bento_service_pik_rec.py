@@ -582,7 +582,7 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
     ranked_similar_items = full_ranked_similar_items[:topk+1] ##only topk similarity list. 본픽도 들어가있기떄문에+1을해준다
      
         
-    sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
+    sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
@@ -591,35 +591,36 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
                             lottery = random()
                             if lottery <= 0.7:
-                                sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                
+                                sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
                                 
                             elif 0.7 < lottery <= 0.88:
                                 pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
                                 if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
-                                    sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                    sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
                             
                             elif 0.88 < lottery <= 1.0:
-                                
-                            
-                            
+      
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list(sim_dict.keys()):
-                                    if len(sim_dict) < 10:
-                                        sim_dict[ranked_similar_items[random_topk_rec_index][0]] = ranked_similar_items[random_topk_rec_index][1] 
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['pik_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
                                 
-                            if len(sim_dict) == 10:
+                            if len(sim_list) == 10:
                                     break
 
     
     ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
-    if sim_dict == None:
+    if sim_list == None:
         print('There is no recommended piks for your pik for now')
     
-    elif bool(sim_dict):
-        return  sim_dict #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
+    elif bool(sim_list):
+        return  sim_list #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
     
     # elif not bool(sim_list):  
-    elif not bool(sim_dict): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
+    elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
         print('There is no recommended piks for your pik for now')
                                     
     else:
@@ -630,8 +631,8 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
 
 # pik_id ='190'
 # user_id ='13'
-# # piks_vec
-# # piktitle_vec
+# piks_vec
+# piktitle_vec
 # # num_link_by_pik
 # topk=16
 # threshold=0.9
@@ -659,7 +660,8 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     ranked_similar_items = full_ranked_similar_items[:topk+1] ##only topk similarity list. 본픽도 들어가있기떄문에+1을해준다
     
     
-    sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
+    # sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
+    sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
@@ -668,40 +670,41 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
                             lottery = random()
                             if lottery <= 0.7:
-                                sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                
+                                sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
                                 
                             elif 0.7 < lottery <= 0.88:
                                 pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
                                 if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
-                                    sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                    sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
                             
                             elif 0.88 < lottery <= 1.0:
-                                
-                            
-                            
+      
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list(sim_dict.keys()):
-                                    if len(sim_dict) < 10:
-                                        sim_dict[ranked_similar_items[random_topk_rec_index][0]] = ranked_similar_items[random_topk_rec_index][1] 
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['pik_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
                                 
-                            if len(sim_dict) == 10:
+                            if len(sim_list) == 10:
                                     break
                                 
-         
+# sim_dict.keys()
                          
          
 
 
 
     ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
-    if sim_dict == None:
+    if sim_list == None:
         print('There is no recommended piks for your pik for now')
     
-    elif bool(sim_dict):
-        return  sim_dict #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
+    elif bool(sim_list):
+        return  sim_list #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
 
     # elif not bool(sim_list):  
-    elif not bool(sim_dict): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
+    elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
         print('There is no recommended piks for your pik for now')
                                
     else:
@@ -731,7 +734,7 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     
     
     
-    sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
+    sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
@@ -740,34 +743,36 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
                             lottery = random()
                             if lottery <= 0.7:
-                                sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                
+                                sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
                                 
                             elif 0.7 < lottery <= 0.88:
                                 pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
                                 if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
-                                    sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
+                                    sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
                             
                             elif 0.88 < lottery <= 1.0:
-                                
-                            
+      
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list(sim_dict.keys()):
-                                    if len(sim_dict) < 10:
-                                        sim_dict[ranked_similar_items[random_topk_rec_index][0]] = ranked_similar_items[random_topk_rec_index][1] 
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['pik_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'pik_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
                                 
-                            if len(sim_dict) == 10:
+                            if len(sim_list) == 10:
                                     break
         
     
     ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
-    if sim_dict == None:
+    if sim_list == None:
         print('안타깝게도 현재 최적의 픽 추천이 어려운 상황이네요 ㅠㅠ')
     
-    elif bool(sim_dict):
-        return  sim_dict #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
+    elif bool(sim_list):
+        return  sim_list #sorted(sim_dict, key=lambda x: x[1], reverse=True)    
 
     # elif not bool(sim_list):  
-    elif not bool(sim_dict): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
+    elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
                  
        print('안타깝게도 현재 최적의 픽 추천이 어려운 상황이네요 ㅠㅠ')
                                     
@@ -799,7 +804,7 @@ def predict(user_id, pik_id) -> dict:
     # similarity_list = get_most_similar_piks(pik_emb, piks_vec, piktitle_vec, df=df, topk=10, threshold=0.87, piktitle_threshold=0.77, num_link_threshold=1)
     # similarity_list = rec_pik_by_lang(pik_emb, user_id, piks_vec, piktitle_vec, num_link_by_pik, data=df, topk=10, threshold=0.82, second_threshold=0.75, piktitle_threshold=0.77, num_link_threshold=3)
     similarity_dict = rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
-    # similarity_dict = {similarity_pair[0]: similarity_pair[1] for similarity_pair in similarity_list} ##dict {user: similarity}   
+    # result = {k: v for k, v in similarity_dict.items()} ##dict {user: similarity}   
     return similarity_dict #sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
 
 
