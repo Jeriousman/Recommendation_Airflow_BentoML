@@ -568,37 +568,9 @@ with open('/home/hojun/rec_airflow_aws/dags/data/user_pik.json') as f:
 #     return sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
 
 
-sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
-for i in range(1, topk+1):
-    if ranked_similar_items[i][1] > threshold:   
-        if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
-            if i >= 1:  
-                if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
-                    if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                        lottery = random()
-                        if lottery <= 0.7:
-                            sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
-                            
-                        elif 0.7 < lottery <= 0.88:
-                            pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
-                            if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
-                                sim_dict[ranked_similar_items[i][0]] = ranked_similar_items[i][1]
-                        
-                        elif 0.88 < lottery <= 1.0:
-                            
-                        
-                        
-                            random_topk_rec_index = randint(0, topk)
-                            if ranked_similar_items[random_topk_rec_index][0] not in list(sim_dict.keys()):
-                                if len(sim_dict) < 10:
-                                    sim_dict[ranked_similar_items[random_topk_rec_index][0]] = ranked_similar_items[random_topk_rec_index][1] 
-                            
-                        if len(sim_dict) == 10:
-                                break
-
 
 # def get_most_similar_piks(pik_id, data, piks_vec, piktitle_vec, num_link_by_pik, topk=10, threshold=0.945, second_threshold=0.89, piktitle_threshold=0.7, num_link_threshold=3):
-def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold):
+def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     sim = list()
         
     for uid, vec in piks_vec.items():
@@ -673,7 +645,7 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
 # pd.unique(df['user_id'][df['pik_id'] == int(pik_id)])[0]
 # user_pik['17']
 
-def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold):
+def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     sim = list()
         
     for uid, vec in piks_vec.items():
@@ -744,7 +716,7 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
 
 
 
-def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold):
+def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     sim = list()
     
     for uid, vec in piks_vec.items():
@@ -778,7 +750,6 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                             elif 0.88 < lottery <= 1.0:
                                 
                             
-                            
                                 random_topk_rec_index = randint(0, topk)
                                 if ranked_similar_items[random_topk_rec_index][0] not in list(sim_dict.keys()):
                                     if len(sim_dict) < 10:
@@ -804,17 +775,17 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
         print('정말 죄송하지만 현재 최적의 픽 추천이 어려운 상황입니다 ㅠㅠ! 열일하고 있으니 조금만 기다려 주세요!')
               
 
-def rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold):    
+def rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):    
     # if pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_lang_dict[user_id] == 'ko':
-        result = get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold)
+        result = get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
         return result
     # elif pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'en': ##language_cde가 'ko' 인지, 'en'인지,
     elif user_lang_dict[user_id] == 'en':
-        result = get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold)
+        result = get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
         return result
     else: 
-        result = get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, second_threshold, piktitle_threshold, num_link_threshold)
+        result = get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
         return result
 
 ## This is modification of above to inlcude language condition
@@ -827,7 +798,7 @@ def predict(user_id, pik_id) -> dict:
     # num = num_link_by_pik[pik_id]
     # similarity_list = get_most_similar_piks(pik_emb, piks_vec, piktitle_vec, df=df, topk=10, threshold=0.87, piktitle_threshold=0.77, num_link_threshold=1)
     # similarity_list = rec_pik_by_lang(pik_emb, user_id, piks_vec, piktitle_vec, num_link_by_pik, data=df, topk=10, threshold=0.82, second_threshold=0.75, piktitle_threshold=0.77, num_link_threshold=3)
-    similarity_dict = rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=10, threshold=0.82, second_threshold=0.75, piktitle_threshold=0.77, num_link_threshold=3)
+    similarity_dict = rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
     # similarity_dict = {similarity_pair[0]: similarity_pair[1] for similarity_pair in similarity_list} ##dict {user: similarity}   
     return similarity_dict #sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
 
