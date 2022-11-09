@@ -157,8 +157,8 @@ def calculate_emb(**kwargs):
             train_save_lsh(hash_size=20,
                             input_dim=768,
                             num_hashtables=10,
-                            matrices_filename='f{default_path}/data/lsh_matrices_filename.npz',
-                            hashtable_filename='f{default_path}/data/lsh_hashtables_filename.npz',
+                            matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
+                            hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
                             link_vector=link_vectors)      
 
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
