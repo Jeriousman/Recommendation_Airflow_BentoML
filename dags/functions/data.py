@@ -175,7 +175,7 @@ def db_data_fetching(**kwargs):
 
     # export to csv
     fid = open(f'{default_path}/users_following.csv', 'w')
-    sql = "COPY (SELECT id, from_user_id, to_user_id, is_deleted FROM users_follwing) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT id, from_user_id, to_user_id, is_deleted FROM users_following) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
@@ -207,7 +207,7 @@ def raw_data_preprocess(**kwargs):
 
     ##processing with friends list
     user_friends.rename(columns = {'from_user_id': 'user_id', 'to_user_id':'followed_user_id'}, inplace=True)
-    user_friends = user_friends[user_friends['is_deleted'] == False]
+    user_friends = user_friends[user_friends['is_deleted'] == 'f']  #'f' instead of False
     user_friends.to_csv(f'{path}/users_following.csv', index=False)
 
 
@@ -228,7 +228,7 @@ def raw_data_preprocess(**kwargs):
     ##pik_info와 cat_info 병합
     piks_cats = pd.merge(catego, piks, how = 'inner', left_on = 'pik_id', right_on = 'id', suffixes=('_cat', '_pik'))
     piks_cats.columns
-    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == False)]
+    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f')] #'f' instead of False
 
 
 

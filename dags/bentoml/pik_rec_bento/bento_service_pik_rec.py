@@ -35,30 +35,30 @@ runner = bentoml.transformers.get("pik_recommender_model:latest").to_runner()
 svc = bentoml.Service("pik_recommender_bento", runners=[runner])
 
 
-with open("/home/hojun/rec_airflow_aws/dags/data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
+with open("/opt/airflow/dags/data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
     piks_vec = json.load(f)
     
-with open("/home/hojun/rec_airflow_aws/dags/data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
+with open("/opt/airflow/dags/data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
     piktitle_vec = json.load(f)
     
     
-with open("/home/hojun/rec_airflow_aws/dags/data/num_link_by_pik.json") as f:
+with open("/opt/airflow/dags/data/num_link_by_pik.json") as f:
     num_link_by_pik = json.load(f)
 
 # df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
 
  
-with open("/home/hojun/rec_airflow_aws/dags/data/user_lang_dict.json") as f:
+with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
     user_lang_dict = json.load(f)
 
  
-with open("/home/hojun/rec_airflow_aws/dags/data/pik_lang_dict.json") as f:
+with open("/opt/airflow/dags/data/pik_lang_dict.json") as f:
     pik_lang_dict = json.load(f)
 
 
 
 
-with open('/home/hojun/rec_airflow_aws/dags/data/user_pik.json') as f:
+with open('/opt/airflow/dags/data/user_pik.json') as f:
     user_pik = json.load(f)
 
 # with open("/opt/airflow/dags/data/link_lang_dict.json") as f:

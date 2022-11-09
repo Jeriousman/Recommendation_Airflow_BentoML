@@ -153,6 +153,7 @@ with DAG(
             'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
             'dataloader_path' : '/opt/airflow/dags/data/link_title_dataloader.pickle',
             'which_emb': 'linktitle_emb',
+            'link_rec_on': False,
             'device' : 'cuda'  ##'cuda'
         }
     )
@@ -169,6 +170,7 @@ with DAG(
             'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
             'dataloader_path' : '/opt/airflow/dags/data/pik_title_dataloader.pickle',
             'which_emb': 'piktitle_emb',
+            'link_rec_on': False,
             'device' : 'cuda'  ##'cuda'
         }
     )

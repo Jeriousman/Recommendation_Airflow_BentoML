@@ -88,7 +88,8 @@ def calculate_emb(**kwargs):
     tokenizer_name = kwargs.get('tokenizer_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     dataloader_path = kwargs.get('dataloader_path', '/opt/airflow/dags/data/link_title_dataloader.pickle')   
-    which_emb = kwargs.get('which_emb', 'linktitle_emb')   
+    which_emb = kwargs.get('which_emb', 'linktitle_emb')  
+    link_rec_on = kwargs.get('link_rec_on', False)  
     device = kwargs.get('device', 'cpu')   
 
     processed_data = pd.read_csv(processed_data_path)
@@ -146,17 +147,19 @@ def calculate_emb(**kwargs):
         link_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
         link_vectors = dict(zip(processed_data.link_id, link_final_pred))  ##link title vectors
 
-        # # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        # link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
-        # with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
-        #     json.dump(link_vectors_tolist, f)
-
-        # train_save_lsh(hash_size=20,
-        #                 input_dim=768,
-        #                 num_hashtables=10,
-        #                 matrices_filename='f{default_path}/data/lsh_matrices_filename.npz',
-        #                 hashtable_filename='f{default_path}/data/lsh_hashtables_filename.npz',
-        #                 link_vector=link_vectors)      
+        if link_rec_on == link_rec_on:
+            '''link_vec을 저장하기 위해서는 아래 코드들을 언코멘트 해준다'''
+            # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
+            link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
+            with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
+                json.dump(link_vectors_tolist, f)
+    
+            train_save_lsh(hash_size=20,
+                            input_dim=768,
+                            num_hashtables=10,
+                            matrices_filename='f{default_path}/data/lsh_matrices_filename.npz',
+                            hashtable_filename='f{default_path}/data/lsh_hashtables_filename.npz',
+                            link_vector=link_vectors)      
 
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
         ##pik추천을 위한 것
