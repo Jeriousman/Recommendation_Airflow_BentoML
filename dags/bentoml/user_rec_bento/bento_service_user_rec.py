@@ -1,4 +1,5 @@
 from random import random
+from random import randint
 import torch
 from transformers import BertTokenizer, BertModel, XLMRobertaTokenizer, XLMRobertaModel, AutoTokenizer, AutoModel, Trainer, TrainingArguments
 import bentoml
@@ -57,7 +58,7 @@ user_friend_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 
 
 '''USER RECOMMENDATION LOGIC'''
-def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold):
+def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     sim = list()
         
     for uid, vec in user_vec.items():
@@ -76,38 +77,41 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                            # if random() >= 0.5:
-                            sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
+                            lottery = random()
+                            if lottery <= 0.88:
                                 
-                            # else:
+                                sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
+                            ### if we want piktitle_vec into consideration, we should use this code and modify other code accordingly.
+                            # elif 0.7 < lottery <= 0.88:
                             #     pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
-                            #     if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다                            
-                            #         sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1])) 
-        
+                            #     if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
+                            #         sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
+                            
+                            elif 0.88 < lottery <= 1.0:
+      
+                                random_topk_rec_index = randint(0, topk)
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+                                
+                            if len(sim_list) == 10:
+                                    break        
     
     ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
     if sim_list == None:
         print('There is no recommended piks for your pik for now')
     
     elif bool(sim_list):
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)    
+        return sim_list
+         
     
     # elif not bool(sim_list):  
     elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
+        print('There is no recommended piks for your pik for now')
                  
         
-        sim_list = []
-        for i in range(1, topk+1):
-            if ranked_similar_items[i][1] > second_threshold:    
-                if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
-                    if i >= 1:  
-                        if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
-                            if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                                # if random() >= 0.5:
-                                sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
-                            
-            
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)
                                     
     else:
         print('Hey, there are really not suitable recommendation for your pik for now. But we are working on it!')
@@ -118,7 +122,7 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
 
 
 
-def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold):
+def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     sim = list()
     
     for uid, vec in user_vec.items():
@@ -137,7 +141,27 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                            sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
+                            lottery = random()
+                            if lottery <= 0.88:
+                                
+                                sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
+                            ### if we want piktitle_vec into consideration, we should use this code and modify other code accordingly.
+                            # elif 0.7 < lottery <= 0.88:
+                            #     pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
+                            #     if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
+                            #         sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
+                            
+                            elif 0.88 < lottery <= 1.0:
+      
+                                random_topk_rec_index = randint(0, topk)
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+                                
+                            if len(sim_list) == 10:
+                                    break  
                             
         
     
@@ -146,22 +170,12 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
         print('안타깝게도 현재 최적의 유저 추천이 어려운 상황이네요 ㅠㅠ')
     
     elif bool(sim_list):
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)    
+        return  sim_list   
 
     # elif not bool(sim_list):  
     elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
                  
-        
-        sim_list = []
-        for i in range(1, topk+1):
-            if ranked_similar_items[i][1] > second_threshold:  
-                if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
-                    if i >= 1:  
-                        if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
-                            if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                                    sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
-                
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)
+        print('안타깝게도 현재 최적의 유저 추천이 어려운 상황이네요 ㅠㅠ')
                                     
     else:
         print('정말 죄송하지만 현재 최적의 유저 추천이 어려운 상황입니다 ㅠㅠ! 열일하고 있으니 조금만 기다려 주세요!')
@@ -169,7 +183,7 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
                 
 
  
-def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold):
+def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     sim = list()
         
     for uid, vec in user_vec.items():
@@ -190,8 +204,27 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                            # if random() >= 0.5:
-                            sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
+                            lottery = random()
+                            if lottery <= 0.88:
+                                
+                                sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+
+                            ### if we want piktitle_vec into consideration, we should use this code and modify other code accordingly.
+                            # elif 0.7 < lottery <= 0.88:
+                            #     pik_title_sim = cosine_similarity(np.array(piktitle_vec[ranked_similar_items[0][0]]).reshape(1, -1), np.array(piktitle_vec[ranked_similar_items[i][0]]).reshape(1, -1))[0][0]
+                            #     if pik_title_sim >= piktitle_threshold: ##픽타이틀의 유사도도 threshold를 넘으면 그대로바로 추천리스트에들어간다  
+                            #         sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})    
+
+                            
+                            elif 0.88 < lottery <= 1.0:
+      
+                                random_topk_rec_index = randint(0, topk)
+                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
+                                    if len(sim_list) < 10:
+                                        sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
+                                
+                            if len(sim_list) == 10:
+                                    break  
         
     
     ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
@@ -199,44 +232,31 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
         print('There is no recommended users for you for now')
     
     elif bool(sim_list):
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)    
+        return  sim_list 
 
 
     # elif not bool(sim_list):  
     elif not bool(sim_list): ##sim_list에 아무것도 존재하지 않으면, second_threshold를 사용해서 더낮지만 그래도 차선인 추천을 해준다. 
-                 
-        
-        sim_list = []
-        for i in range(1, topk+1):
-            if ranked_similar_items[i][1] > second_threshold:    
-                if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
-                    if i >= 1:  
-                        if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
-                            if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
-                                # if random() >= 0.5:
-                                sim_list.append((ranked_similar_items[i][0], ranked_similar_items[i][1]))
-                               
-            
-        return  sorted(sim_list, key=lambda x: x[1], reverse=True)
-                                    
+        print('There is no recommended users for you for now')
+
     else:
         print('Hey, there are really not suitable users to recommend for you for now. But we are working on it!')
 
 
 
-def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold):    
+def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):    
     # if pd.unique(data['language_code'][data['user_id'] == user_id])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_lang_dict[user_id] == 'ko':
-        result = get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold)
+        result = get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
         # return inspect.signature(rec_user_by_lang)
     # elif pd.unique(data['language_code'][data['user_id'] == user_id])[0] == 'en': ##language_cde가 'ko' 인지, 'en'인지,
     elif user_lang_dict[user_id] == 'en':
-        result = get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold)
+        result = get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
         # return inspect.signature(rec_user_by_lang)
     else: 
-        result = get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, second_threshold, num_link_threshold)
+        result = get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
         # return inspect.signature(rec_user_by_lang)
     
@@ -254,8 +274,8 @@ def predict(user_id) -> dict:
     # num = num_link_by_pik[pik_id]
     # similarity_list = get_most_similar_piks(pik_emb, piks_vec, piktitle_vec, df=df, topk=10, threshold=0.87, piktitle_threshold=0.77, num_link_threshold=1)
     # similarity_list = rec_pik_by_lang(pik_emb, user_id, piks_vec, piktitle_vec, num_link_by_pik, data=df, topk=10, threshold=0.82, second_threshold=0.75, piktitle_threshold=0.77, num_link_threshold=3)
-    similarity_list = rec_user_by_lang(user_id, user_vec, user_friend_list, num_link_by_user, topk=10, threshold=0.9, second_threshold=0.8, num_link_threshold=4)
-    similarity_dict = {similarity_pair[0]: similarity_pair[1] for similarity_pair in similarity_list} ##dict {user: similarity}   
-    return sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
+    similarity_dict = rec_user_by_lang(user_id, user_vec, user_friend_list, num_link_by_user, topk=30, threshold=0.7, num_link_threshold=4)
+    # similarity_dict = {similarity_pair[0]: similarity_pair[1] for similarity_pair in similarity_list} ##dict {user: similarity}   
+    return similarity_dict
 
 

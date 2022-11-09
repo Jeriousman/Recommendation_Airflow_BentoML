@@ -62,17 +62,17 @@ with DAG(
             )
             
         
-    # task_db_data_fetching = PythonOperator(
-    #             task_id='db_data_fetching',
-    #             python_callable=data.db_data_fetching,
-    #             op_kwargs={
-    #                 'default_path' : '/opt/airflow/dags/data',
-    #                 'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-    #                 'dbname' : 'pikurateqa',
-    #                 'username' : 'postgres',
-    #                 'password' : 'wXVcn64CZsdM27',
-    #                 'portnumber' : 5432
-    #             })       
+    task_db_data_fetching = PythonOperator(
+                task_id='db_data_fetching',
+                python_callable=data.db_data_fetching,
+                op_kwargs={
+                    'default_path' : '/opt/airflow/dags/data',
+                    'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                    'dbname' : 'pikurateqa',
+                    'username' : 'postgres',
+                    'password' : 'wXVcn64CZsdM27',
+                    'portnumber' : 5432
+                })       
 
     
     
@@ -214,57 +214,10 @@ with DAG(
         )
         
     
-    # trigger_serving = TriggerDagRunOperator(task_id='trigger_serving',
-    #                                         trigger_dag_id='serve_pik_rec_bento',
-    #                                         execution_date='{{ ds }}',
-    #                                         reset_dag_run=True,
-    #                                         wait_for_completion=False,
-    #                                         poke_interval=30
-    #                                         )
-    
-    
-    
-    
-    
-    
-    
-        
-    # task_send_slack_noti = SlackWebhookOperator(task_id='send_slack_noti',
-    #                                             http_conn_id="slack_conn",
-    #                                             message='Hi Hannah. Welcome to Airflow world.',
-    #                                             channel='#airflow-monitor')
-    
-    
-    
-    
-    
-    
-    
-    # task_pik_inference_bentoml_api = PythonOperator(
-    #     task_id="pik_inference_bentoml_api",
-    #     python_callable=service.pik_inference,
-    #     op_kwargs={
-    #         'runner_name': "feature-extraction:latest", 
-    #         'service_name': "feature-extraction-service",
-    #         'vec_path': '/opt/airflow/dags/data/pik_vec.json',
-    #         'piktitle_vec_path' : '/opt/airflow/dags/data/piktitle_emb_vec.json',
-    #         'num_link_by_pik_path': '/opt/airflow/dags/data/num_link_by_pik.json',
-    #         'processed_data_path' : '/opt/airflow/dags/data/processed_data.csv',
-            
-    #         'topk' : 10,
-    #         'threshold' : 0.945,
-    #         'second_threshold' : 0.88,
-    #         'piktitle_threshold' : 0.7,
-    #         'num_link_threshold' : 3
-            
-            
-    #     }
-    # )
-    
     
 
 
 
     # chain(task_data_process, task_save_processed_data, [task_linktitle_data_process_to_torch,  task_piktitle_data_process_to_torch],  [task_calculate_linktitle_emb_vector_and_pik_vector ,task_calculate_piktitle_emb_vector], task_make_bento_model, task_create_bento, task_serve_bentoml)
-    #task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
-    task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
+    task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
+    # task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
