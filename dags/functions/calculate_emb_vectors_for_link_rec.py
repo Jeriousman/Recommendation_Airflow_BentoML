@@ -147,6 +147,7 @@ def calculate_emb(**kwargs):
         link_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
         link_vectors = dict(zip(processed_data.link_id, link_final_pred))  ##link title vectors
 
+        
         # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
         link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
         with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
