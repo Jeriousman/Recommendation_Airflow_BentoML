@@ -19,17 +19,9 @@ def load_tokenizer_and_model(tokenizer_name, model_name):
     '''
     embedding을사용하려면 nli모델을사용해야한다
     '''
-    # model_name = 'sentence-transformers/bert-base-nli-mean-tokens' ##deprecated
-    # model_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
-    
-    # Load pre-trained model tokenizer (vocabulary)
-    # tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
-    # tokenizer = BertTokenizer.from_pretrained(model_name)
     
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
     model = AutoModel.from_pretrained(model_name).to('cuda' if torch.cuda.is_available() else 'cpu')
-    # next(model.parameters()).is_cuda
-    
     return tokenizer, model
     
 
@@ -38,11 +30,7 @@ def load_tokenizer_and_model(tokenizer_name, model_name):
 ##유저/픽별로 모든 링크를수집해서 딕셔너리화하기        
 def get_links_by(dataframe, groupby, groupwhat):
     
-    # user_voca_voca = cards_user_log[['userGUID', 'vocabulary']].groupby('userGUID')['vocabulary'].apply(lambda x: x.tolist()).to_dict() #한 유저가 몇개의 vocabulary를 틀렸는지 다 보여준다 #groupby는 유저로그룹묶어주고 vocabulary에대한값을보여달라는것
     groupby_link = dataframe[[groupby, groupwhat]].groupby(groupby)[groupwhat].apply(lambda x: x.tolist()).to_dict() #한 유저가 몇개의 voca(빌딩과카드번호로를 틀렸는지 다 보여준다 #groupby는 유저로그룹묶어주고 voca에대한값을보여달라는것
-    
-    # print(user_voca[list(user_voca.keys())[1]][0:25]) # snippet of (first 25) titles of articles this user has read
-    #유저보카는즉유저가어떤문제들을틀렷는지모아놓은것이다
     return groupby_link  
 
 
@@ -64,7 +52,6 @@ def get_vectors(first_map, second_map):
 
 def train_save_lsh(hash_size, input_dim, num_hashtables, matrices_filename, hashtable_filename, link_vector):
     '''LSH link recommender logic. 왜냐하면 위의 일반 link recommender는 너무 느리기 때문에 LSH를 사용해야 한다'''
-    # lsh = lshashpy3.LSHash(hash_size=20, input_dim=768, num_hashtables=10,
     lsh = lshashpy3.LSHash(hash_size=hash_size, input_dim=input_dim, num_hashtables=num_hashtables,
             storage_config={ 'dict': None },
             matrices_filename= matrices_filename,  ##'weights.npz'
@@ -78,7 +65,7 @@ def train_save_lsh(hash_size, input_dim, num_hashtables, matrices_filename, hash
 
     ##나중에도 쓰고 싶으면 세이빙을 하는 것이 좋다.
     lsh.save()
-    # return lsh
+
 
 
 # def calculate_emb(processed_data_path, tokenizer_name, model_name, dataloader, embeddings='link_emb'):

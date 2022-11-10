@@ -55,14 +55,6 @@ def load_tokenizer(tokenizer_name):
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)    
     return tokenizer
 
-'''
-model_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
-
-'''
-
-
-
-
 
 def process_sent_tensor_to_torchdata(**kwargs):
     '''
