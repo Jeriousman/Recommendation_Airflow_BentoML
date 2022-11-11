@@ -52,12 +52,15 @@ with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
     user_lang_dict = json.load(f)
 
 
-
-user_friend_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
-
+friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 
 
+
+# user_id = '103'
+# topk=20
+# threshold=0.7
 '''USER RECOMMENDATION LOGIC'''
+
 def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     sim = list()
         
