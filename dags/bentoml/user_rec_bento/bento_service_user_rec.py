@@ -73,11 +73,12 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
     for i in range(1, topk+1):  ###0번째는 본유저이기 때문에 빼놓고 한다. 
         if ranked_similar_items[i][1] > threshold:  
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것 
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것 
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
                             lottery = random()
+                            
                             if lottery <= 0.88:
                                 
                                 sim_list.append({'user_id':ranked_similar_items[i][0], 'similarity':ranked_similar_items[i][1]})
@@ -138,7 +139,7 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -201,7 +202,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
     sim_list = [] ##추천 candidate 추려내저서 저장하는 리스트 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:  
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것: ##본픽이 아니라면 추천하라는 뜻
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것: ##본픽이 아니라면 추천하라는 뜻
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -246,16 +247,15 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
 
 
 def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):    
-    # if pd.unique(data['language_code'][data['user_id'] == user_id])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
+
     if user_lang_dict[user_id] == 'ko':
         result = get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
-        # return inspect.signature(rec_user_by_lang)
-    # elif pd.unique(data['language_code'][data['user_id'] == user_id])[0] == 'en': ##language_cde가 'ko' 인지, 'en'인지,
+
     elif user_lang_dict[user_id] == 'en':
         result = get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
-        # return inspect.signature(rec_user_by_lang)
+
     else: 
         result = get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
         return result
@@ -269,14 +269,8 @@ def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, th
 input_spec = Multipart(user_id=Text())
 @svc.api(input=input_spec, output=JSON())
 def predict(user_id) -> dict:
-    # user_id = user_id
-    # pik_id = pik_id
-    # pik_emb = piks_vec[pik_id] ##현재픽에대한엠베딩
-    # num = num_link_by_pik[pik_id]
-    # similarity_list = get_most_similar_piks(pik_emb, piks_vec, piktitle_vec, df=df, topk=10, threshold=0.87, piktitle_threshold=0.77, num_link_threshold=1)
-    # similarity_list = rec_pik_by_lang(pik_emb, user_id, piks_vec, piktitle_vec, num_link_by_pik, data=df, topk=10, threshold=0.82, second_threshold=0.75, piktitle_threshold=0.77, num_link_threshold=3)
+
     similarity_dict = rec_user_by_lang(user_id, user_vec, user_friend_list, num_link_by_user, topk=30, threshold=0.7, num_link_threshold=4)
-    # similarity_dict = {similarity_pair[0]: similarity_pair[1] for similarity_pair in similarity_list} ##dict {user: similarity}   
     return similarity_dict
 
 
