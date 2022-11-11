@@ -112,7 +112,7 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
     sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
-            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and int(ranked_similar_items[i][0]) not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -172,7 +172,7 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
-            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and int(ranked_similar_items[i][0]) not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -236,7 +236,7 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     sim_list = [] 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:   
-            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and int(ranked_similar_items[i][0]) not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+            if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_pik[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
