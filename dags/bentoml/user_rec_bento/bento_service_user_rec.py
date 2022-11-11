@@ -56,7 +56,7 @@ user_friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 
 
 # sim_list = [103, 145, 11]
-# user_id = '13'
+# user_id = '3408'
 # topk=20
 # threshold=0.7
 # num_link_threshold =3
@@ -77,7 +77,7 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
     for i in range(1, topk+1):  ###0번째는 본유저이기 때문에 빼놓고 한다. 
         if ranked_similar_items[i][1] > threshold:  
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것 
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것 
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -142,7 +142,7 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -204,7 +204,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
     sim_list = [] ##추천 candidate 추려내저서 저장하는 리스트 
     for i in range(1, topk+1):
         if ranked_similar_items[i][1] > threshold:  
-            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in sim_list: ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것: ##본픽이 아니라면 추천하라는 뜻
+            if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and int(ranked_similar_items[i][0]) not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것: ##본픽이 아니라면 추천하라는 뜻
                 if i >= 1:  
                     if ranked_similar_items[i-1][1] != ranked_similar_items[i][1]: ##유사도가 바로그다음으로높은것과비교했을때 현재유사도와같으면 같은내용의픽이나링크일테니 그건스킵하라는것
                         if num_link_by_user[ranked_similar_items[i][0]] >= num_link_threshold: ##픽안에 num_link_threshold 갯수이상 링크가 존재할때만 추천한다 
@@ -226,7 +226,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
                                 if user_id != ranked_similar_items[random_topk_rec_index][0] and int(ranked_similar_items[random_topk_rec_index][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
                                     sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
-                            if len(sim_list) == 10:
+                            if len(sim_list) == 18:
                                     break  
         
     
