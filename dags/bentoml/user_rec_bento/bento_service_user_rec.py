@@ -52,13 +52,14 @@ with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
     user_lang_dict = json.load(f)
 
 
-friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
+user_friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 
 
-
-# user_id = '103'
+# sim_list = [103, 145, 11]
+# user_id = '13'
 # topk=20
 # threshold=0.7
+# num_link_threshold =3
 '''USER RECOMMENDATION LOGIC'''
 
 def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
@@ -96,9 +97,8 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if user_id != ranked_similar_items[random_topk_rec_index][0] and int(ranked_similar_items[random_topk_rec_index][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break        
@@ -161,9 +161,8 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if user_id != ranked_similar_items[random_topk_rec_index][0] and int(ranked_similar_items[random_topk_rec_index][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break  
@@ -224,9 +223,8 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[i]['user_id'] for i in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if user_id != ranked_similar_items[random_topk_rec_index][0] and int(ranked_similar_items[random_topk_rec_index][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'user_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break  
@@ -273,7 +271,7 @@ input_spec = Multipart(user_id=Text())
 @svc.api(input=input_spec, output=JSON())
 def predict(user_id) -> dict:
 
-    similarity_dict = rec_user_by_lang(user_id, user_vec, user_friend_list, num_link_by_user, topk=30, threshold=0.7, num_link_threshold=4)
+    similarity_dict = rec_user_by_lang(user_id, user_vec, user_friends_list, num_link_by_user, topk=30, threshold=0.7, num_link_threshold=4)
     return similarity_dict
 
 

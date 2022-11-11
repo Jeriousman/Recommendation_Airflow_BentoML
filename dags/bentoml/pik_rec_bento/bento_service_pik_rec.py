@@ -130,9 +130,8 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break
@@ -191,9 +190,8 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break
@@ -260,9 +258,8 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                             elif 0.88 < lottery <= 1.0:
       
                                 random_topk_rec_index = randint(0, topk)
-                                if ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
-                                    if len(sim_list) < 10:
-                                        sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                    sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
                                 
                             if len(sim_list) == 10:
                                     break
