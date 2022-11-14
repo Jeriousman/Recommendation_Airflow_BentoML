@@ -147,14 +147,14 @@ def db_data_fetching(**kwargs):
 
     # export to csv
     fid = open(f'{default_path}/piks_category.csv', 'w')
-    sql = "COPY (SELECT id, title, pik_id, user_id, created FROM piks_category) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT id, title, pik_id, user_id, created, is_deleted FROM piks_category) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
 
     # export to csv
     fid = open(f'{default_path}/piks_pik.csv', 'w')
-    sql = "COPY (SELECT id, slug, title, status, language, is_draft, created FROM piks_pik) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT id, slug, title, status, language, is_draft, created, is_deleted FROM piks_pik) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
@@ -168,7 +168,7 @@ def db_data_fetching(**kwargs):
 
     # export to csv
     fid = open(f'{default_path}/linkhub_link.csv', 'w')
-    sql = "COPY (SELECT id, category_id, title, description, memo, url, is_draft, created FROM linkhub_link) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT id, category_id, title, description, memo, url, is_draft, created, is_deleted FROM linkhub_link) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
@@ -203,11 +203,11 @@ def raw_data_preprocess(**kwargs):
     catego = pd.read_csv(f'{path}/piks_category.csv')
     user_language = pd.read_csv(f'{path}/users_user.csv')
     user_friends = pd.read_csv(f'{path}/users_following.csv')
-    
+
 
     ##processing with friends list
     user_friends.rename(columns = {'from_user_id': 'user_id', 'to_user_id':'followed_user_id'}, inplace=True)
-    user_friends = user_friends[user_friends['is_deleted'] == 'f']  #'f' instead of False
+    user_friends = user_friends[user_friends['is_deleted'] == 'f' or False]  #'f' instead of False
     user_friends.to_csv(f'{path}/users_following.csv', index=False)
 
 
@@ -217,9 +217,13 @@ def raw_data_preprocess(**kwargs):
     
     
     linkhub.rename(columns = {'title':'link_title'}, inplace=True)
+    linkhub = linkhub[linkhub['is_deleted'] == 'f' or False]
+    
     piks.rename(columns = {'title':'pik_title'}, inplace=True)
+    piks = piks[piks['is_deleted'] == 'f' or False]
+    
     catego.rename(columns = {'title': 'cat_title'}, inplace = True)
-
+    catego = catego[catego['is_deleted'] == 'f' or False]
 
     ##category 테이블에 user id가 있기 때문에 그 아이디와 유저의 언어설정환경을 조인한다.
     catego = pd.merge(catego, user_language, how = 'inner', left_on ='user_id', right_on='id', suffixes=('', '_user'))
@@ -228,7 +232,7 @@ def raw_data_preprocess(**kwargs):
     ##pik_info와 cat_info 병합
     piks_cats = pd.merge(catego, piks, how = 'inner', left_on = 'pik_id', right_on = 'id', suffixes=('_cat', '_pik'))
     piks_cats.columns
-    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f')] #'f' instead of False
+    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f' or False)] #'f' instead of False
 
 
 
