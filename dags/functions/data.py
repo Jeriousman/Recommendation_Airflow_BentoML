@@ -237,7 +237,7 @@ def raw_data_preprocess(**kwargs):
     ##pik_info와 cat_info 병합
     piks_cats = pd.merge(catego, piks, how = 'inner', left_on = 'pik_id', right_on = 'id', suffixes=('_cat', '_pik'))
     piks_cats.columns
-    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f' or False)] #'f' instead of False
+    filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f')] #'f' instead of False
 
 
 
