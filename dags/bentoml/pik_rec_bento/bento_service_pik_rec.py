@@ -110,7 +110,7 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
         
     # sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
     sim_list = [] 
-    for i in range(1, topk+1):
+    for i in range(0, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  
@@ -170,7 +170,7 @@ def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     
     # sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
     sim_list = [] 
-    for i in range(1, topk+1):
+    for i in range(0, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  
@@ -234,7 +234,7 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     
     # sim_dict = {} ##추천 candidate 추려내서 저장하는 딕셔너리 
     sim_list = [] 
-    for i in range(1, topk+1):
+    for i in range(0, topk+1):
         if ranked_similar_items[i][1] > threshold:   
             if int(pik_id) != int(ranked_similar_items[i][0]) and int(ranked_similar_items[i][0]) not in user_pik[user_id] and ranked_similar_items[i][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                 if i >= 1:  

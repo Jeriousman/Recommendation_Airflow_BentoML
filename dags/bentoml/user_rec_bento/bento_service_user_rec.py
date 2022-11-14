@@ -55,11 +55,6 @@ with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
 user_friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 
 
-# sim_list = [103, 145, 11]
-# user_id = '3408'
-# topk=20
-# threshold=0.7
-# num_link_threshold =3
 '''USER RECOMMENDATION LOGIC'''
 
 def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
@@ -75,7 +70,7 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
      
     
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
-    for i in range(1, topk+1):  ###0번째는 본유저이기 때문에 빼놓고 한다. 
+    for i in range(0, topk+1):  
         if ranked_similar_items[i][1] > threshold:  
             if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[i][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것 
                 if i >= 1:  
@@ -140,7 +135,7 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
     ranked_similar_items = full_ranked_similar_items[:topk+1] ##only topk similarity list. 본픽도 들어가있기떄문에+1을해준다
     
     sim_list = [] ##추천 candidate 추려내서 저장하는 리스트 
-    for i in range(1, topk+1):
+    for i in range(0, topk+1):
         if ranked_similar_items[i][1] > threshold:
             if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[i][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것
                 if i >= 1:  
@@ -186,6 +181,11 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
               
                 
 
+# sim_list = [103, 145, 11]
+# user_id = '3408'
+# topk=20
+# threshold=0.7
+# num_link_threshold =3
  
 def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     sim = list()
@@ -202,7 +202,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
      
     
     sim_list = [] ##추천 candidate 추려내저서 저장하는 리스트 
-    for i in range(1, topk+1):
+    for i in range(0, topk+1):
         if ranked_similar_items[i][1] > threshold:  
             if user_id != ranked_similar_items[i][0] and int(ranked_similar_items[i][0]) not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and ranked_similar_items[i][0] not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본 유저가 아니거나 본 유저가 팔로잉 있지 않은 유저면 추천하라는 것: ##본픽이 아니라면 추천하라는 뜻
                 if i >= 1:  
