@@ -38,7 +38,7 @@ svc = bentoml.Service("user_recommender_bento", runners=[runner])
 # with open("/opt/airflow/dags/data/num_link_by_pik.json") as f:
 #     num_link_by_pik = json.load(f)
 
-# df = pd.read_csv("/opt/airflow/dags/data/light_processed_data.csv")
+df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
 
 # with open("/opt/airflow/dags/data/pik_lang_dict.json") as f:
 #     pik_lang_dict = json.load(f)
@@ -119,15 +119,12 @@ def get_most_similar_users(user_id, user_vec, friends_list, num_link_by_user, to
                                     
     else:
         print('Hey, there are really not suitable recommendation for your pik for now. But we are working on it!')
-                    
-
 
 
 
 
 def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
-    
-    if num_link_by_user[user_id] == 0 or not num_link_by_user[user_id]:
+    if user_id not in num_link_by_user.keys():
         if user_lang_dict[user_id] == 'ko':
             sim_list = list()
             while True: ##10명 추천해주기때문에
@@ -135,9 +132,10 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
                 if user_lang_dict[key] == 'ko':
                     if value > 10:
                         if user_id != key and key not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and key not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
-                            sim_list.append({'user_id': key, 'similarity': 'nothing'})
+                            sim_list.append({'user_id': key, 'similarity': 1})
                             if len(sim_list) == 10:
-                                break
+                                break    
+
                         
     else:
         
@@ -205,10 +203,55 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
 # threshold=0.7
 # num_link_threshold =3
  
+
+
+# users_user = pd.read_csv('/home/hojun/temp/data_temp/users_user.csv')
+# # users_following = pd.read_csv('/home/hojun/temp/data_temp/users_following.csv')
+# # users_following[users_following['id'] == 3412]
+
+# users_user[users_user['id'] == 3412]
+
+
+
+# df = pd.read_csv("/home/hojun/temp/data_temp/processed_data.csv")
+# # with open("/opt/airflow/dags/data/pik_lang_dict.json") as f:
+# #     pik_lang_dict = json.load(f)
+# with open("/home/hojun/temp/data_temp/user_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
+#     user_vec = json.load(f)
+# with open("/home/hojun/temp/data_temp/num_link_by_user.json") as f:
+#     num_link_by_user = json.load(f)
+# with open("/home/hojun/temp/data_temp/user_lang_dict.json") as f:
+#     user_lang_dict = json.load(f)
+# user_friends_list = pd.read_csv('/home/hojun/temp/data_temp/users_following.csv')
+
+# user_language = pd.read_csv('/home/hojun/temp/data_temp/users_user.csv')
+
+
+
+# user_language[user_language['id'] == 3412]
+# users_user = pd.read_csv("/home/hojun/temp/data_temp/users_user.csv")
+
+# user_id ='3412'
+# num_link_by_user['3412']
+# friends_list['3412']
+# user_friends_list
+# user_lang_dict['3412']
+# df[df['user_id'] == 3412]
+
+# sim_list = [103, 145, 11]
+# user_id = '3412'
+# topk=20
+# threshold=0.7
+# num_link_threshold =3
+
+
+
+# '3412' in num_link_by_user.keys()
+
+
 def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):
     
-    
-    if num_link_by_user[user_id] == 0 or not num_link_by_user[user_id]:
+    if user_id not in num_link_by_user.keys():
         if user_lang_dict[user_id] == 'en':
             sim_list = list()
             while True: ##10명 추천해주기때문에
@@ -216,7 +259,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
                 if user_lang_dict[key] == 'en':
                     if value > 10:
                         if user_id != key and key not in list(friends_list['followed_user_id'][friends_list['user_id'] == int(user_id)]) and key not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]):
-                            sim_list.append({'user_id': key, 'similarity': 'nothing'})
+                            sim_list.append({'user_id': key, 'similarity': 1})
                             if len(sim_list) == 10:
                                 break
     

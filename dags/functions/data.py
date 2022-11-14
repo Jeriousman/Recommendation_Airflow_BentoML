@@ -284,8 +284,8 @@ def raw_data_preprocess(**kwargs):
     # ti.xcom_push(key='data', value =  link_cat_pik)
     
         
-    
-    user_lang_dict = {k:v for k,v in zip(link_cat_pik['user_id'], link_cat_pik['language_code'])}
+
+    user_lang_dict = {str(k):str(v) for k,v in zip(user_language['id'], user_language['language_code'])} ##모든유저를 검색할 수 있도록
     pik_lang_dict = {k:v for k,v in zip(link_cat_pik['pik_id'], link_cat_pik['language_code'])}
     link_lang_dict = {k:v for k,v in zip(link_cat_pik['link_id'], link_cat_pik['language_code'])}
     
