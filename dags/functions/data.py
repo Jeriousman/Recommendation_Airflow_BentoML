@@ -198,6 +198,8 @@ def raw_data_preprocess(**kwargs):
     #model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')
     path = kwargs.get('path', '/opt/airflow/dags/data')    
     
+
+    
     linkhub = pd.read_csv(f'{path}/linkhub_link.csv')
     piks = pd.read_csv(f'{path}/piks_pik.csv')
     catego = pd.read_csv(f'{path}/piks_category.csv')
@@ -207,7 +209,7 @@ def raw_data_preprocess(**kwargs):
 
     ##processing with friends list
     user_friends.rename(columns = {'from_user_id': 'user_id', 'to_user_id':'followed_user_id'}, inplace=True)
-    user_friends = user_friends[user_friends['is_deleted'] == 'f' or False]  #'f' instead of False
+    user_friends = user_friends[(user_friends['is_deleted'] == 'f') | (user_friends['is_deleted'] == False)]  #'f' instead of False
     user_friends.to_csv(f'{path}/users_following.csv', index=False)
 
 
@@ -217,13 +219,16 @@ def raw_data_preprocess(**kwargs):
     
     
     linkhub.rename(columns = {'title':'link_title'}, inplace=True)
-    linkhub = linkhub[linkhub['is_deleted'] == 'f' or False]
+    linkhub = linkhub[(linkhub['is_deleted'] == 'f') | (linkhub['is_deleted'] == False)]
+
     
     piks.rename(columns = {'title':'pik_title'}, inplace=True)
-    piks = piks[piks['is_deleted'] == 'f' or False]
+    piks = piks[(piks['is_deleted'] == 'f') | (piks['is_deleted'] == False)]
+    
     
     catego.rename(columns = {'title': 'cat_title'}, inplace = True)
-    catego = catego[catego['is_deleted'] == 'f' or False]
+    catego = catego[(catego['is_deleted'] == 'f') | (catego['is_deleted'] == False)]
+    
 
     ##category 테이블에 user id가 있기 때문에 그 아이디와 유저의 언어설정환경을 조인한다.
     catego = pd.merge(catego, user_language, how = 'inner', left_on ='user_id', right_on='id', suffixes=('', '_user'))
