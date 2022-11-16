@@ -97,34 +97,34 @@ with open('/opt/airflow/dags/data/user_pik.json') as f:
 
 
 
-with open("/home/hojun/temp/data_development/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
-    piks_vec = json.load(f)
+# with open("/home/hojun/temp/data_development/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
+#     piks_vec = json.load(f)
     
-with open("/home/hojun/temp/data_development/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
-    piktitle_vec = json.load(f)
+# with open("/home/hojun/temp/data_development/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
+#     piktitle_vec = json.load(f)
     
     
-with open("/home/hojun/temp/data_development/num_link_by_pik.json") as f:
-    num_link_by_pik = json.load(f)
+# with open("/home/hojun/temp/data_development/num_link_by_pik.json") as f:
+#     num_link_by_pik = json.load(f)
 
-# df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
+# # df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
 
  
-with open("/home/hojun/temp/data_development/user_lang_dict.json") as f:
-    user_lang_dict = json.load(f)
+# with open("/home/hojun/temp/data_development/user_lang_dict.json") as f:
+#     user_lang_dict = json.load(f)
 
  
-with open("/home/hojun/temp/data_development/pik_lang_dict.json") as f:
-    pik_lang_dict = json.load(f)
+# with open("/home/hojun/temp/data_development/pik_lang_dict.json") as f:
+#     pik_lang_dict = json.load(f)
 
 
 
 
-with open('/home/hojun/temp/data_development/user_pik.json') as f:
-    user_pik = json.load(f)
+# with open('/home/hojun/temp/data_development/user_pik.json') as f:
+#     user_pik = json.load(f)
 
-with open('/home/hojun/temp/data_development/pik_link.json') as f:
-    pik_link = json.load(f)
+# with open('/home/hojun/temp/data_development/pik_link.json') as f:
+#     pik_link = json.load(f)
 
 
 def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
@@ -325,12 +325,12 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
                             if len(sim_list) == 10:
                                 break
 
-pik_id = '17040'
-user_id = '3412'
+# pik_id = '17040'
+# user_id = '3412'
 
 
-pik_id = '132434u53450'
-user_id = '323453453412'
+# pik_id = '132434u53450'
+# user_id = '323453453412'
 
 
 def rec_pik_by_lang(pik_id, user_id, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):    
