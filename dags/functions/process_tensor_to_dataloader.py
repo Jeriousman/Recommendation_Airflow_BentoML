@@ -5,6 +5,7 @@ Created on Tue Aug 23 12:52:02 2022
 
 @author: hojun
 """
+
 from torch.utils.data import DataLoader
 import pickle
 import torch
@@ -70,7 +71,7 @@ def process_sent_tensor_to_torchdata(**kwargs):
     
     #model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')
     tokenizer_name = kwargs.get('tokenizer_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')    
-    processed_data_path = kwargs.get('processed_data', '/opt/airflow/dags/data/link_cat_pik.csv')
+    processed_data_path = kwargs.get('processed_data', '/opt/airflow/dags/data/processed_data.csv')
     tokenizing_col = kwargs.get('tokenizing_col', 'link_title') ##or pik_title
     max_len = kwargs.get('max_len', 24)
     return_tensors = kwargs.get('return_tensors', 'pt')
