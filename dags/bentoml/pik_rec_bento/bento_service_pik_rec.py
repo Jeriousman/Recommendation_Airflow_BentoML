@@ -5,7 +5,7 @@ Created on Thu Aug 11 13:59:38 2022
 
 @author: hojun
 """
-
+from random import choice
 from random import random
 from random import randint
 import torch
@@ -157,11 +157,11 @@ def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num
 def get_most_similar_piks_en(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     
     if pik_id not in num_link_by_pik.keys(): ##만약 픽에 링크가 하나도 없다면
-        if pik_lang_dict_outer[pik_id] == 'en':
+        if pik_lang_dict[pik_id] == 'en':
             sim_list = list()
             while True: 
                 key, value = choice(list(num_link_by_pik.items()))
-                if pik_lang_dict_outer[key] == 'en':
+                if pik_lang_dict[key] == 'en':
                     if value > 10: ##10픽 추천해주기때문에
                         if pik_id != key and key not in user_pik[user_id] and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                             sim_list.append({'user_id': key, 'similarity': 1})
@@ -239,11 +239,11 @@ def get_most_similar_piks_ko(pik_id, user_id, user_pik, piks_vec, piktitle_vec, 
     
     ##만약 픽에 링크가 하나도 없다면
     if pik_id not in num_link_by_pik.keys():
-        if pik_lang_dict_outer[pik_id] == 'ko':
+        if pik_lang_dict[pik_id] == 'ko':
             sim_list = list()
             while True: 
                 key, value = choice(list(num_link_by_pik.items()))
-                if pik_lang_dict_outer[key] == 'ko':
+                if pik_lang_dict[key] == 'ko':
                     if value > 10: ##10픽 추천해주기때문에
                         if pik_id != key and key not in user_pik[user_id] and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                             sim_list.append({'user_id': key, 'similarity': 1})
