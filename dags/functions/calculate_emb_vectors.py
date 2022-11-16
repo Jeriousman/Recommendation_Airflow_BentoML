@@ -151,6 +151,9 @@ def calculate_emb(**kwargs):
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
         ##pik추천을 위한 것
         pik_link = get_links_by(processed_data, 'pik_id', 'link_id')
+        with open(f'{default_path}/data/pik_link.json', 'w') as f:
+            json.dump(pik_link, f)
+            
         pik_vec = get_vectors(pik_link, link_vectors) #유저가 틀린 문장들이계산되었는데 그문장들을 모두모아서에버리지하는것. 유저가틀린모든문장을모아서평균계산
         ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
         pik_vec_tolist = {str(k):v.tolist() for k,v in pik_vec.items()}
@@ -168,6 +171,8 @@ def calculate_emb(**kwargs):
         user_pik = get_links_by(processed_data, 'user_id', 'pik_id')
         with open(f'{default_path}/data/user_pik.json', 'w') as f:
             json.dump(user_pik, f)
+            
+
 
         user_link = get_links_by(processed_data, 'user_id', 'link_id')
         with open(f'{default_path}/data/user_link.json', 'w') as f:
