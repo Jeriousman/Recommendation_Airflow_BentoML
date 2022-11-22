@@ -156,7 +156,7 @@ user_friends_list = pd.read_csv("/opt/airflow/dags/data/users_following.csv")
 # num_link_threshold=4
 # piktitle_threshold=0.7
 
-def get_most_similar_piks_for_user_ko(user_id, pik_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):
+def get_most_similar_piks_for_user_ko(user_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):
     
     sim = list()
     
@@ -170,8 +170,8 @@ def get_most_similar_piks_for_user_ko(user_id, pik_id, user_vec, pik_vec, user_p
 
 
     not_thispik_not_mypik_rec = [] ## filtering
-    for (pid, similarity) in sim:
-        if int(pik_id) != pid and int(pid) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+    for (pid, similarity) in sim: 
+        if int(pid) not in user_pik[user_id]: ##자기 자신이 가지고 있는 픽이 아닌 것을 추천
             not_thispik_not_mypik_rec.append((pid, similarity))
             
     if not not_thispik_not_mypik_rec: ##if not_me_not_friends_rec is empty list,
@@ -239,7 +239,7 @@ def get_most_similar_piks_for_user_ko(user_id, pik_id, user_vec, pik_vec, user_p
                   
                     
 
-def get_most_similar_piks_for_user_en(user_id, pik_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):
+def get_most_similar_piks_for_user_en(user_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):
     
 
 
@@ -255,7 +255,7 @@ def get_most_similar_piks_for_user_en(user_id, pik_id, user_vec, pik_vec, user_p
 
     not_thispik_not_mypik_rec = [] ## filtering
     for (pid, similarity) in sim:
-        if int(pik_id) != pid and int(pid) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+        if int(pid) not in user_pik[user_id]: ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
             not_thispik_not_mypik_rec.append((pid, similarity))
             
     if not not_thispik_not_mypik_rec: ##if not_me_not_friends_rec is empty list,
@@ -325,12 +325,12 @@ def get_most_similar_piks_for_user_en(user_id, pik_id, user_vec, pik_vec, user_p
 
 
 
-def rec_piks_for_user_by_lang(pik_id, user_id, user_vec, pik_vec, user_pik, user_lang_dict, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):  
+def rec_piks_for_user_by_lang(user_id, user_vec, pik_vec, user_pik, user_lang_dict, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):  
     if user_id in user_lang_dict.keys(): ##유저가 업데이트 리스트에 존재하고,
     
         if user_lang_dict[user_id] == 'ko':  ##유저 주언어가 한국어이고,
             if user_id in num_link_by_user.keys():  ##유저가 링크가 하나라도 있다면,
-                result = get_most_similar_piks_for_user_ko(user_id, pik_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold)
+                result = get_most_similar_piks_for_user_ko(user_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold)
                 return result
             
             elif user_id not in num_link_by_user.keys(): ##만약에 유저가 링크가 하나도 없다면
@@ -350,7 +350,7 @@ def rec_piks_for_user_by_lang(pik_id, user_id, user_vec, pik_vec, user_pik, user
             
         elif user_lang_dict[user_id] == 'en':
             if user_id in num_link_by_user.keys():   
-                result = get_most_similar_piks_for_user_en(user_id, pik_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold)
+                result = get_most_similar_piks_for_user_en(user_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold)
                 return result
             
             elif user_id not in num_link_by_user.keys():
@@ -392,11 +392,11 @@ def rec_piks_for_user_by_lang(pik_id, user_id, user_vec, pik_vec, user_pik, user
 
 
 ## This is modification of above to inlcude language condition
-input_spec = Multipart(pik_id=Text(), user_id=Text())
+input_spec = Multipart(user_id=Text())
 @svc.api(input=input_spec, output=JSON())
-def predict(user_id, pik_id) -> dict:
+def predict(user_id) -> dict:
 
-    similarity_dict = rec_piks_for_user_by_lang(pik_id, user_id, user_vec, pik_vec, user_pik, user_lang_dict, pik_lang_dict, num_link_by_user, num_link_by_pik, topk=30, threshold=0.8, num_link_threshold=4, piktitle_threshold=0.7)
+    similarity_dict = rec_piks_for_user_by_lang(user_id, user_vec, pik_vec, user_pik, user_lang_dict, pik_lang_dict, num_link_by_user, num_link_by_pik, topk=30, threshold=0.8, num_link_threshold=4, piktitle_threshold=0.7)
     return similarity_dict
 
 
