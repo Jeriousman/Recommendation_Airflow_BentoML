@@ -26,11 +26,11 @@ model_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranki
 # tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # runner = bentoml.transformers.get("feature-extraction:latest").to_runner()
-runner = bentoml.transformers.get("user_recommender_model:latest").to_runner()
+runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
 
 # runner.init_local()
 # svc = bentoml.Service("feature-extraction-service", runners=[runner])
-svc = bentoml.Service("user_recommender_bento", runners=[runner])
+svc = bentoml.Service("pik_to_user_recommender_bento", runners=[runner])
 
 
 # with open(/opt/airflow/dags/data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
