@@ -318,17 +318,6 @@ def get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, p
     else:
         print('정말 죄송하지만 현재 최적의 픽 추천이 어려운 상황입니다 ㅠㅠ! 열일하고 있으니 조금만 기다려 주세요!')
 
-    if pik_id not in num_link_by_pik.keys(): ##만약 픽에 링크가 하나도 없다면
-            sim_list = list()
-            while True: 
-                key, value = choice(list(num_link_by_pik.items()))
-                if pik_lang_dict[key] == 'en':
-                    if value > 10: ##10픽 이상인 것을 추천해주기때문에
-                        if (pik_id != key and key not in user_pik[user_id] and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))])): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
-                        
-                            sim_list.append({'pik_id': key, 'similarity': 1})
-                            if len(sim_list) == 10:
-                                break
 
 # pik_id = '17040'
 # user_id = '3412'
