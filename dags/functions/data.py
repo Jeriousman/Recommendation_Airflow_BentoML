@@ -206,13 +206,13 @@ def raw_data_preprocess(**kwargs):
     user_language = pd.read_csv(f'{path}/users_user.csv')
     user_friends = pd.read_csv(f'{path}/users_following.csv')
     
-    linkhub = pd.read_csv('/home/hojun/temp/data_development/linkhub_link.csv')
-    piks = pd.read_csv('/home/hojun/temp/data_development/piks_pik.csv')
-    catego = pd.read_csv('/home/hojun/temp/data_development/piks_category.csv')
-    user_language = pd.read_csv('/home/hojun/temp/data_development/users_user.csv')
-    user_friends = pd.read_csv('/home/hojun/temp/data_development/users_following.csv')
-    with open('/home/hojun/temp/data_development/artificial_user_list', 'rb') as f:
-        artificial_users = pickle.load(f)
+    # linkhub = pd.read_csv('/home/hojun/temp/data_development/linkhub_link.csv')
+    # piks = pd.read_csv('/home/hojun/temp/data_development/piks_pik.csv')
+    # catego = pd.read_csv('/home/hojun/temp/data_development/piks_category.csv')
+    # user_language = pd.read_csv('/home/hojun/temp/data_development/users_user.csv')
+    # user_friends = pd.read_csv('/home/hojun/temp/data_development/users_following.csv')
+    # with open('/home/hojun/temp/data_development/artificial_user_list', 'rb') as f:
+    #     artificial_users = pickle.load(f)
         
 
     ##processing with friends list
