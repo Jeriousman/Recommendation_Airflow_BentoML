@@ -161,7 +161,7 @@ def get_most_similar_piks_for_user_ko(user_id, user_vec, pik_vec, user_pik, pik_
     sim = list()
     
     for pid, vec in pik_vec.items():
-        if pik_lang_dict[pid] == 'ko':
+        if pik_lang_dict[pid] == 'ko' or pik_lang_dict[pid] == 'kr':
 
             thisSim = cosine_similarity(np.array(vec).reshape(1, -1), np.array(user_vec[user_id]).reshape(1, -1))
             sim.append((pid, thisSim[0][0]))
@@ -328,7 +328,7 @@ def get_most_similar_piks_for_user_en(user_id, user_vec, pik_vec, user_pik, pik_
 def rec_piks_for_user_by_lang(user_id, user_vec, pik_vec, user_pik, user_lang_dict, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold):  
     if user_id in user_lang_dict.keys(): ##유저가 업데이트 리스트에 존재하고,
     
-        if user_lang_dict[user_id] == 'ko':  ##유저 주언어가 한국어이고,
+        if user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr':  ##유저 주언어가 한국어이고,
             if user_id in num_link_by_user.keys():  ##유저가 링크가 하나라도 있다면,
                 result = get_most_similar_piks_for_user_ko(user_id, user_vec, pik_vec, user_pik, pik_lang_dict, num_link_by_user, num_link_by_pik, topk, threshold, num_link_threshold, piktitle_threshold)
                 return result
@@ -338,7 +338,7 @@ def rec_piks_for_user_by_lang(user_id, user_vec, pik_vec, user_pik, user_lang_di
                 sim_list = list()
                 while True: 
                     key, value = choice(list(num_link_by_pik.items()))
-                    if pik_lang_dict[key] == 'ko':
+                    if pik_lang_dict[key] == 'ko' or user_lang_dict[user_id] == 'kr':
                         if value > 10: ##10픽 이상인 것을 추천해주기때문에
                             if key not in user_pik.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                             # if user_id != key and user_id not in user_link.keys() and key not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것

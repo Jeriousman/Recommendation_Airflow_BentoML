@@ -265,7 +265,7 @@ def get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, p
     
     for pid, vec in piks_vec.items():
         if status_dict[pid] == 'public':
-            if pik_lang_dict[pid] == 'ko':
+            if pik_lang_dict[pid] == 'ko' or pik_lang_dict[pid] == 'kr':
                 thisSim = cosine_similarity(np.array(vec).reshape(1, -1), np.array(piks_vec[pik_id]).reshape(1, -1))
                 sim.append((pid, thisSim[0][0]))
 
@@ -330,7 +330,7 @@ def get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, p
 def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):    
     # if pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_id in user_lang_dict.keys():
-        if user_lang_dict[user_id] == 'ko':
+        if user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr':
             if pik_id in num_link_by_pik.keys():
                 result = get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
                 return result
@@ -341,7 +341,7 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict, user_pik, piks
                 while True: 
                     key, value = choice(list(num_link_by_pik.items()))
                     if status_dict[key] == 'public':
-                        if pik_lang_dict[key] == 'ko':
+                        if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
                             if value > 10: ##10픽 이상인 것을 추천해주기때문에
                                 if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                                 
@@ -361,7 +361,7 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict, user_pik, piks
                 while True: 
                     key, value = choice(list(num_link_by_pik.items()))
                     if status_dict[key] == 'public':
-                        if pik_lang_dict[key] == 'ko':
+                        if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
                             if value > 10: ##10픽 이상인 것을 추천해주기때문에
                                 if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                                 

@@ -178,7 +178,7 @@ def get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user,
     sim = list()
     
     for uid, vec in user_vec.items():
-        if user_lang_dict[uid] == 'ko':
+        if user_lang_dict[uid] == 'ko' or user_lang_dict[uid] == 'kr':
         # if pd.unique(data['language_code'][data['user_id'] == user_id])[0] == 'ko':
             thisSim = cosine_similarity(np.array(vec).reshape(1, -1), np.array(user_vec[user_id]).reshape(1, -1))
             sim.append((uid, thisSim[0][0]))
@@ -356,7 +356,7 @@ def get_most_similar_users_en(user_id, user_vec, friends_list, num_link_by_user,
 def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold):  
     if user_id in user_lang_dict.keys():
     
-        if user_lang_dict[user_id] == 'ko':
+        if user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr':
             if user_id in num_link_by_user.keys():
                 result = get_most_similar_users_ko(user_id, user_vec, friends_list, num_link_by_user, topk, threshold, num_link_threshold)
                 return result
@@ -366,7 +366,7 @@ def rec_user_by_lang(user_id, user_vec, friends_list, num_link_by_user, topk, th
                 sim_list = list()
                 while True: 
                     key, value = choice(list(num_link_by_user.items()))
-                    if user_lang_dict[key] == 'ko':
+                    if user_lang_dict[key] == 'ko' or user_lang_dict[key] == 'kr':
                         if value > 10: ##10픽 이상인 것을 추천해주기때문에
                             if user_id != key and user_id not in user_link.keys() and key not in list([sim_list[num]['user_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
                             
