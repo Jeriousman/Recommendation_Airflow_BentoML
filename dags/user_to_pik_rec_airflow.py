@@ -44,7 +44,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id='pik_rec_airflow',
+    dag_id='user_to_pik_rec_airflow',
     start_date=datetime(2022, 9 , 28),
     schedule_interval="30 * * * *",  ##meaning every 2 hours. https://crontab.guru/ 매새벽3시에돌린다 (UTC타임)
     default_args=default_args,
@@ -60,7 +60,7 @@ with DAG(
             task_id="clear_bento",         ##
             bash_command=
             """ 
-                bentoml delete pik_recommender_bento --yes; bentoml models delete pik_recommender_model --yes; echo "Job continued"  
+                bentoml delete user_to_pik_recommender_bento --yes; bentoml models delete user_to_pik_recommender_model --yes; echo "Job continued"  
             """
             )
     
@@ -71,10 +71,10 @@ with DAG(
             python_callable=data.db_data_fetching,
             op_kwargs={
                 'default_path' : '/opt/airflow/dags/data',
-                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-                'dbname' : 'pikurate',
+                'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                'dbname' : 'pikurateqa',
                 'username' : 'postgres',
-                'password' : 'postgres',
+                'password' : 'wXVcn64CZsdM27',
                 'portnumber' : 5432
             })
     
@@ -185,7 +185,7 @@ with DAG(
             "model_name": 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking', 
             'tokenizer_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
             'huggingface_pipeline_name': 'feature-extraction',
-            'bentoml_model_name' : 'pik_recommender_model',
+            'bentoml_model_name' : 'user_to_pik_recommender_model',
         }
     )
     
@@ -197,7 +197,7 @@ with DAG(
         bash_command=
         
         """ 
-            cd /opt/airflow/dags/bentoml/pik_rec_bento; bentoml build
+            cd /opt/airflow/dags/bentoml/user_to_pik_rec_bento; bentoml build
         """
         )
     
@@ -212,7 +212,7 @@ with DAG(
         """ 
             
             
-            fuser -k 3001/tcp; bentoml serve -p 3001 pik_recommender_bento:latest --production
+            fuser -k 3003/tcp; bentoml serve -p 3003 user_to_pik_recommender_bento:latest --production
         """
         )
         
@@ -222,6 +222,5 @@ with DAG(
 
 
     # chain(task_data_process, task_save_processed_data, [task_linktitle_data_process_to_torch,  task_piktitle_data_process_to_torch],  [task_calculate_linktitle_emb_vector_and_pik_vector ,task_calculate_piktitle_emb_vector], task_make_bento_model, task_create_bento, task_serve_bentoml)
-    # task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
     # task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
     task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml

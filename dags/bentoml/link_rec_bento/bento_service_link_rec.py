@@ -260,7 +260,7 @@ def get_most_similar_links_lsh_en(link_id, user_id, link_vector, user_link, link
 # user_id = '7443'
 
 def rec_link_by_lang(link_id, user_id, link_vector, user_link, user_lang_dict, link_lang_dict, lsh, lsh_topk=40, topk=10):    
-    if user_lang_dict[user_id] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
+    if user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr': ##language_cde가 'ko' 인지, 'en'인지,
         result = get_most_similar_links_lsh_ko(link_id, user_id, link_vector, user_link, link_lang_dict, lsh, lsh_topk=40, topk=10)
         return result
     elif user_lang_dict[user_id] == 'en': ##language_cde가 'ko' 인지, 'en'인지,
