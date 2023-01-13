@@ -76,6 +76,7 @@ with DAG(
                 'username' : 'postgres',
                 'password' : 'postgres',
                 'portnumber' : 5432
+
             })
     
     
