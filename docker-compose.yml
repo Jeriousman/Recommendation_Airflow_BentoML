@@ -19,7 +19,7 @@ x-airflow-common: &airflow-common
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - /var/run/docker.sock:/var/run/docker.sock
-  user: "${AIRFLOW_UID:-$(id -u)}:${AIRFLOW_GID:-0}"
+  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   # user: "${AIRFLOW_UID}:50000"
   depends_on:
     redis:
@@ -61,7 +61,7 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
       interval: 30s
-      timeout: 30s
+      timeout: 200s
       retries: 3
     # image: apache/airflow:2.4.0
     restart: always
@@ -104,9 +104,9 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
-      - "3002:3002"
-      - "3003:3003"
-      - "3004:3004"
+      #- "3002:3002"
+      #- "3003:3003"
+      #- "3004:3004"
 
     build:
       context: .
