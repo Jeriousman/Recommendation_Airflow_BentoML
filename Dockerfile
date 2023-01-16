@@ -23,8 +23,8 @@ FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
 #RUN sudo chmod 777 /opt/airflow/logs
 #RUN sudo chmod 777 /opt/airflow/plugins
 #RUN sudo chmod 777 /var/run/docker.sock
-
-USER $(id -u)
+#"${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
+USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
 #COPY ./cuda/ ./cuda/
 
 # RUN export AIRFLOW_DAEMON_USER="${AIRFLOW_DAEMON_USER:-airflow}"
@@ -48,7 +48,7 @@ RUN apt-get -y install vim
 RUN apt-get -y install lsof
 RUN apt-get -y install psmisc
 RUN apt-get -y install net-tools
-USER $(id -u) 
+USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
 
 # RUN apt-get update
 # RUN apt install python3
