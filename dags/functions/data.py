@@ -128,14 +128,6 @@ def check_data(**kwargs):
     print('processed_data shape is: ', data.shape)
     
 
-                'default_path' : '/opt/airflow/dags/data',
-                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-                'dbname' : 'pikurate',
-                'username' : 'postgres',
-                'password' : 'postgres',
-                'portnumber' : 5432
-
-
 
 def db_data_fetching(**kwargs):
     
