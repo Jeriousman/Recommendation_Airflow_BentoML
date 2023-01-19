@@ -1,0 +1,1026 @@
+[2023-01-19T04:09:58.197+0000] {processor.py:156} INFO - Started process (PID=3817) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:09:58.198+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:09:58.199+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:09:58.199+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:10:00.376+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:00.374+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:10:00.376+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:10:00.389+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.195 seconds
+[2023-01-19T04:10:30.552+0000] {processor.py:156} INFO - Started process (PID=3875) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:10:30.553+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:10:30.553+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:30.553+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:10:32.734+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:32.732+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:10:32.734+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:10:32.747+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.198 seconds
+[2023-01-19T04:11:03.048+0000] {processor.py:156} INFO - Started process (PID=3933) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:03.049+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:11:03.049+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:03.049+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:05.242+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:05.240+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:11:05.243+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:05.255+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.210 seconds
+[2023-01-19T04:11:35.951+0000] {processor.py:156} INFO - Started process (PID=3991) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:35.952+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:11:35.953+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:35.952+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:38.115+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:38.113+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:11:38.116+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:11:38.128+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.181 seconds
+[2023-01-19T04:12:08.524+0000] {processor.py:156} INFO - Started process (PID=4049) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:08.525+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:12:08.526+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:08.525+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:10.678+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:10.676+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:12:10.679+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:10.691+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.170 seconds
+[2023-01-19T04:12:41.035+0000] {processor.py:156} INFO - Started process (PID=4107) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:41.036+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:12:41.036+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:41.036+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:43.247+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:43.245+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:12:43.248+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:12:43.260+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.227 seconds
+[2023-01-19T04:13:13.985+0000] {processor.py:156} INFO - Started process (PID=4167) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:13.986+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:13:13.986+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:13.986+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:16.132+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:16.130+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:13:16.132+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:16.144+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.163 seconds
+[2023-01-19T04:13:46.180+0000] {processor.py:156} INFO - Started process (PID=4225) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:46.180+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:13:46.181+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:46.181+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:48.336+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:48.334+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:13:48.336+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:13:48.357+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.181 seconds
+[2023-01-19T04:14:19.140+0000] {processor.py:156} INFO - Started process (PID=4282) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:19.141+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:14:19.141+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:19.141+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:21.303+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:21.301+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:14:21.303+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:21.316+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.179 seconds
+[2023-01-19T04:14:51.868+0000] {processor.py:156} INFO - Started process (PID=4341) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:51.869+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:14:51.870+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:51.870+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:54.229+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:54.227+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:14:54.229+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:14:54.243+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.378 seconds
+[2023-01-19T04:15:24.301+0000] {processor.py:156} INFO - Started process (PID=4399) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:24.302+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:15:24.302+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:24.302+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:26.473+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:26.471+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:15:26.473+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:26.486+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.188 seconds
+[2023-01-19T04:15:56.802+0000] {processor.py:156} INFO - Started process (PID=4457) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:56.803+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:15:56.804+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:56.804+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:58.984+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:58.982+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:15:58.984+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:15:58.997+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.198 seconds
+[2023-01-19T04:16:29.142+0000] {processor.py:156} INFO - Started process (PID=4514) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:16:29.143+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:16:29.144+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:29.143+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:16:31.336+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:31.334+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:16:31.337+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:16:31.349+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.210 seconds
+[2023-01-19T04:17:01.720+0000] {processor.py:156} INFO - Started process (PID=4573) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:01.720+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:17:01.721+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:01.721+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:03.899+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:03.897+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:17:03.899+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:03.912+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.196 seconds
+[2023-01-19T04:17:34.235+0000] {processor.py:156} INFO - Started process (PID=4630) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:34.236+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:17:34.237+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:34.237+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:36.414+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:36.413+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:17:36.415+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:17:36.428+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.195 seconds
+[2023-01-19T04:18:06.770+0000] {processor.py:156} INFO - Started process (PID=4688) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:06.771+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:18:06.772+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:06.771+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:08.926+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:08.924+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:18:08.926+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:08.939+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.171 seconds
+[2023-01-19T04:18:39.281+0000] {processor.py:156} INFO - Started process (PID=4746) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:39.282+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:18:39.282+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:39.282+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:41.466+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:41.464+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:18:41.467+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:18:41.479+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.201 seconds
+[2023-01-19T04:19:11.948+0000] {processor.py:156} INFO - Started process (PID=4805) to work on /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:19:11.949+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py for tasks to queue
+[2023-01-19T04:19:11.950+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:19:11.950+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:19:14.110+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:19:14.109+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/pik_to_user_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'pik_to_user_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py", line 29, in <module>
+    runner = bentoml.transformers.get("pik_to_user_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'pik_to_user_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:19:14.111+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py
+[2023-01-19T04:19:14.123+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/pik_to_user_rec_bento/bento_service_pik_to_user_rec.py took 2.177 seconds

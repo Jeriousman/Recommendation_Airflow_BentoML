@@ -1,0 +1,1026 @@
+[2023-01-19T04:10:04.413+0000] {processor.py:156} INFO - Started process (PID=3822) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:04.414+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:10:04.414+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:04.414+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:06.731+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:06.729+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:10:06.731+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:06.743+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.334 seconds
+[2023-01-19T04:10:36.793+0000] {processor.py:156} INFO - Started process (PID=3880) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:36.794+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:10:36.794+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:36.794+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:38.970+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:10:38.968+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:10:38.971+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:10:38.986+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.196 seconds
+[2023-01-19T04:11:09.256+0000] {processor.py:156} INFO - Started process (PID=3938) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:09.256+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:11:09.257+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:09.257+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:11.518+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:11.516+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:11:11.518+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:11.531+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.279 seconds
+[2023-01-19T04:11:42.176+0000] {processor.py:156} INFO - Started process (PID=3998) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:42.177+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:11:42.178+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:42.177+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:44.386+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:11:44.384+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:11:44.386+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:11:44.401+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.228 seconds
+[2023-01-19T04:12:14.741+0000] {processor.py:156} INFO - Started process (PID=4056) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:14.742+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:12:14.742+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:14.742+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:17.028+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:17.026+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:12:17.028+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:17.044+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.306 seconds
+[2023-01-19T04:12:47.257+0000] {processor.py:156} INFO - Started process (PID=4114) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:47.258+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:12:47.259+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:47.259+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:49.428+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:12:49.426+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:12:49.428+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:12:49.443+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.189 seconds
+[2023-01-19T04:13:20.171+0000] {processor.py:156} INFO - Started process (PID=4172) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:20.172+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:13:20.172+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:20.172+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:22.323+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:22.321+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:13:22.323+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:22.338+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.170 seconds
+[2023-01-19T04:13:52.406+0000] {processor.py:156} INFO - Started process (PID=4230) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:52.406+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:13:52.407+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:52.407+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:54.618+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:13:54.616+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:13:54.619+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:13:54.631+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.229 seconds
+[2023-01-19T04:14:25.171+0000] {processor.py:156} INFO - Started process (PID=4288) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:14:25.173+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:14:25.173+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:25.173+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:14:27.493+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:27.491+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:14:27.494+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:14:27.507+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.339 seconds
+[2023-01-19T04:14:58.004+0000] {processor.py:156} INFO - Started process (PID=4346) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:14:58.005+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:14:58.006+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:14:58.005+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:15:00.438+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:00.436+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:15:00.439+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:15:00.454+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.453 seconds
+[2023-01-19T04:15:30.534+0000] {processor.py:156} INFO - Started process (PID=4404) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:15:30.535+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:15:30.535+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:30.535+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:15:32.744+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:15:32.742+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:15:32.744+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:15:32.759+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.229 seconds
+[2023-01-19T04:16:02.916+0000] {processor.py:156} INFO - Started process (PID=4462) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:02.917+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:16:02.918+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:02.918+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:05.157+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:05.155+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:16:05.157+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:05.170+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.256 seconds
+[2023-01-19T04:16:35.397+0000] {processor.py:156} INFO - Started process (PID=4520) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:35.398+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:16:35.399+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:35.399+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:37.613+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:16:37.611+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:16:37.614+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:16:37.627+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.233 seconds
+[2023-01-19T04:17:07.953+0000] {processor.py:156} INFO - Started process (PID=4578) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:07.954+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:17:07.955+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:07.955+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:10.181+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:10.179+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:17:10.182+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:10.197+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.247 seconds
+[2023-01-19T04:17:40.261+0000] {processor.py:156} INFO - Started process (PID=4636) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:40.261+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:17:40.262+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:40.262+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:42.458+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:17:42.456+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:17:42.458+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:17:42.475+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.217 seconds
+[2023-01-19T04:18:12.795+0000] {processor.py:156} INFO - Started process (PID=4694) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:12.796+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:18:12.797+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:12.797+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:14.978+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:14.976+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:18:14.979+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:14.993+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.201 seconds
+[2023-01-19T04:18:45.308+0000] {processor.py:156} INFO - Started process (PID=4752) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:45.309+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:18:45.310+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:45.310+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:47.466+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:18:47.464+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:18:47.466+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:18:47.480+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.175 seconds
+[2023-01-19T04:19:18.095+0000] {processor.py:156} INFO - Started process (PID=4810) to work on /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:19:18.096+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py for tasks to queue
+[2023-01-19T04:19:18.096+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:19:18.096+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:19:20.251+0000] {logging_mixin.py:117} INFO - [2023-01-19T04:19:20.248+0000] {dagbag.py:330} ERROR - Failed to import: /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+FileNotFoundError: [Errno 2] No such file or directory: b'/home/airflow/bentoml/models/link_recommender_model/latest'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 132, in get
+    _tag.version = self._fs.readtext(_tag.latest_path())
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/base.py", line 693, in readtext
+    self.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/error_tools.py", line 89, in __exit__
+    reraise(fserror, fserror(self._path, exc=exc_value), traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/six.py", line 718, in reraise
+    raise value.with_traceback(tb)
+  File "/home/airflow/.local/lib/python3.8/site-packages/fs/osfs.py", line 647, in open
+    return io.open(
+fs.errors.ResourceNotFound: resource 'link_recommender_model/latest' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 106, in _recreate_latest
+    items = self.list(tag.name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 83, in list
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 326, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py", line 31, in <module>
+    runner = bentoml.transformers.get("link_recommender_model:latest").to_runner()
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/frameworks/transformers.py", line 151, in get
+    model = bentoml.models.get(tag_like)
+  File "/home/airflow/.local/lib/python3.8/site-packages/simple_di/__init__.py", line 139, in _
+    return func(*_inject_args(bind.args), **_inject_kwargs(bind.kwargs))
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/models.py", line 41, in get
+    return _model_store.get(tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 137, in get
+    self._recreate_latest(_tag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/bentoml/_internal/store.py", line 108, in _recreate_latest
+    raise NotFound(
+bentoml.exceptions.NotFound: no Models with name 'link_recommender_model' exist in BentoML store <osfs '/home/airflow/bentoml/models'>
+[2023-01-19T04:19:20.251+0000] {processor.py:770} WARNING - No viable dags retrieved from /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py
+[2023-01-19T04:19:20.266+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/bentoml/link_rec_bento/bento_service_link_rec.py took 2.173 seconds
