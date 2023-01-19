@@ -1,6 +1,0 @@
-*
-!.gitignore
-!webserver_config.py
-!airflow.cfg
-!airflow.db
-
