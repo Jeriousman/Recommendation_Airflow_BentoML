@@ -128,7 +128,12 @@ def check_data(**kwargs):
     print('processed_data shape is: ', data.shape)
     
 
-
+                'default_path' : '/opt/airflow/dags/data',
+                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                'dbname' : 'pikurate',
+                'username' : 'postgres',
+                'password' : 'postgres',
+                'portnumber' : 5432
 
 
 
@@ -136,10 +141,10 @@ def db_data_fetching(**kwargs):
     
     
     default_path = kwargs.get('default_path', '/opt/airflow/dags/data')
-    hostname = kwargs.get('hostname', 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
-    dbname = kwargs.get('dbname', 'pikurateqa') 
+    hostname = kwargs.get('hostname', 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
+    dbname = kwargs.get('dbname', 'pikurate') 
     username = kwargs.get('username', 'postgres')
-    password = kwargs.get('password', 'wXVcn64CZsdM27')
+    password = kwargs.get('password', 'postgres')
     portnumber = kwargs.get('portnumber', 5432)
 
     conn = psycopg2.connect(host=hostname, dbname=dbname, user=username, password=password, port=portnumber)
