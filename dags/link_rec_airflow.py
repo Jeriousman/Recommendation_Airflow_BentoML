@@ -66,12 +66,13 @@ with DAG(
                 task_id='db_data_fetching',
                 python_callable=data.db_data_fetching,
                 op_kwargs={
-                    'default_path' : '/opt/airflow/dags/data',
-                    'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-                    'dbname' : 'pikurateqa',
-                    'username' : 'postgres',
-                    'password' : 'wXVcn64CZsdM27',
-                    'portnumber' : 5432
+                'default_path' : '/opt/airflow/dags/data',
+                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                'dbname' : 'pikurate',
+                'username' : 'postgres',
+                'password' : 'postgres',
+                'portnumber' : 5432
+
                 })       
 
     
