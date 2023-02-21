@@ -1,6 +1,5 @@
-*
-!.gitignore
-!webserver_config.py
-!airflow.cfg
-!airflow.db
-!dev_data
+webserver_config.py
+airflow.cfg
+airflow.db
+
+/dag/dev_data/
