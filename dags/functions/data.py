@@ -139,6 +139,7 @@ def db_data_fetching(**kwargs):
     password = kwargs.get('password', 'postgres')
     portnumber = kwargs.get('portnumber', 5432)
 
+
     conn = psycopg2.connect(host=hostname, dbname=dbname, user=username, password=password, port=portnumber)
     cur = conn.cursor()
 
