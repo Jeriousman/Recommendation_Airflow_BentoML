@@ -1,7 +1,7 @@
 webserver_config.py
 airflow.cfg
 airflow.db
-
+/log/
 /dag/dev_data/
 /dag/data/
 !/dag/data/artificial_user_list
