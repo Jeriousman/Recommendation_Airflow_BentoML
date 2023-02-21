@@ -3,4 +3,7 @@
 /dags/dev_data/*
 /dags/data/*
 !.gitignore
-
+webserver_config.py
+airflow.cfg
+airflow.db
+!/dags/data/artificial_user_list
