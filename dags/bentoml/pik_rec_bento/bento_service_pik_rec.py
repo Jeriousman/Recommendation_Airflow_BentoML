@@ -5,6 +5,8 @@ Created on Thu Aug 11 13:59:38 2022
 
 @author: hojun
 """
+
+
 from random import choice
 from random import random
 from random import randint
@@ -22,6 +24,9 @@ import json
 import pickle
 from typing import Any
 import io
+
+
+
 
 model_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
 # model = bentoml.transformers.load_runner(model_name)#.to('cuda' if torch.cuda.is_available() else 'cpu')
@@ -41,23 +46,17 @@ with open("/opt/airflow/dags/data/pik_vec.json") as f:  ##avg_{data_type}_vec.pi
 with open("/opt/airflow/dags/data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
     piktitle_vec = json.load(f)
     
-    
 with open("/opt/airflow/dags/data/num_link_by_pik.json") as f:
     num_link_by_pik = json.load(f)
 
-# df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
-
- 
 with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
     user_lang_dict = json.load(f)
-
  
 with open("/opt/airflow/dags/data/pik_lang_dict.json") as f:
     pik_lang_dict = json.load(f)
     
 with open('/opt/airflow/dags/data/pik_link.json') as f:
     pik_link = json.load(f)
-
 
 with open('/opt/airflow/dags/data/user_pik.json') as f:
     user_pik = json.load(f)
@@ -66,69 +65,32 @@ with open('/opt/airflow/dags/data/pik_status_dict.json') as f:
     pik_status_dict = json.load(f)
 
 
-# with open("/opt/airflow/dags/data/link_lang_dict.json") as f:
-#     link_lang_dict = json.load(f)
 
-# with open('/opt/airflow/dags/data/user_link.json') as f:
-#     user_link = json.load(f)
+# processed_data = pd.read_csv('/home/hojun/python/rec_airflow_aws/dev_data/processed_data.csv')
 
-
-
-# with open('/home/hojun/airflow/dags/data/user_pik.json') as f:
-#     user_pik = json.load(f)
-
-# with open("/home/hojun/airflow/dags/data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
+# with open("/home/hojun/python/rec_airflow_aws/dev_data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
 #     piks_vec = json.load(f)
     
-# with open("/home/hojun/airflow/dags/data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
+# with open("/home/hojun/python/rec_airflow_aws/dev_data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
 #     piktitle_vec = json.load(f)
     
-    
-# with open("/home/hojun/airflow/dags/data/num_link_by_pik.json") as f:
+# with open("/home/hojun/python/rec_airflow_aws/dev_data/num_link_by_pik.json") as f:
 #     num_link_by_pik = json.load(f)
 
-# df = pd.read_csv("/home/hojun/airflow/dags/data/processed_data.csv")
-
- 
-# with open("/home/hojun/airflow/dags/data/user_lang_dict.json") as f:
+# with open("/home/hojun/python/rec_airflow_aws/dev_data/user_lang_dict.json") as f:
 #     user_lang_dict = json.load(f)
-
  
-# with open("/home/hojun/airflow/dags/data/pik_lang_dict.json") as f:
+# with open("/home/hojun/python/rec_airflow_aws/dev_data/pik_lang_dict.json") as f:
 #     pik_lang_dict = json.load(f)
-
-
-
-
-# with open("/home/hojun/temp/data_development/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
-#     piks_vec = json.load(f)
     
-# with open("/home/hojun/temp/data_development/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
-#     piktitle_vec = json.load(f)
-    
-    
-# with open("/home/hojun/temp/data_development/num_link_by_pik.json") as f:
-#     num_link_by_pik = json.load(f)
-
-# # df = pd.read_csv("/opt/airflow/dags/data/processed_data.csv")
-
- 
-# with open("/home/hojun/temp/data_development/user_lang_dict.json") as f:
-#     user_lang_dict = json.load(f)
-
- 
-# with open("/home/hojun/temp/data_development/pik_lang_dict.json") as f:
-#     pik_lang_dict = json.load(f)
-
-
-
-
-# with open('/home/hojun/temp/data_development/user_pik.json') as f:
-#     user_pik = json.load(f)
-
-# with open('/home/hojun/temp/data_development/pik_link.json') as f:
+# with open('/home/hojun/python/rec_airflow_aws/dev_data/pik_link.json') as f:
 #     pik_link = json.load(f)
 
+# with open('/home/hojun/python/rec_airflow_aws/dev_data/user_pik.json') as f:
+#     user_pik = json.load(f)
+    
+# with open('/home/hojun/python/rec_airflow_aws/dev_data/pik_status_dict.json') as f:
+#     pik_status_dict = json.load(f)
 
 def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     sim = list()
@@ -351,58 +313,106 @@ def get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, p
         else:
             print('정말 죄송하지만 현재 최적의 픽 추천이 어려운 상황입니다 ㅠㅠ! 열일하고 있으니 조금만 기다려 주세요!')
 
-
-# pik_id = '17040'
+# pik_id = '17043'
 # user_id = '3412'
-
-
-# pik_id = '132434u53450'
-# user_id = '323453453412'
-
-
-def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):    
+def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict, pik_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):    
     # if pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_id in user_lang_dict.keys():
         if user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr':
-            if pik_id in num_link_by_pik.keys():
-                result = get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
-                return result
-            
-            elif pik_id not in num_link_by_pik.keys():
-                print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다')
-                sim_list = list()
-                while True: 
-                    key, value = choice(list(num_link_by_pik.items()))
-                    if status_dict[key] == 'public':
-                        if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
-                            if value > 10: ##10픽 이상인 것을 추천해주기때문에
-                                if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
-                                
-                                    sim_list.append({'pik_id': key, 'similarity': 1})
-                                    if len(sim_list) == 10:
-                                        break    
+            if pik_lang_dict[pik_id] == 'ko' or pik_lang_dict[pik_id] == 'kr':
+                if pik_id in num_link_by_pik.keys():
+                    result = get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                    
+                    return result
+                
+                elif pik_id not in num_link_by_pik.keys():
+                    print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
+                    sim_list = list()
+                    while True: 
+                        key, value = choice(list(num_link_by_pik.items()))
+                        if status_dict[key] == 'public':
+                            if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
+                                if value > 10: ##10픽 이상인 것을 추천해주기때문에
+                                    if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+                                    
+                                        sim_list.append({'pik_id': key, 'similarity': 1})
+                                        if len(sim_list) == 10:
+                                            break    
                 return sim_list
+            
+
+
             
         elif user_lang_dict[user_id] == 'en':
-            if pik_id in num_link_by_pik.keys():
-                result = get_most_similar_piks_en(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
-                return result
-            
-            elif pik_id not in num_link_by_pik.keys():
-                print('유저는 영어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다')
-                sim_list = list()
-                while True: 
-                    key, value = choice(list(num_link_by_pik.items()))
-                    if status_dict[key] == 'public':
-                        if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
-                            if value > 10: ##10픽 이상인 것을 추천해주기때문에
-                                if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
-                                
-                                    sim_list.append({'pik_id': key, 'similarity': 1})
-                                    if len(sim_list) == 10:
-                                        break  
+            if pik_lang_dict[pik_id] == 'en':
+                if pik_id in num_link_by_pik.keys():
+                    result = get_most_similar_piks_en(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                    return result
+                
+                elif pik_id not in num_link_by_pik.keys():
+                    print('유저는 영어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
+                    sim_list = list()
+                    while True: 
+                        key, value = choice(list(num_link_by_pik.items()))
+                        if status_dict[key] == 'public':
+                            if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
+                                if value > 10: ##10픽 이상인 것을 추천해주기때문에
+                                    if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+                                    
+                                        sim_list.append({'pik_id': key, 'similarity': 1})
+                                        if len(sim_list) == 10:
+                                            break  
                     
                 return sim_list
+        
+            
+        
+        ##만약 유저는 한국어로 설정되어있지만 픽추천을 받고 싶은 픽은 영어로 설정되어있다면 유저의 언어를 따라서 추천해줘라.
+        elif user_lang_dict[user_id] == 'ko' or user_lang_dict[user_id] == 'kr': 
+            if pik_lang_dict[pik_id] == 'en':
+                if pik_id in num_link_by_pik.keys():
+                    result = get_most_similar_piks_ko(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                    return result
+                
+                elif pik_id not in num_link_by_pik.keys():
+                    print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
+                    sim_list = list()
+                    while True: 
+                        key, value = choice(list(num_link_by_pik.items()))
+                        if status_dict[key] == 'public':
+                            if pik_lang_dict[key] == 'ko' or pik_lang_dict[key] == 'kr':
+                                if value > 10: ##10픽 이상인 것을 추천해주기때문에
+                                    if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+                                    
+                                        sim_list.append({'pik_id': key, 'similarity': 1})
+                                        if len(sim_list) == 10:
+                                            break    
+                return sim_list
+
+      
+
+        ##만약 유저는 영어로 설정되어있지만 픽추천을 받고 싶은 픽은 한국어로 설정되어있다면 유저의 언어를 따라서 추천해줘라.
+        if user_lang_dict[user_id] == 'en':
+            if pik_lang_dict[pik_id] == 'ko' or pik_lang_dict[pik_id] == 'kr':
+                if pik_id in num_link_by_pik.keys(): ##그 픽 아이디가 우리 픽 풀에 존재한다면,
+                    result = get_most_similar_piks_en(pik_id, user_id, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                    return result
+                
+                elif pik_id not in num_link_by_pik.keys():
+                    print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
+                    sim_list = list()
+                    while True: 
+                        key, value = choice(list(num_link_by_pik.items()))
+                        if status_dict[key] == 'public':
+                            if pik_lang_dict[key] == 'en':
+                                if value > 10: ##10픽 이상인 것을 추천해주기때문에
+                                    if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+                                    
+                                        sim_list.append({'pik_id': key, 'similarity': 1})
+                                        if len(sim_list) == 10:
+                                            break    
+                return sim_list
+
             
     
     elif user_id not in user_lang_dict.keys():   ##만약 유저가 아직 업데이트 안된 신규 유저라면
@@ -430,7 +440,7 @@ input_spec = Multipart(user_id=Text(), pik_id=Text())
 @svc.api(input=input_spec, output=JSON())
 def predict(user_id, pik_id) -> dict:
     
-    similarity_dict = rec_pik_by_lang(pik_id, user_id, pik_status_dict, user_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
+    similarity_dict = rec_pik_by_lang(pik_id, user_id, pik_status_dict, user_lang_dict, pik_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
     return similarity_dict #sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
 
 

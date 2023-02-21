@@ -129,9 +129,6 @@ def check_data(**kwargs):
     
 
 
-
-
-
 def db_data_fetching(**kwargs):
     
     
