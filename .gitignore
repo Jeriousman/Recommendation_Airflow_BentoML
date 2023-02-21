@@ -5,6 +5,6 @@ airflow.db
 /plugins/*
 /dags/dev_data/*
 /dags/data/*
-!/dags/data/artificial_user_list
-
+#!/dags/data/artificial_user_list
+!.gitignore
 
