@@ -3,3 +3,5 @@ airflow.cfg
 airflow.db
 
 /dag/dev_data/
+/dag/data/
+!/dag/data/artificial_user_list
