@@ -7,3 +7,4 @@ webserver_config.py
 airflow.cfg
 airflow.db
 !/dags/data/artificial_user_list
+**/__pycache__/
