@@ -1,23 +1,10 @@
-<<<<<<< HEAD
-
-=======
 /logs/*
 /plugins/*
 /dags/dev_data/*
 /dags/data/*
->>>>>>> 5ba3f6f6d4ab3c0cda1315908528b8891cc171e2
 !.gitignore
 webserver_config.py
 airflow.cfg
 airflow.db
-<<<<<<< HEAD
-dev_data
-logs/
-plugins/
-=======
-!/dags/data/artificial_user_list
-<<<<<<< HEAD
->>>>>>> 5ba3f6f6d4ab3c0cda1315908528b8891cc171e2
-=======
 **/__pycache__/
->>>>>>> 91baf780cf4b43e6fdccf0f539b46ca7e6da3640
+
