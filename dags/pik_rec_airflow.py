@@ -46,7 +46,7 @@ default_args = {
 with DAG(
     dag_id='pik_rec_airflow',
     start_date=datetime(2022, 9 , 28),
-    schedule_interval="*/30 * * * *",  ##meaning every 2 hours. https://crontab.guru/ 매새벽3시에돌린다 (UTC타임)
+    schedule_interval="0 * * * *", #"*/30 * * * *",  ##meaning every 2 hours. https://crontab.guru/ 매새벽3시에돌린다 (UTC타임)
     default_args=default_args,
     catchup=False,
     
