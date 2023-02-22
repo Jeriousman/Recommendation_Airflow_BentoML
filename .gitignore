@@ -1,8 +1,19 @@
+<<<<<<< HEAD
 
+=======
+/logs/*
+/plugins/*
+/dags/dev_data/*
+/dags/data/*
+>>>>>>> 5ba3f6f6d4ab3c0cda1315908528b8891cc171e2
 !.gitignore
 webserver_config.py
 airflow.cfg
 airflow.db
+<<<<<<< HEAD
 dev_data
 logs/
 plugins/
+=======
+!/dags/data/artificial_user_list
+>>>>>>> 5ba3f6f6d4ab3c0cda1315908528b8891cc171e2
