@@ -16,4 +16,8 @@ logs/
 plugins/
 =======
 !/dags/data/artificial_user_list
+<<<<<<< HEAD
 >>>>>>> 5ba3f6f6d4ab3c0cda1315908528b8891cc171e2
+=======
+**/__pycache__/
+>>>>>>> 91baf780cf4b43e6fdccf0f539b46ca7e6da3640
