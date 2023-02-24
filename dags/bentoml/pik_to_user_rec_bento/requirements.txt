@@ -23,4 +23,4 @@ pydantic
 tqdm
 kubernetes
 docker
-
+fasttext

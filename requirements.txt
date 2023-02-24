@@ -17,6 +17,7 @@ torch
 torchvision
 torchaudio 
 psycopg2
+fasttext
 transformers
 bentoml
 pydantic
