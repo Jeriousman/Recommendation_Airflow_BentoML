@@ -16,17 +16,6 @@ FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
 #   && apt-get install psmisc
 
 
-USER root
-RUN sudo chmod -R 777 /home/airflow/.cache
-RUN apt-get update
-RUN apt-get -y install build-essential
-RUN apt-get -y install g++ 
-RUN apt-get -y install apt-utils
-RUN apt-get -y install sudo
-RUN apt-get -y install vim
-RUN apt-get -y install lsof
-RUN apt-get -y install psmisc
-RUN apt-get -y install net-tools
 
 
 #RUN sudo chmod 777 /opt/airflow/dags
@@ -44,6 +33,22 @@ USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
 FROM apache/airflow:2.4.0-python3.8
 # FROM apache/airflow:slim-2.4.0-python3.8 ##This doenst work 
 RUN python -m pip install --upgrade pip
+
+USER root
+RUN sudo chmod -R 777 /home/airflow/.cache
+RUN apt-get update
+RUN apt-get -y dpkg
+RUN apt-get -y install build-essential
+RUN apt-get -y install g++-11
+RUN apt-get -y install apt-utils
+RUN apt-get -y install sudo
+RUN apt-get -y install vim
+RUN apt-get -y install lsof
+RUN apt-get -y install psmisc
+RUN apt-get -y install net-tools
+
+USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
+
 #WORKDIR ..
 COPY requirements.txt .
 # COPY requirements.txt /requirements.txt
