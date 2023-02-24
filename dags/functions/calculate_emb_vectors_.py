@@ -19,17 +19,9 @@ def load_tokenizer_and_model(tokenizer_name, model_name):
     '''
     embedding을사용하려면 nli모델을사용해야한다
     '''
-    # model_name = 'sentence-transformers/bert-base-nli-mean-tokens' ##deprecated
-    # model_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
-    
-    # Load pre-trained model tokenizer (vocabulary)
-    # tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
-    # tokenizer = BertTokenizer.from_pretrained(model_name)
     
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
     model = AutoModel.from_pretrained(model_name).to('cuda' if torch.cuda.is_available() else 'cpu')
-    # next(model.parameters()).is_cuda
-    
     return tokenizer, model
     
 
@@ -38,11 +30,7 @@ def load_tokenizer_and_model(tokenizer_name, model_name):
 ##유저/픽별로 모든 링크를수집해서 딕셔너리화하기        
 def get_links_by(dataframe, groupby, groupwhat):
     
-    # user_voca_voca = cards_user_log[['userGUID', 'vocabulary']].groupby('userGUID')['vocabulary'].apply(lambda x: x.tolist()).to_dict() #한 유저가 몇개의 vocabulary를 틀렸는지 다 보여준다 #groupby는 유저로그룹묶어주고 vocabulary에대한값을보여달라는것
     groupby_link = dataframe[[groupby, groupwhat]].groupby(groupby)[groupwhat].apply(lambda x: x.tolist()).to_dict() #한 유저가 몇개의 voca(빌딩과카드번호로를 틀렸는지 다 보여준다 #groupby는 유저로그룹묶어주고 voca에대한값을보여달라는것
-    
-    # print(user_voca[list(user_voca.keys())[1]][0:25]) # snippet of (first 25) titles of articles this user has read
-    #유저보카는즉유저가어떤문제들을틀렷는지모아놓은것이다
     return groupby_link  
 
 
@@ -61,9 +49,9 @@ def get_vectors(first_map, second_map):
     
     return first_vec
 
+
 def train_save_lsh(hash_size, input_dim, num_hashtables, matrices_filename, hashtable_filename, link_vector):
     '''LSH link recommender logic. 왜냐하면 위의 일반 link recommender는 너무 느리기 때문에 LSH를 사용해야 한다'''
-    # lsh = lshashpy3.LSHash(hash_size=20, input_dim=768, num_hashtables=10,
     lsh = lshashpy3.LSHash(hash_size=hash_size, input_dim=input_dim, num_hashtables=num_hashtables,
             storage_config={ 'dict': None },
             matrices_filename= matrices_filename,  ##'weights.npz'
@@ -77,8 +65,6 @@ def train_save_lsh(hash_size, input_dim, num_hashtables, matrices_filename, hash
 
     ##나중에도 쓰고 싶으면 세이빙을 하는 것이 좋다.
     lsh.save()
-    # return lsh
-
 
 
 
@@ -89,7 +75,8 @@ def calculate_emb(**kwargs):
     tokenizer_name = kwargs.get('tokenizer_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     dataloader_path = kwargs.get('dataloader_path', '/opt/airflow/dags/data/link_title_dataloader.pickle')   
-    which_emb = kwargs.get('which_emb', 'linktitle_emb')   
+    which_emb = kwargs.get('which_emb', 'linktitle_emb')  
+    link_rec_on = kwargs.get('link_rec_on', False)  
     device = kwargs.get('device', 'cpu')   
 
     processed_data = pd.read_csv(processed_data_path)
@@ -147,24 +134,26 @@ def calculate_emb(**kwargs):
         link_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
         link_vectors = dict(zip(processed_data.link_id, link_final_pred))  ##link title vectors
 
-        
-        # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
-        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
-            json.dump(link_vectors_tolist, f)
-
-        train_save_lsh(hash_size=20,
-                        input_dim=768,
-                        num_hashtables=10,
-                        matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
-                        hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
-                        link_vector=link_vectors)
-
-        
+        if link_rec_on:
+            '''link_vec을 저장하기 위해서는 아래 코드들을 언코멘트 해준다'''
+            # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
+            link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
+            with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
+                json.dump(link_vectors_tolist, f)
+    
+            train_save_lsh(hash_size=20,
+                            input_dim=768,
+                            num_hashtables=10,
+                            matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
+                            hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
+                            link_vector=link_vectors)      
 
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
         ##pik추천을 위한 것
         pik_link = get_links_by(processed_data, 'pik_id', 'link_id')
+        with open(f'{default_path}/data/pik_link.json', 'w') as f:
+            json.dump(pik_link, f)
+            
         pik_vec = get_vectors(pik_link, link_vectors) #유저가 틀린 문장들이계산되었는데 그문장들을 모두모아서에버리지하는것. 유저가틀린모든문장을모아서평균계산
         ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
         pik_vec_tolist = {str(k):v.tolist() for k,v in pik_vec.items()}
@@ -182,11 +171,13 @@ def calculate_emb(**kwargs):
         user_pik = get_links_by(processed_data, 'user_id', 'pik_id')
         with open(f'{default_path}/data/user_pik.json', 'w') as f:
             json.dump(user_pik, f)
+            
+
 
         user_link = get_links_by(processed_data, 'user_id', 'link_id')
         with open(f'{default_path}/data/user_link.json', 'w') as f:
             json.dump(user_link, f)
-
+        
 
         ##유저추천을 위한 것
         num_link_by_user = processed_data.groupby('user_id')['link_id'].nunique().sort_values(ascending=False)

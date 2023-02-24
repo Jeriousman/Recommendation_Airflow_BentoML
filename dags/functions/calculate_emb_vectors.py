@@ -13,6 +13,12 @@ import pickle
 import json
 import numpy as np
 import lshashpy3
+import fasttext
+from collections import Counter
+
+path_to_pretrained_model = '/opt/airflow/dags/data/lid.176.bin'
+
+fmodel = fasttext.load_model(path_to_pretrained_model)
 
 def load_tokenizer_and_model(tokenizer_name, model_name):
     
@@ -201,6 +207,41 @@ def calculate_emb(**kwargs):
         piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
         with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
             json.dump(piktitle_vectors_tolist, f)
+
+        
+    
+    with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+        linkid_title_dict = json.load(f)
+    
+    with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+        pikid_title_dict = json.load(f)
+
+
+    
+    user_lang_dict = {}
+    for user_id in user_link.keys():
+        ##predict user language
+        lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
+        language_pred_count_user_dict = Counter(lang_pred_user)
+        final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
+        user_lang_dict[user_id] = final_pred_lang_user
+
+    with open(f'{default_path}/data/user_lang_dict.json', 'w') as f:
+        json.dump(user_lang_dict, f)
+
+
+
+    pik_lang_dict = {}    
+    for pik_id in pik_link.keys():
+        ##predict pik language
+        lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
+        language_pred_count_pik_dict = Counter(lang_pred_pik)
+        final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
+        pik_lang_dict[pik_id] = final_pred_lang_pik
+    
+    with open(f'{default_path}/data/pik_lang_dict.json', 'w') as f:
+        json.dump(pik_lang_dict, f)    
+    
     
     del tokenizer
     del model     ##freeing space

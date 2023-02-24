@@ -194,8 +194,8 @@ def raw_data_preprocess(**kwargs):
     
     
     #model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')
-    path = kwargs.get('path', '/opt/airflow/dags/data')    
-    
+    # path = '/home/hojun/python/rec_airflow_aws/dags/data'   
+    path = kwargs.get('path', '/opt/airflow/dags/data')  
 
     
     linkhub = pd.read_csv(f'{path}/linkhub_link.csv')
@@ -305,19 +305,22 @@ def raw_data_preprocess(**kwargs):
     
         
     
-        user_lang_dict = {str(k):str(v) for k,v in zip(user_language_df['id'], user_language_df['language_code'])} ##모든유저를 검색할 수 있도록
-        pik_lang_dict = {k:v for k,v in zip(data['pik_id'], data['language_code'])}
-        link_lang_dict = {k:v for k,v in zip(data['link_id'], data['language_code'])}
+        # user_lang_dict = {str(k):str(v) for k,v in zip(user_language_df['id'], user_language_df['language_code'])} ##모든유저를 검색할 수 있도록
+        # pik_lang_dict = {k:v for k,v in zip(data['pik_id'], data['language_code'])}
+        # link_lang_dict = {k:v for k,v in zip(data['link_id'], data['language_code'])}
         pik_status_dict = {k:v for k,v in zip(data['pik_id'], data['status'])}
         
-        return user_lang_dict, pik_lang_dict, link_lang_dict, pik_status_dict, data
+        linkid_title_dict = {k:v for k,v in zip(data['link_id'], data['link_title'])}
+        pikid_title_dict = {k:v for k,v in zip(data['pik_id'], data['pik_title'])}
+        
+        # return user_lang_dict, pik_lang_dict, link_lang_dict, pik_status_dict, linkid_title_dict, pikid_title_dict, data
+        return pik_status_dict, linkid_title_dict, pikid_title_dict, data
+    
+
+    pik_status_dict, linkid_title_dict, pikid_title_dict, link_cat_pik = dropNa_dropArtificialUser(link_cat_pik, artificial_users, user_language, dropna=True, drop_artificial=True, integering=True)
+    # user_lang_dict, pik_lang_dict, link_lang_dict, pik_status_dict, linkid_title_dict, pikid_title_dict, link_cat_pik = dropNa_dropArtificialUser(link_cat_pik, artificial_users, user_language, dropna=True, drop_artificial=True, integering=True)
     
     
-    # user_lang_dict, pik_lang_dict, link_lang_dict, pik_status_dict = dropNa_dropArtificialUser(link_cat_pik, artificial_users, user_language, dropna=True, drop_artificial=True, integering=True)
-    # user_lang_dict_public_private_all_inner, pik_lang_dict_public_private_all_inner, link_lang_dict_public_private_all_inner, pik_status_dict_public_private_all_inner = dropNa_dropArtificialUser(link_cat_pik_public_private_all_inner, artificial_users, user_language, dropna=True, drop_artificial=True, integering=True)
-    user_lang_dict, pik_lang_dict, link_lang_dict, pik_status_dict, link_cat_pik = dropNa_dropArtificialUser(link_cat_pik, artificial_users, user_language, dropna=True, drop_artificial=True, integering=True)
-    
-    # user_lang_dict_outer, pik_lang_dict_outer, link_lang_dict_outer = dropNa_dropArtificialUser(link_cat_pik_outer, artificial_users, user_language, dropna=False, drop_artificial=False, integering=False)
     
 
     
@@ -345,6 +348,12 @@ def raw_data_preprocess(**kwargs):
     
     with open(f"{path}/pik_status_dict.json", "w") as f:   ##For bento_service.py
         json.dump(pik_status_dict, f)
+
+    with open(f"{path}/linkid_title_dict.json", "w") as f:   ##For bento_service.py
+        json.dump(linkid_title_dict, f)
+        
+    with open(f"{path}/pikid_title_dict.json", "w") as f:   ##For bento_service.py
+        json.dump(pikid_title_dict, f)
     
     
     # link_cat_pik.to_csv(f'{path}/link_cat_pik.csv', index=False)
