@@ -37,7 +37,7 @@ RUN python -m pip install --upgrade pip
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
 RUN apt-get update
-RUN apt-get -y dpkg
+RUN apt-get -y install dpkg
 RUN apt-get -y install build-essential
 RUN apt-get -y install g++-11
 RUN apt-get -y install apt-utils
