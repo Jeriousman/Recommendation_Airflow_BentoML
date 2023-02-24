@@ -42,6 +42,7 @@ RUN pip install -r requirements.txt
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
 RUN apt-get update
+RUN apt-get install build-essential -y
 RUN apt-get -y install apt-utils
 RUN apt-get -y install sudo
 RUN apt-get -y install vim
