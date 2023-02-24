@@ -66,20 +66,30 @@ with DAG(
     
     
     
+    # task_db_data_fetching = PythonOperator(
+    #         task_id='db_data_fetching',
+    #         python_callable=data.db_data_fetching,
+    #         op_kwargs={
+    #             'default_path' : '/opt/airflow/dags/data',
+    #             'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+    #             'dbname' : 'pikurate',
+    #             'username' : 'postgres',
+    #             'password' : 'postgres',
+    #             'portnumber' : 5432
+
+    #         })
+    
     task_db_data_fetching = PythonOperator(
             task_id='db_data_fetching',
             python_callable=data.db_data_fetching,
             op_kwargs={
                 'default_path' : '/opt/airflow/dags/data',
-                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-                'dbname' : 'pikurate',
+                'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                'dbname' : 'pikurateqa',
                 'username' : 'postgres',
-                'password' : 'postgres',
+                'password' : 'wXVcn64CZsdM27',
                 'portnumber' : 5432
-
-            })
-    
-    
+            })    
     
     ##raw data를 정제된 link_cat_pik으로 만들어준다
     task_data_process = PythonOperator(

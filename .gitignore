@@ -1,10 +1,10 @@
-/logs/*
-/plugins/*
-/dags/dev_data/*
-/dags/data/*
-!.gitignore
+logs/
+plugins/
+dags/dev_data/
+dags/data/
 webserver_config.py
 airflow.cfg
 airflow.db
 **/__pycache__/
-
+!.gitignore
+!dags/data/artificial_user_list
