@@ -196,29 +196,29 @@ def calculate_emb(**kwargs):
             json.dump(user_link, f)
 
 
-    user_lang_dict = {}
-    for user_id in user_link.keys():
-        ##predict user language
-        lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
-        language_pred_count_user_dict = Counter(lang_pred_user)
-        final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
-        user_lang_dict[user_id] = final_pred_lang_user
+        user_lang_dict = {}
+        for user_id in user_link.keys():
+            ##predict user language
+            lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
+            language_pred_count_user_dict = Counter(lang_pred_user)
+            final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
+            user_lang_dict[user_id] = final_pred_lang_user
 
-    with open(f'{default_path}/data/user_lang_dict.json', 'w') as f:
-        json.dump(user_lang_dict, f)
+        with open(f'{default_path}/data/user_lang_dict.json', 'w') as f:
+            json.dump(user_lang_dict, f)
 
 
 
-    pik_lang_dict = {}    
-    for pik_id in pik_link.keys():
-        ##predict pik language
-        lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
-        language_pred_count_pik_dict = Counter(lang_pred_pik)
-        final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
-        pik_lang_dict[pik_id] = final_pred_lang_pik
-    
-    with open(f'{default_path}/data/pik_lang_dict.json', 'w') as f:
-        json.dump(pik_lang_dict, f)    
+        pik_lang_dict = {}    
+        for pik_id in pik_link.keys():
+            ##predict pik language
+            lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
+            language_pred_count_pik_dict = Counter(lang_pred_pik)
+            final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
+            pik_lang_dict[pik_id] = final_pred_lang_pik
+        
+        with open(f'{default_path}/data/pik_lang_dict.json', 'w') as f:
+            json.dump(pik_lang_dict, f)    
 
 
 
