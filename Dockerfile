@@ -57,7 +57,7 @@ RUN pip install -r requirements.txt
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
 
-USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
+#USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
 
 #USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
 
