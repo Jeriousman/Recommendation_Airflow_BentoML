@@ -811,7 +811,7 @@ input_spec = Multipart(user_id=Text(), pik_id=Text())
 @svc.api(input=input_spec, output=JSON())
 def predict(user_id, pik_id) -> dict:
     
-    similarity_dict = rec_pik_by_lang_fasttext(pik_id, user_id, pik_status_dict, user_lang_dict, pik_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
+    similarity_dict = rec_pik_by_lang(pik_id, user_id, pik_status_dict, user_lang_dict, pik_lang_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik,  topk=40, threshold=0.7, piktitle_threshold=0.77, num_link_threshold=3)
     return similarity_dict #sorted(similarity_dict.items(), key=lambda x: x[1], reverse=True)
 
 
