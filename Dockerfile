@@ -35,7 +35,6 @@ FROM apache/airflow:2.4.0-python3.8
 RUN python -m pip install --upgrade pip
 
 USER root
-RUN sudo chmod -R 777 /home/airflow/.cache
 RUN apt-get update
 RUN apt-get -y install dpkg
 RUN apt-get -y install build-essential
@@ -54,6 +53,10 @@ COPY requirements.txt .
 # COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 #COPY ./cuda/ ./cuda/
+USER root
+RUN sudo chmod -R 777 /home/airflow/.cache
+
+USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
 
 #USER "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}" 
 
