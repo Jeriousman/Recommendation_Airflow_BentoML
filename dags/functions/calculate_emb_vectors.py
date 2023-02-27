@@ -177,12 +177,6 @@ def calculate_emb(**kwargs):
         user_pik = get_links_by(processed_data, 'user_id', 'pik_id')
         with open(f'{default_path}/data/user_pik.json', 'w') as f:
             json.dump(user_pik, f)
-            
-
-
-        user_link = get_links_by(processed_data, 'user_id', 'link_id')
-        with open(f'{default_path}/data/user_link.json', 'w') as f:
-            json.dump(user_link, f)
         
 
         ##유저추천을 위한 것
@@ -198,6 +192,11 @@ def calculate_emb(**kwargs):
         with open(f"{default_path}/data/user_vec.json", "w") as f:
             json.dump(user_vec_tolist, f)
         
+
+        user_link = get_links_by(processed_data, 'user_id', 'link_id')
+        with open(f'{default_path}/data/user_link.json', 'w') as f:
+            json.dump(user_link, f)
+            
         
     elif which_emb == 'piktitle_emb':
         pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
