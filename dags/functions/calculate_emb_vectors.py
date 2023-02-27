@@ -192,31 +192,10 @@ def calculate_emb(**kwargs):
         with open(f"{default_path}/data/user_vec.json", "w") as f:
             json.dump(user_vec_tolist, f)
         
-
-        user_link = get_links_by(processed_data, 'user_id', 'link_id')
         with open(f'{default_path}/data/user_link.json', 'w') as f:
             json.dump(user_link, f)
-            
-        
-    elif which_emb == 'piktitle_emb':
-        pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
-        piktitle_vectors = dict(zip(processed_data.pik_id, pik_final_pred))  ##pik title vectors
-    
-        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
-        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
-            json.dump(piktitle_vectors_tolist, f)
-
-        
-    
-    with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
-        linkid_title_dict = json.load(f)
-    
-    with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
-        pikid_title_dict = json.load(f)
 
 
-    
     user_lang_dict = {}
     for user_id in user_link.keys():
         ##predict user language
@@ -240,6 +219,30 @@ def calculate_emb(**kwargs):
     
     with open(f'{default_path}/data/pik_lang_dict.json', 'w') as f:
         json.dump(pik_lang_dict, f)    
+
+
+
+        
+    elif which_emb == 'piktitle_emb':
+        pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
+        piktitle_vectors = dict(zip(processed_data.pik_id, pik_final_pred))  ##pik title vectors
+    
+        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
+        piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
+        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
+            json.dump(piktitle_vectors_tolist, f)
+
+        
+    
+    with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+        linkid_title_dict = json.load(f)
+    
+    with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+        pikid_title_dict = json.load(f)
+
+
+    
+    
     
     
     del tokenizer
