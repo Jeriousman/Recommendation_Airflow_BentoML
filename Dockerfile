@@ -37,7 +37,8 @@
 
 
 FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
-USER $(id -u)
+RUN useradd hojun
+USER hojun
 FROM apache/airflow:2.4.0-python3.8 
 RUN python -m pip install --upgrade pip
 COPY requirements.txt .
@@ -53,9 +54,9 @@ RUN apt-get -y install net-tools
 RUN apt-get -y install build-essential
 RUN apt-get -y install libpq-dev
 RUN apt-get -y install g++-11
-USER $(id -u) 
+USER hojun 
 RUN pip install -r requirements.txt
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
-USER $(id -u) 
+USER hojun
  
