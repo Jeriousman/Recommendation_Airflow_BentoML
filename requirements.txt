@@ -2,7 +2,7 @@ apache-airflow==2.4.0
 apache-airflow-providers-celery
 apache-airflow-providers-common-sql
 apache-airflow-providers-ftp
-apache-airflow-providers-google
+#apache-airflow-providers-google
 apache-airflow-providers-http
 apache-airflow-providers-imap
 apache-airflow-providers-postgres
@@ -12,12 +12,12 @@ numpy
 pandas
 scikit-learn
 lshashpy3
+psycopg2-binary
+fasttext
 --extra-index-url https://download.pytorch.org/whl/cu116
 torch
 torchvision
 torchaudio 
-psycopg2-binary
-fasttext
 transformers
 bentoml
 pydantic

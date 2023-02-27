@@ -351,14 +351,14 @@ def raw_data_preprocess(**kwargs):
     #     json.dump(pik_status_dict, f)
 
 
-    with open(f"{path}/user_lang_dict.json", "w") as f:  ##For bento_service.py
-        json.dump(user_lang_dict, f)
+    # with open(f"{path}/user_lang_dict.json", "w") as f:  ##For bento_service.py
+    #     json.dump(user_lang_dict, f)
         
-    with open(f"{path}/pik_lang_dict.json", "w") as f:   ##For bento_service.py
-        json.dump(pik_lang_dict, f)
+    # with open(f"{path}/pik_lang_dict.json", "w") as f:   ##For bento_service.py
+    #     json.dump(pik_lang_dict, f)
 
-    with open(f"{path}/link_lang_dict.json", "w") as f:   ##For bento_service.py
-        json.dump(link_lang_dict, f)
+    # with open(f"{path}/link_lang_dict.json", "w") as f:   ##For bento_service.py
+    #     json.dump(link_lang_dict, f)
     
     with open(f"{path}/pik_status_dict.json", "w") as f:   ##For bento_service.py
         json.dump(pik_status_dict, f)
