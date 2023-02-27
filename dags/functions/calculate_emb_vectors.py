@@ -196,6 +196,16 @@ def calculate_emb(**kwargs):
             json.dump(user_link, f)
 
 
+
+        
+        with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+            linkid_title_dict = json.load(f)
+        
+        with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+            pikid_title_dict = json.load(f)
+
+
+
         user_lang_dict = {}
         for user_id in user_link.keys():
             ##predict user language
@@ -233,13 +243,6 @@ def calculate_emb(**kwargs):
             json.dump(piktitle_vectors_tolist, f)
 
         
-    
-    with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
-        linkid_title_dict = json.load(f)
-    
-    with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
-        pikid_title_dict = json.load(f)
-
 
     
     
