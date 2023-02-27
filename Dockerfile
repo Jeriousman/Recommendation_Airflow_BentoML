@@ -38,7 +38,7 @@
 
 FROM nvidia/cuda:11.7.0-cudnn8-devel-ubuntu22.04
 
-USER "${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}"
+USER ${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}
 FROM apache/airflow:2.4.0-python3.8 
 RUN python -m pip install --upgrade pip
 COPY requirements.txt .
@@ -54,9 +54,9 @@ RUN apt-get -y install net-tools
 RUN apt-get -y install build-essential
 RUN apt-get -y install libpq-dev
 RUN apt-get -y install g++-11
-USER "${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}" 
+USER ${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}
 RUN pip install -r requirements.txt
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
-USER "${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}"
+USER ${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}
  
