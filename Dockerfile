@@ -38,6 +38,7 @@ USER root
 RUN apt-get update
 RUN apt-get -y install dpkg
 RUN apt-get -y install build-essential
+RUN apt-get -y install libpq-dev
 RUN apt-get -y install g++-11
 RUN apt-get -y install apt-utils
 RUN apt-get -y install sudo
