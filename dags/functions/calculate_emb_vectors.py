@@ -133,63 +133,6 @@ def calculate_emb(**kwargs):
                     summed_emb = torch.sum(masked_embeddings, 1)
                     summed_mask = torch.clamp(mask.sum(1), min=1e-9)
                     mean_pooled_emb = summed_emb / summed_mask
-            default_path = '/opt/airflow/dags'
-    processed_data_path = '/opt/airflow/dags/data/processed_data.csv'
-    tokenizer_name = 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
-    model_name =  'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking'
-    dataloader_path =  '/opt/airflow/dags/data/link_title_dataloader.pickle'
-    which_emb = 'piktitle_emb'
-    link_rec_on =  False
-    device = 'cuda'   
-
-    processed_data = pd.read_csv(processed_data_path)
-    tokenizer, model = load_tokenizer_and_model(tokenizer_name, model_name)
-    with open(dataloader_path, 'rb') as f:
-        dataloader = pickle.load(f)
-    
-    model.eval()
-    mean_pooled_total = []
-    if model_name == 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking':
-            
-        
-        for batch in tqdm(dataloader):
-            batch = tuple(t.to(device) for t in batch)
-            b_input_ids, b_att_masks = batch
-                
-            # Run the text through BERT, and collect all of the hidden states produced
-            # from all 12 layers. 
-         
-            with torch.no_grad():
-                    outputs = model(b_input_ids, attention_mask = b_att_masks) ##For distilbert we dont need token_type_ids
-                    # outputs.keys()
-                    embeddings = outputs.last_hidden_state
-                    mask = b_att_masks.unsqueeze(-1).expand(embeddings.size()).float()
-                    masked_embeddings = embeddings * mask
-                    summed_emb = torch.sum(masked_embeddings, 1)
-                    summed_mask = torch.clamp(mask.sum(1), min=1e-9)
-                    mean_pooled_emb = summed_emb / summed_mask
-                    # mean_pooled_emb = F.normalize(mean_pooled_emb, p=2, dim=1)
-
-            mean_pooled_total.append(mean_pooled_emb)
-            
-    else:
-        for batch in tqdm(dataloader):
-            batch = tuple(t.to(device) for t in batch)
-            b_input_ids, b_att_masks = batch
-                
-            # Run the text through BERT, and collect all of the hidden states produced
-            # from all 12 layers. 
-         
-            with torch.no_grad():
-                    outputs = model(b_input_ids, attention_mask = b_att_masks, token_type_ids=None)
-                    outputs.keys()
-                    # pooled_outputs = outputs[1]  ##(last_hidden_state, pooler_output, hidden_states[optional], attentions[optional])
-                    embeddings = outputs.last_hidden_state
-                    mask = b_att_masks.unsqueeze(-1).expand(embeddings.size()).float()
-                    masked_embeddings = embeddings * mask
-                    summed_emb = torch.sum(masked_embeddings, 1)
-                    summed_mask = torch.clamp(mask.sum(1), min=1e-9)
-                    mean_pooled_emb = summed_emb / summed_mask
             
             mean_pooled_total.append(mean_pooled_emb)
             
@@ -263,128 +206,29 @@ def calculate_emb(**kwargs):
 
 
 
-        user_lang_dict_detected = {}
+        user_lang_dict = {}
         for user_id in user_link.keys():
             ##predict user language
             lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
             language_pred_count_user_dict = Counter(lang_pred_user)
             final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
-            user_lang_dict_detected[user_id] = final_pred_lang_user
+            user_lang_dict[user_id] = final_pred_lang_user
 
-        with open(f'{default_path}/data/user_lang_dict_detected.json', 'w') as f:
-            json.dump(user_lang_dict_detected, f)
+        with open(f'{default_path}/data/user_lang_dict.json', 'w') as f:
+            json.dump(user_lang_dict, f)
 
 
 
-        pik_lang_dict_detected = {}    
+        pik_lang_dict = {}    
         for pik_id in pik_link.keys():
             ##predict pik language
             lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
             language_pred_count_pik_dict = Counter(lang_pred_pik)
             final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
-            pik_lang_dict_detected[pik_id] = final_pred_lang_pik
+            pik_lang_dict[pik_id] = final_pred_lang_pik
         
-        with open(f'{default_path}/data/pik_lang_dict_detected.json', 'w') as f:
-            json.dump(pik_lang_dict_detected, f)    
-
-
-
-        
-    elif which_emb == 'piktitle_emb':
-        pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
-        piktitle_vectors = dict(zip(processed_data.pik_id, pik_final_pred))  ##pik title vectors
-    
-        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
-        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
-            json.dump(piktitle_vectors_tolist, f)
-
-        
-G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
-                json.dump(link_vectors_tolist, f)
-    
-            train_save_lsh(hash_size=20,
-                            input_dim=768,
-                            num_hashtables=10,
-                            matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
-                            hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
-                            link_vector=link_vectors)      
-
-        ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
-        ##pik추천을 위한 것
-        pik_link = get_links_by(processed_data, 'pik_id', 'link_id')
-        with open(f'{default_path}/data/pik_link.json', 'w') as f:
-            json.dump(pik_link, f)
-            
-        pik_vec = get_vectors(pik_link, link_vectors) #유저가 틀린 문장들이계산되었는데 그문장들을 모두모아서에버리지하는것. 유저가틀린모든문장을모아서평균계산
-        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        pik_vec_tolist = {str(k):v.tolist() for k,v in pik_vec.items()}
-        with open(f"{default_path}/data/pik_vec.json", "w") as f:
-            json.dump(pik_vec_tolist, f)
-        
-        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
-        ##pik을 기준으로 link를 딕셔너리로 정렬시키고 그것을 json으로 저장하라 
-        num_link_by_pik = processed_data.groupby('pik_id')['link_id'].nunique().sort_values(ascending=False)
-        num_link_by_pik = {str(key):value for key,value in num_link_by_pik.items()} ##딕셔너리화한다
-        with open(f'{default_path}/data/num_link_by_pik.json', 'w') as f:
-            json.dump(num_link_by_pik, f)
-
-
-        user_pik = get_links_by(processed_data, 'user_id', 'pik_id')
-        with open(f'{default_path}/data/user_pik.json', 'w') as f:
-            json.dump(user_pik, f)
-        
-
-        ##유저추천을 위한 것
-        num_link_by_user = processed_data.groupby('user_id')['link_id'].nunique().sort_values(ascending=False)
-        num_link_by_user = {str(key):value for key,value in num_link_by_user.items()} ##딕셔너리화한다 
-        with open(f'{default_path}/data/num_link_by_user.json', 'w') as f:
-            json.dump(num_link_by_user, f)
-
-        user_link = get_links_by(processed_data, 'user_id', 'link_id')
-        ##for user-rec
-        user_vec = get_vectors(user_link, link_vectors)
-        user_vec_tolist = {str(k):v.tolist() for k,v in user_vec.items()}
-        with open(f"{default_path}/data/user_vec.json", "w") as f:
-            json.dump(user_vec_tolist, f)
-        
-        with open(f'{default_path}/data/user_link.json', 'w') as f:
-            json.dump(user_link, f)
-
-
-
-        
-        with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
-            linkid_title_dict = json.load(f)
-        
-        with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
-            pikid_title_dict = json.load(f)
-
-
-
-        user_lang_dict_detected = {}
-        for user_id in user_link.keys():
-            ##predict user language
-            lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
-            language_pred_count_user_dict = Counter(lang_pred_user)
-            final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
-            user_lang_dict_detected[user_id] = final_pred_lang_user
-
-        with open(f'{default_path}/data/user_lang_dict_detected.json', 'w') as f:
-            json.dump(user_lang_dict_detected, f)
-
-
-
-        pik_lang_dict_detected = {}    
-        for pik_id in pik_link.keys():
-            ##predict pik language
-            lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
-            language_pred_count_pik_dict = Counter(lang_pred_pik)
-            final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
-            pik_lang_dict_detected[pik_id] = final_pred_lang_pik
-        
-        with open(f'{default_path}/data/pik_lang_dict_detected.json', 'w') as f:
-            json.dump(pik_lang_dict_detected, f)    
+        with open(f'{default_path}/data/pik_lang_dict.json', 'w') as f:
+            json.dump(pik_lang_dict, f)    
 
 
 
