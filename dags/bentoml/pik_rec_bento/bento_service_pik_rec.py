@@ -223,9 +223,11 @@ def get_most_similar_piks_en(pik_id, user_id, pik_lang_dict, status_dict, user_p
                                 elif 0.88 < lottery <= 1.0:
         
                                     random_topk_rec_index = randint(0, topk)
-                                    if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                    try:
+                                        if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                            sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                    except KeyError: ##링크나 픽이 하나도 없는 유저도 다른 픽에서 추천을 받기 위해서
                                         sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
-                                    
                                 if len(sim_list) == 10:
                                         break
         
@@ -313,9 +315,11 @@ def get_most_similar_piks_ko(pik_id, user_id, pik_lang_dict, status_dict, user_p
                                 elif 0.88 < lottery <= 1.0:
         
                                     random_topk_rec_index = randint(0, topk)
-                                    if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
-                                        sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
-                                    
+                                    try:
+                                        if int(pik_id) != int(ranked_similar_items[random_topk_rec_index][0]) and int(ranked_similar_items[random_topk_rec_index][0]) not in user_pik[user_id] and ranked_similar_items[random_topk_rec_index][0] not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]):
+                                            sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})
+                                    except KeyError: ##링크나 픽이 하나도 없는 유저도 다른 픽에서 추천을 받기 위해서
+                                        sim_list.append({'pik_id':ranked_similar_items[random_topk_rec_index][0], 'similarity':ranked_similar_items[random_topk_rec_index][1]})    
                                 if len(sim_list) == 10:
                                         break
                 
