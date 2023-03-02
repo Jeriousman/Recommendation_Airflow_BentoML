@@ -94,31 +94,12 @@ with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
 
 
 
-# processed_data = pd.read_csv('/home/hojun/python/rec_airflow_aws/dev_data/processed_data.csv')
 
-# with open("/home/hojun/python/rec_airflow_aws/dev_data/pik_vec.json") as f:  ##avg_{data_type}_vec.pickle  avg_pik_vec.json or avg_user_vec.json
-#     piks_vec = json.load(f)
-    
-# with open("/home/hojun/python/rec_airflow_aws/dev_data/piktitle_emb_vec.json") as f:  ##pik_id_embeddings_vectors.json
-#     piktitle_vec = json.load(f)
-    
-# with open("/home/hojun/python/rec_airflow_aws/dev_data/num_link_by_pik.json") as f:
-#     num_link_by_pik = json.load(f)
 
-# with open("/home/hojun/python/rec_airflow_aws/dev_data/user_lang_dict.json") as f:
-#     user_lang_dict = json.load(f)
- 
-# with open("/home/hojun/python/rec_airflow_aws/dev_data/pik_lang_dict.json") as f:
-#     pik_lang_dict = json.load(f)
-    
-# with open('/home/hojun/python/rec_airflow_aws/dev_data/pik_link.json') as f:
-#     pik_link = json.load(f)
 
-# with open('/home/hojun/python/rec_airflow_aws/dev_data/user_pik.json') as f:
-#     user_pik = json.load(f)
-    
-# with open('/home/hojun/python/rec_airflow_aws/dev_data/pik_status_dict.json') as f:
-#     pik_status_dict = json.load(f)
+
+
+
 
 def get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold):
     sim = list()
@@ -534,8 +515,6 @@ def get_most_similar_piks_ko(pik_id, user_id, pik_lang_dict, status_dict, user_p
 
 
 
-
-
 # num_link_by_pik
 def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_lang_dict_userset, pik_lang_dict_detected, pik_lang_dict_userset, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold, min_user_link_num):    
     
@@ -543,7 +522,7 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_
     # if pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_id in user_link.keys(): ##등록되어있는 유저들 중에,
         try:
-            if user_link[user_id] >= min_user_link_num: 
+            if len(user_link[user_id]) >= min_user_link_num: 
                 if (user_lang_dict_detected[user_id] == 'ko' or user_lang_dict_detected[user_id] == 'kr') and (pik_lang_dict_detected[pik_id] == 'ko' or pik_lang_dict_detected[pik_id] == 'kr'):
                     '''
                     유저의 링크들의 합이 가장 많은 수가 한국어 일 때 추천해 는 로직 
@@ -673,7 +652,7 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_
 
             
             
-            elif user_link[user_id] < min_user_link_num:
+            elif len(user_link[user_id]) < min_user_link_num:
                 if (user_lang_dict_userset[user_id] == 'ko' or user_lang_dict_userset[user_id] == 'kr') and (pik_lang_dict_userset[pik_id] == 'ko' or pik_lang_dict_userset[pik_id] == 'kr'):
                     '''
                     유저가 한국어로 주언어를 셋팅 해 놓았을 때 추천하는 법
