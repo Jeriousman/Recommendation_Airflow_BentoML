@@ -773,13 +773,13 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_
             #                             if len(sim_list) == 10:
             #                                 break    
             #     return sim_list
-             
 
-# except KeyError: ##만약에 유저가 링크가 하나도 없다면 리스트에 없기 때문에 key error가 뜰 것이다
-    else:
+
+    elif user_id not in user_link.keys():
         if ((user_lang_dict_userset[user_id] == 'ko' or user_lang_dict_userset[user_id] == 'kr') and (pik_lang_dict_userset[pik_id] == 'ko' or pik_lang_dict_userset[pik_id] == 'kr')) or ((user_lang_dict_userset[user_id] == 'ko' or user_lang_dict_userset[user_id] == 'kr') and pik_lang_dict_userset[pik_id] == 'en' ):
             if pik_id in num_link_by_pik.keys():
                 result = get_most_similar_piks_ko(pik_id, user_id, pik_lang_dict_userset, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                # result = get_most_similar_piks_ko(pik_id, user_id, pik_lang_dict_userset, pik_status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk=5, threshold=0.7, piktitle_threshold=0.7, num_link_threshold=3)
                 return result
             
             elif pik_id not in num_link_by_pik.keys():
@@ -796,6 +796,27 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_
                                     if len(sim_list) == 10:
                                         break    
             return sim_list               
+
+
+        elif (user_lang_dict_userset[user_id] == 'en' and (pik_lang_dict_userset[pik_id] == 'ko' or pik_lang_dict_userset[pik_id] == 'kr')) or (user_lang_dict_userset[user_id] == 'en' and pik_lang_dict_userset[pik_id] == 'en'):
+            if pik_id in num_link_by_pik.keys():
+                result = get_most_similar_piks_en(pik_id, user_id, pik_lang_dict_userset, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
+                return result
+            
+            elif pik_id not in num_link_by_pik.keys():
+                print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
+                sim_list = list()
+                while True: 
+                    key, value = choice(list(num_link_by_pik.items()))
+                    if status_dict[key] == 'public':
+                        if pik_lang_dict_userset[key] == 'en' or pik_lang_dict_userset[key] == 'en':
+                            if value > 10: ##10픽 이상인 것을 추천해주기때문에
+                                if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
+                                
+                                    sim_list.append({'pik_id': key, 'similarity': 1})
+                                    if len(sim_list) == 10:
+                                        break    
+            return sim_list   
 
 
     # except KeyError: ##만약에 유저가 링크가 하나도 없다면 리스트에 없기 때문에 key error가 뜰 것이다
@@ -821,25 +842,7 @@ def rec_pik_by_lang(pik_id, user_id, status_dict, user_lang_dict_detected, user_
         
         
         
-    #     elif (user_lang_dict_userset[user_id] == 'en' and (pik_lang_dict_userset[pik_id] == 'ko' or pik_lang_dict_userset[pik_id] == 'kr')) or (user_lang_dict_userset[user_id] == 'en' and pik_lang_dict_userset[pik_id] == 'en'):
-    #         if pik_id in num_link_by_pik.keys():
-    #             result = get_most_similar_piks_ko(pik_id, user_id, pik_lang_dict_userset, status_dict, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
-    #             return result
-            
-    #         elif pik_id not in num_link_by_pik.keys():
-    #             print('유저는 한국어를 사용하고 업데이트 됐으나 픽은 링크가 없거나 업데이트가 안되었다. 그러므로 랜덤추천을 한다')
-    #             sim_list = list()
-    #             while True: 
-    #                 key, value = choice(list(num_link_by_pik.items()))
-    #                 if status_dict[key] == 'public':
-    #                     if pik_lang_dict_userset[key] == 'en' or pik_lang_dict_userset[key] == 'en':
-    #                         if value > 10: ##10픽 이상인 것을 추천해주기때문에
-    #                             if pik_id != key and pik_id not in pik_link.keys() and key not in list([sim_list[num]['pik_id'] for num in range(len(sim_list))]): ##본픽이 아니고 현 추천픽이 본 유저에게 속하지 않으면 추천하라는 것
-                                
-    #                                 sim_list.append({'pik_id': key, 'similarity': 1})
-    #                                 if len(sim_list) == 10:
-    #                                     break    
-    #         return sim_list   
+
             
 # else: 
 #     result = get_most_similar_piks(pik_id, user_id, user_pik, piks_vec, piktitle_vec, num_link_by_pik, topk, threshold, piktitle_threshold, num_link_threshold)
