@@ -16,11 +16,11 @@ lshashpy3
 torch
 torchvision
 torchaudio 
-psycopg2
+psycopg2-binary
 transformers
 bentoml
 pydantic
 tqdm
 kubernetes
 docker
-
+fasttext

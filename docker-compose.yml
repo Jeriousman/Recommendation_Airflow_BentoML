@@ -19,8 +19,10 @@ x-airflow-common: &airflow-common
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - /var/run/docker.sock:/var/run/docker.sock
-  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
+  #user: "${AIRFLOW_UID:-$(id -u)}:${AIRFLOW_GID:-0}"
+  user: "${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}"
   # user: "${AIRFLOW_UID}:50000"
+  #user: "hojun"
   depends_on:
     redis:
       condition: service_healthy
