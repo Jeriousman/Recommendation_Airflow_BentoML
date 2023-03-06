@@ -131,22 +131,22 @@ def check_data(**kwargs):
 
 def db_data_fetching(**kwargs):
     
-    # ##운영 DB
-    # default_path = kwargs.get('default_path', '/opt/airflow/dags/data')
-    # hostname = kwargs.get('hostname', 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
-    # dbname = kwargs.get('dbname', 'pikurate') 
-    # username = kwargs.get('username', 'postgres')
-    # password = kwargs.get('password', 'postgres')
-    # portnumber = kwargs.get('portnumber', 5432)
+    ##운영 DB
+    default_path = kwargs.get('default_path', '/opt/airflow/dags/data')
+    hostname = kwargs.get('hostname', 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
+    dbname = kwargs.get('dbname', 'pikurate') 
+    username = kwargs.get('username', 'postgres')
+    password = kwargs.get('password', 'postgres')
+    portnumber = kwargs.get('portnumber', 5432)
     
     
     ##개발 DB
-    default_path = kwargs.get('default_path', '/opt/airflow/dags/data')
-    hostname = kwargs.get('hostname', 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
-    dbname = kwargs.get('dbname', 'pikurateqa') 
-    username = kwargs.get('username', 'postgres')
-    password = kwargs.get('password', 'wXVcn64CZsdM27')
-    portnumber = kwargs.get('portnumber', 5432)
+    # default_path = kwargs.get('default_path', '/opt/airflow/dags/data')
+    # hostname = kwargs.get('hostname', 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com')    
+    # dbname = kwargs.get('dbname', 'pikurateqa') 
+    # username = kwargs.get('username', 'postgres')
+    # password = kwargs.get('password', 'wXVcn64CZsdM27')
+    # portnumber = kwargs.get('portnumber', 5432)
 
 
 
