@@ -49,7 +49,7 @@ with open("/opt/airflow/dags/data/user_vec.json") as f:  ##avg_{data_type}_vec.p
 with open("/opt/airflow/dags/data/num_link_by_user.json") as f:
     num_link_by_user = json.load(f)
  
-with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
+with open("/opt/airflow/dags/data/user_lang_dict_userset.json") as f:
     user_lang_dict = json.load(f)
 
 with open("/opt/airflow/dags/data/user_link.json") as f:
