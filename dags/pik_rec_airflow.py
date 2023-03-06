@@ -66,7 +66,7 @@ with DAG(
     
     
     
-
+    ##운영
     task_db_data_fetching = PythonOperator(
             task_id='db_data_fetching',
             python_callable=data.db_data_fetching,
@@ -80,6 +80,19 @@ with DAG(
 
             })
     
+    # task_db_data_fetching = PythonOperator(
+    #         task_id='db_data_fetching',
+    #         python_callable=data.db_data_fetching,
+    #         op_kwargs={
+    #             'default_path' : '/opt/airflow/dags/data',
+    #             'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+    #             'dbname' : 'pikurateqa',
+    #             'username' : 'postgres',
+    #             'password' : 'wXVcn64CZsdM27',
+    #             'portnumber' : 5432
+    #         })
+
+
     
     
     ##raw data를 정제된 link_cat_pik으로 만들어준다
@@ -223,4 +236,4 @@ with DAG(
 
 
 
-    task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
+    task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml

@@ -13,6 +13,12 @@ import pickle
 import json
 import numpy as np
 import lshashpy3
+import fasttext
+from collections import Counter
+
+path_to_pretrained_model = '/opt/airflow/dags/data/lid.176.bin'
+
+fmodel = fasttext.load_model(path_to_pretrained_model)
 
 def load_tokenizer_and_model(tokenizer_name, model_name):
     
@@ -171,12 +177,6 @@ def calculate_emb(**kwargs):
         user_pik = get_links_by(processed_data, 'user_id', 'pik_id')
         with open(f'{default_path}/data/user_pik.json', 'w') as f:
             json.dump(user_pik, f)
-            
-
-
-        user_link = get_links_by(processed_data, 'user_id', 'link_id')
-        with open(f'{default_path}/data/user_link.json', 'w') as f:
-            json.dump(user_link, f)
         
 
         ##유저추천을 위한 것
@@ -192,6 +192,46 @@ def calculate_emb(**kwargs):
         with open(f"{default_path}/data/user_vec.json", "w") as f:
             json.dump(user_vec_tolist, f)
         
+        with open(f'{default_path}/data/user_link.json', 'w') as f:
+            json.dump(user_link, f)
+
+
+
+        
+        with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+            linkid_title_dict = json.load(f)
+        
+        with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+            pikid_title_dict = json.load(f)
+
+
+
+        user_lang_dict_detected = {}
+        for user_id in user_link.keys():
+            ##predict user language
+            lang_pred_user = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in user_link[user_id]]
+            language_pred_count_user_dict = Counter(lang_pred_user)
+            final_pred_lang_user = [k for k, v in language_pred_count_user_dict.items() if v == max(language_pred_count_user_dict.values())][0]
+            user_lang_dict_detected[user_id] = final_pred_lang_user
+
+        with open(f'{default_path}/data/user_lang_dict_detected.json', 'w') as f:
+            json.dump(user_lang_dict_detected, f)
+
+
+
+        pik_lang_dict_detected = {}    
+        for pik_id in pik_link.keys():
+            ##predict pik language
+            lang_pred_pik = [fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:] for link_id in pik_link[pik_id]]
+            language_pred_count_pik_dict = Counter(lang_pred_pik)
+            final_pred_lang_pik = [k for k, v in language_pred_count_pik_dict.items() if v == max(language_pred_count_pik_dict.values())][0]
+            pik_lang_dict_detected[pik_id] = final_pred_lang_pik
+        
+        with open(f'{default_path}/data/pik_lang_dict_detected.json', 'w') as f:
+            json.dump(pik_lang_dict_detected, f)    
+
+
+
         
     elif which_emb == 'piktitle_emb':
         pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
@@ -201,6 +241,12 @@ def calculate_emb(**kwargs):
         piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
         with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
             json.dump(piktitle_vectors_tolist, f)
+
+        
+
+    
+    
+    
     
     del tokenizer
     del model     ##freeing space
