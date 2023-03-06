@@ -59,4 +59,5 @@ RUN pip install -r requirements.txt
 USER root
 RUN sudo chmod -R 777 /home/airflow/.cache
 USER ${AIRFLOW_UID:-1000}:${AIRFLOW_GID:-0}
+RUN python -m pip install --upgrade pip
  
