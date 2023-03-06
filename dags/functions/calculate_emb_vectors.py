@@ -198,10 +198,10 @@ def calculate_emb(**kwargs):
 
 
         
-        with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+        with open(f'{default_path}/data/linkid_title_dict.json') as f:
             linkid_title_dict = json.load(f)
         
-        with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+        with open(f'{default_path}/data/pikid_title_dict.json') as f:
             pikid_title_dict = json.load(f)
 
 
