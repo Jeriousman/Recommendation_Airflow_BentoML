@@ -55,10 +55,10 @@ with open("/opt/airflow/dags/data/num_link_by_user.json") as f:
 with open("/opt/airflow/dags/data/num_link_by_pik.json") as f:
     num_link_by_pik = json.load(f)
  
-with open("/opt/airflow/dags/data/user_lang_dict.json") as f:
+with open("/opt/airflow/dags/data/user_lang_dict_userset.json") as f:
     user_lang_dict = json.load(f)
 
-with open("/opt/airflow/dags/data/pik_lang_dict.json") as f:
+with open("/opt/airflow/dags/data/pik_lang_dict_userset.json") as f:
     pik_lang_dict = json.load(f)
 
 

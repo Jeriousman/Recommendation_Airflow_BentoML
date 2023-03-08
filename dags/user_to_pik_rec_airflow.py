@@ -46,7 +46,7 @@ default_args = {
 with DAG(
     dag_id='user_to_pik_rec_airflow',
     start_date=datetime(2022, 9 , 28),
-    schedule_interval="30 * * * *",  ##meaning every 2 hours. https://crontab.guru/ 매새벽3시에돌린다 (UTC타임)
+    schedule_interval="0 * * * *",  ##meaning every 2 hours. https://crontab.guru/ 매새벽3시에돌린다 (UTC타임)
     default_args=default_args,
     catchup=False,
     
@@ -66,31 +66,31 @@ with DAG(
     
     
     
-    task_db_data_fetching = PythonOperator(
-            task_id='db_data_fetching',
-            python_callable=data.db_data_fetching,
-            op_kwargs={
-                'default_path' : '/opt/airflow/dags/data',
-                'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-                'dbname' : 'pikurate',
-                'username' : 'postgres',
-                'password' : 'postgres',
-                'portnumber' : 5432
-
-            })
-    
-    
     # task_db_data_fetching = PythonOperator(
     #         task_id='db_data_fetching',
     #         python_callable=data.db_data_fetching,
     #         op_kwargs={
     #             'default_path' : '/opt/airflow/dags/data',
-    #             'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
-    #             'dbname' : 'pikurateqa',
+    #             'hostname' : 'prod-back.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+    #             'dbname' : 'pikurate',
     #             'username' : 'postgres',
-    #             'password' : 'wXVcn64CZsdM27',
+    #             'password' : 'postgres',
     #             'portnumber' : 5432
+
     #         })
+    
+    
+    task_db_data_fetching = PythonOperator(
+            task_id='db_data_fetching',
+            python_callable=data.db_data_fetching,
+            op_kwargs={
+                'default_path' : '/opt/airflow/dags/data',
+                'hostname' : 'dev-postgres.c5dkkbujxodg.ap-northeast-2.rds.amazonaws.com',
+                'dbname' : 'pikurateqa',
+                'username' : 'postgres',
+                'password' : 'wXVcn64CZsdM27',
+                'portnumber' : 5432
+            })
     
     
     
