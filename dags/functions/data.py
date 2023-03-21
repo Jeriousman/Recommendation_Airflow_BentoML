@@ -258,7 +258,7 @@ def raw_data_preprocess(**kwargs):
     piks_cats = pd.merge(catego, piks, how = 'inner', left_on = 'pik_id', right_on = 'id', suffixes=('_cat', '_pik'))
     piks_cats.columns
     # filtered_pik_cat  = piks_cats[(piks_cats['status'] == 'public') & (piks_cats['is_draft'] == 'f')] #'f' instead of False
-    public_private_filtered_pik_cat = piks_cats[piks_cats['is_draft'] == 'f']
+    public_private_filtered_pik_cat = piks_cats[(piks_cats['is_draft'] == 'f') | (piks_cats['is_draft'] == False)]
 
 
 
