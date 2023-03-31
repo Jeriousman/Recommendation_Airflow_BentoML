@@ -62,7 +62,7 @@ def train_save_lsh(hash_size, input_dim, num_hashtables, matrices_filename, hash
             storage_config={ 'dict': None },
             matrices_filename= matrices_filename,  ##'weights.npz'
             hashtable_filename= hashtable_filename, ##'hash.npz' 
-            overwrite=False) 
+            overwrite=True) 
 
 
     ##index한다는 것은 link_vec들을 모두 LSH에 등록한다는 것. 이제 이 등록된 것들을 query 벡터랑 비교하기만 하면된다.
@@ -82,7 +82,7 @@ def calculate_emb(**kwargs):
     model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     dataloader_path = kwargs.get('dataloader_path', '/opt/airflow/dags/data/link_title_dataloader.pickle')   
     which_emb = kwargs.get('which_emb', 'linktitle_emb')  
-    link_rec_on = kwargs.get('link_rec_on', False)  
+    link_rec_on = kwargs.get('link_rec_on', True)  
     device = kwargs.get('device', 'cpu')   
 
     processed_data = pd.read_csv(processed_data_path)
@@ -146,13 +146,15 @@ def calculate_emb(**kwargs):
             link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
             with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
                 json.dump(link_vectors_tolist, f)
-    
-            train_save_lsh(hash_size=20,
+            import time
+            s=time.time()    
+            train_save_lsh(hash_size=70,
                             input_dim=768,
-                            num_hashtables=10,
+                            num_hashtables=35,
                             matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
                             hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
                             link_vector=link_vectors)      
+            print(time.time()-s)
 
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
         ##pik추천을 위한 것
@@ -231,6 +233,15 @@ def calculate_emb(**kwargs):
             json.dump(pik_lang_dict_detected, f)    
 
 
+
+        link_lang_dict_detected = {}
+        for link_id in processed_data['link_id']:
+            ##predict link language
+            lang_pred_link = fmodel.predict([linkid_title_dict[str(link_id)]])[0][0][0][-2:]
+            link_lang_dict_detected[link_id] = lang_pred_link
+
+        with open(f'{default_path}/data/link_lang_dict_detected.json', 'w') as f:
+            json.dump(link_lang_dict_detected, f)
 
         
     elif which_emb == 'piktitle_emb':
