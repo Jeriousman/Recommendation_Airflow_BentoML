@@ -14,7 +14,6 @@ scikit-learn
 lshashpy3
 psycopg2-binary
 fasttext
---extra-index-url https://download.pytorch.org/whl/cu116
 torch
 torchvision
 torchaudio 
