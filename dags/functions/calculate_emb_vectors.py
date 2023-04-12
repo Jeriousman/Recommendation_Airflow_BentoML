@@ -80,12 +80,15 @@ def calculate_emb(**kwargs):
     processed_data_path = kwargs.get('processed_data_path', '/opt/airflow/dags/data/processed_data.csv')   
     tokenizer_name = kwargs.get('tokenizer_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
     model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')   
-    dataloader_path = kwargs.get('dataloader_path', '/opt/airflow/dags/data/link_title_dataloader.pickle')   
-    which_emb = kwargs.get('which_emb', 'linktitle_emb')  
+    which_emb = kwargs.get('which_emb', 'link_title')  ## link_title  pik_title link_description ##cat_title
     link_rec_on = kwargs.get('link_rec_on', True)  
     device = kwargs.get('device', 'cpu')   
+    dataloader_path =  f'{default_path}/data/{which_emb}_dataloader.pickle' ##pik_title_dataloader ##link_description_dataloader
 
-    processed_data = pd.read_csv(processed_data_path)
+    
+    processed_data = pd.read_csv(processed_data_path, lineterminator='\n')
+    convert_type_dict = {'link_id':int, 'pik_id':int, 'user_id':int}
+    processed_data = processed_data.astype(convert_type_dict)
     tokenizer, model = load_tokenizer_and_model(tokenizer_name, model_name)
     with open(dataloader_path, 'rb') as f:
         dataloader = pickle.load(f)
@@ -126,7 +129,7 @@ def calculate_emb(**kwargs):
             with torch.no_grad():
                     outputs = model(b_input_ids, attention_mask = b_att_masks, token_type_ids=None)
                     outputs.keys()
-                    # pooled_outputs = outputs[1]  ##(last_hidden_state, pooler_output, hidden_states[optional], attentions[optional])
+                    # pooled_outputs = outputs[1]  ##(last_hidden_state, pooler_output, hisdden_states[optional], attentions[optional])
                     embeddings = outputs.last_hidden_state
                     mask = b_att_masks.unsqueeze(-1).expand(embeddings.size()).float()
                     masked_embeddings = embeddings * mask
@@ -136,26 +139,30 @@ def calculate_emb(**kwargs):
             
             mean_pooled_total.append(mean_pooled_emb)
             
-    if which_emb == 'linktitle_emb':
+    if which_emb == 'link_title':
         link_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
         link_vectors = dict(zip(processed_data.link_id, link_final_pred))  ##link title vectors
-
+        ##https://stackoverflow.com/questions/29794959/pandas-add-new-column-to-dataframe-from-dictionary
+        # processed_data['link_title_vec'] = processed_data['link_id'].map(link_vectors)
+        # processed_data.to_csv(f'{default_path}/data/processed_data.csv', index=False)
+        
         if link_rec_on:
             '''link_vec을 저장하기 위해서는 아래 코드들을 언코멘트 해준다'''
             # 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
             link_vectors_tolist = {str(k): v.tolist() for k, v in link_vectors.items()}
             with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
                 json.dump(link_vectors_tolist, f)
-            import time
-            s=time.time()    
-            train_save_lsh(hash_size=70,
-                            input_dim=768,
-                            num_hashtables=35,
-                            matrices_filename=f'{default_path}/data/lsh_matrices_filename.npz',
-                            hashtable_filename=f'{default_path}/data/lsh_hashtables_filename.npz',
-                            link_vector=link_vectors)      
-            print(time.time()-s)
 
+            import time
+            s=time.time()
+            train_save_lsh(hash_size=60,
+                            input_dim=768,
+                            num_hashtables=60,
+                            matrices_filename=f'{default_path}/data/new_lsh_matrices.npz',
+                            hashtable_filename=f'{default_path}/data/new_lsh_hashtables.npz',
+                            link_vector=link_vectors)      
+            time.time()-s
+            
         ## keys: pik, values: link_id ##pik_id로 link를 그룹화해라라는뜻
         ##pik추천을 위한 것
         pik_link = get_links_by(processed_data, 'pik_id', 'link_id')
@@ -200,12 +207,11 @@ def calculate_emb(**kwargs):
 
 
         
-        with open('/opt/airflow/dags/data/linkid_title_dict.json') as f:
+        with open(f'{default_path}/data/linkid_title_dict.json') as f:
             linkid_title_dict = json.load(f)
         
-        with open('/opt/airflow/dags/data/pikid_title_dict.json') as f:
+        with open(f'{default_path}/data/pikid_title_dict.json') as f:
             pikid_title_dict = json.load(f)
-
 
 
         user_lang_dict_detected = {}
@@ -231,9 +237,9 @@ def calculate_emb(**kwargs):
         
         with open(f'{default_path}/data/pik_lang_dict_detected.json', 'w') as f:
             json.dump(pik_lang_dict_detected, f)    
-
-
-
+            
+            
+            
         link_lang_dict_detected = {}
         for link_id in processed_data['link_id']:
             ##predict link language
@@ -243,15 +249,43 @@ def calculate_emb(**kwargs):
         with open(f'{default_path}/data/link_lang_dict_detected.json', 'w') as f:
             json.dump(link_lang_dict_detected, f)
 
+
+
         
-    elif which_emb == 'piktitle_emb':
+    elif which_emb == 'pik_title':
         pik_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
         piktitle_vectors = dict(zip(processed_data.pik_id, pik_final_pred))  ##pik title vectors
-    
+        # processed_data['pik_title_vec'] = processed_data['pik_id'].map(piktitle_vectors)
+        # processed_data.to_csv(f'{default_path}/data/processed_data.csv', index=False)
         ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
         piktitle_vectors_tolist = {str(k): v.tolist() for k, v in piktitle_vectors.items()}
         with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
             json.dump(piktitle_vectors_tolist, f)
+        
+            
+    elif which_emb == 'link_description':
+        link_desc_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
+        link_desc_vectors = dict(zip(processed_data.link_id, link_desc_final_pred))  ##pik title vectors
+        # processed_data['link_description_vec'] = processed_data['link_id'].map(link_desc_vectors)
+        # processed_data.to_csv(f'{default_path}/data/processed_data.csv', index=False)
+        
+        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
+        link_desc_vectors_tolist = {str(k): v.tolist() for k, v in link_desc_vectors.items()}
+        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
+            json.dump(link_desc_vectors_tolist, f)
+            
+
+    elif which_emb == 'cat_title':
+        cat_title_final_pred = torch.cat(mean_pooled_total, 0).detach().cpu().numpy()
+        cat_title_vectors = dict(zip(processed_data.cat_id, cat_title_final_pred))  ##pik title vectors
+        # processed_data['link_description_vec'] = processed_data['link_id'].map(link_desc_vectors)
+        # processed_data.to_csv(f'{default_path}/data/processed_data.csv', index=False)
+        
+        ## 아래 코드는 BentoML에서 실행하기 위해 중요하다. Bento는 json데이터에 가장 친숙하기 때문에 왠만해선 json을 쓰도록하자
+        cat_title_vectors_tolist = {str(k): v.tolist() for k, v in cat_title_vectors.items()}
+        with open(f"{default_path}/data/{which_emb}_vec.json", "w") as f: ##2G가까이되는 큰 데이터이기 때문에 왠만하면 세이브하지말자
+            json.dump(cat_title_vectors_tolist, f)
+
 
         
 

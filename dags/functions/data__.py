@@ -289,37 +289,11 @@ def raw_data_preprocess(**kwargs):
     
     
     
-    
-    
-    slug1 = link_cat_pik['pik_slug'][link_cat_pik['pik_id'] == 3085].iloc[0]
-    slug2 = link_cat_pik['pik_slug'][link_cat_pik['pik_id'] == 3186].iloc[0]
-    slug3 = link_cat_pik['pik_slug'][link_cat_pik['pik_id'] == 3188].iloc[0]
-   
-    ##특정 string이 포함된 행을 df에서찾기
-    dummy1 = link_cat_pik[link_cat_pik['pik_slug'].str.contains(slug1)]
-    dummy2 = link_cat_pik[link_cat_pik['pik_slug'].str.contains(slug2)]
-    dummy3 = link_cat_pik[link_cat_pik['pik_slug'].str.contains(slug3)]
-   
-    ## 추출한 행을 df에서제거하기
-    data = link_cat_pik[~link_cat_pik.index.isin(dummy1.index)]
-    data = link_cat_pik[~link_cat_pik.index.isin(dummy2.index)]
-    data = link_cat_pik[~link_cat_pik.index.isin(dummy3.index)]
-   
-    ##제거된것을확인
-    link_cat_pik[link_cat_pik['pik_slug'] == slug1]
-    link_cat_pik[link_cat_pik['pik_slug'] == slug2]
-    link_cat_pik[link_cat_pik['pik_slug'] == slug3]    
-    
-    
     link_cat_pik = link_cat_pik.astype({'pik_id' :'int', 'link_id':'int', 'cat_id':'int'})
     link_cat_pik = filtering_users(link_cat_pik, 'user_id', artificial_users)      
     link_cat_pik = filter_data(link_cat_pik,  ['link_title'])
-    link_cat_pik = filter_data(link_cat_pik,  ['link_description'])
     link_cat_pik = filter_data(link_cat_pik,  ['pik_title'])
     
-
-
-
     user_lang_dict_userset = {str(k):str(v) for k,v in zip(user_language['user_id'], user_language['language_code'])} ##모든유저를 검색할 수 있도록
     pik_lang_dict_userset = {k:v for k,v in zip(link_cat_pik['pik_id'], link_cat_pik['language_code'])}
     link_lang_dict_userset = {k:v for k,v in zip(link_cat_pik['link_id'], link_cat_pik['language_code'])}
@@ -418,5 +392,5 @@ def raw_data_preprocess(**kwargs):
     
     
     
-    
-    
+
+

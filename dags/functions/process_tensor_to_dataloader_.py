@@ -81,7 +81,7 @@ def process_sent_tensor_to_torchdata(**kwargs):
     saving_dataloader_path = kwargs.get('saving_dataloader_path', f'/opt/airflow/dags/data/{tokenizing_col}_dataloader.pickle')
     
     tokenizer = load_tokenizer(tokenizer_name)
-    processed_data = pd.read_csv(processed_data_path)
+    processed_data = pd.read_csv(processed_data_path, lineterminator='\n')
     # processed_data=processed_data.dropna(subset=['link_title', 'pik_title'])
     print(processed_data.shape)
     

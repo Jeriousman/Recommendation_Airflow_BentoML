@@ -160,10 +160,8 @@ processed_data['final_vec'] = processed_data.index.map(all_vecs_dict)
 lsh = lshashpy3.LSHash(hash_size=60, input_dim=768, num_hashtables=60,
     storage_config={ 'dict': None },
     matrices_filename='/opt/airflow/dags/data/new_lsh_matrices.npz',
-    hashtable_filename='/opt/airflow/dags/data/new_lsh_hashtables.npz',
+    hashtable_filename='/opt/airflow/dags/data/lsh_hashtables_link_allfeat_vec.npz',
     overwrite=False)
-
-
 
 
 
@@ -208,15 +206,105 @@ def preprocess(document: str) -> str:
 
 
 
-st_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):    
+
+def get_most_similar_links_lsh(link_id, user_id, link_vector, user_link, lsh, lsh_topk, topk):
+    first_result = lsh.query(link_vector[link_id] , num_results=lsh_topk, distance_func="cosine")
+    sorted_result = sorted(first_result, key=lambda x: x[1], reverse=False)
+    filtered_result = []
+    for i, result in enumerate(sorted_result):
+        if int(link_id) !=  result[0][1] and int(result[0][1]) not in user_link[user_id]: ##링크가 본 유저에게 이미 속해있지 않고, 본 픽이 추천픽이 아닌 경우에 추천하라는 것        
+        # if (link_vector[link_id] !=  sorted_result[i][0][0]).all(): ##본 링크가 아니라면 추천하라는 뜻 
+            if i >= 1:  
+                if sorted_result[i-1][0][0] !=  sorted_result[i][0][0]: ##전 링크가 지금링크와 엠베딩 값이 같으면 아마도 같은 것일것이기 때문에추천에서 빼라는뜻
+                    # if i <= topk:
+                    # if sorted_result[i][0][1]  != link_id:
+                    filtered_result.append((sorted_result[i][0][1], sorted_result[i][1]))
+                    if len(filtered_result) == topk:
+                        break
+                    # else:
+                    #     break
+                        
+                        
+    filtered_result = sorted(filtered_result, key=lambda x: x[1], reverse=False)
+
+
+    ## 만약 sim_list가비어있거나 None이면, 그보다 더유사도가 적지만 그래도괜찮을수있는것을 추천해준다. 
+    if filtered_result == None:
+        print('There are no recommended links for your link now')
+    
+    elif bool(filtered_result):
+        return  filtered_result    
+    
+                                    
+    else:
+        print('Hey, there are really not suitable recommendation for your link now. But we are working on it!')
+
+# # link_id='1579'
+# threshold=0.95
+# final_top_k=4
+
+
+
+
+# filtered_result
+# link_id = '539613'
+# lsh_topk = 20
+# lsh_result[5][1]
+# lsh_result[0][0][0]
+# linkid_title_dict['539613']
+# threshold=0.5
+# links_vec[link_id].shape
+# mu, sigma = 0, 0.1 # mean and standard deviation
+# s = list(np.random.normal(mu, sigma, 768))
+# s.shape
+# z = links_vec[link_id]
+# np.array(links_vec[link_id]).shape
+# lsh.index(link_vector, extra_data = link_id)   
+# len(lsh_result)
+# lsh_result[4]
+
+# zz = get_most_similar_links_lsh_en('617407', links_vec, link_lang_dict_userset, link_status_dict, lsh, 20, 5, 0.3)
+
+
+# link_id = '600891'
+# lsh_topk=30
+# processed_data['link_title'][processed_data['link_id'] == 617407]
+# processed_data['link_title'][processed_data['link_id'] == 1]
+# z = processed_data[processed_data['link_id']==608374]
+
+
+
+# processed_data['link_title'][processed_data['link_id'] == 41226]
+# processed_data['link_title'][processed_data['link_id'] == 570907]
+# z = processed_data[processed_data['link_id']==608374]
+
+
+# processed_data['link_title'][processed_data['link_id'] == 9023]
+# processed_data['link_title'][processed_data['link_id'] == 590024]
+# processed_data['link_title'][processed_data['link_id'] == 80815]   
+
+# resultsss = get_most_similar_links_lsh_en('873', links_vec, link_lang_dict_detected, link_status_dict, lsh, 30, 5, 0.5)
+     
+
+# link_id='1379'
+# lsh_topk=50
+# final_top_k=5
+# threshold=0.3
+
+# processed_data['link_title'][processed_data['link_id'] == 9023]
+# processed_data['link_title'][processed_data['link_id'] == 570907]
+# processed_data['link_title'][processed_data['link_id'] == 570923]  
+# zz = get_most_similar_links_lsh_en(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+
+
+def get_most_similar_links_lsh_en(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):    
     '''
     lsh_result[0][0][1] ## similarity
     lsh_result[0][1] ## link_id
     '''
-    lsh.index(np.array(processed_data['final_vec'][processed_data['link_id'] == int(link_id)][0]), extra_data = processed_data['link_id'][processed_data['link_id']== 1379][0])
-    lsh_result = lsh.query(np.array(processed_data['final_vec'][processed_data['link_id'] == int(link_id)][0]) , num_results=lsh_topk, distance_func="cosine")
-    # lsh.index(links_vec[link_id], extra_data = int(link_id))
-    # lsh_result = lsh.query(links_vec[link_id] , num_results=lsh_topk, distance_func="cosine")
+    
+    lsh.index(links_vec[link_id], extra_data = int(link_id))
+    lsh_result = lsh.query(links_vec[link_id] , num_results=lsh_topk, distance_func="cosine")
     # lsh_result = lsh.query(links_vec[link_id] , num_results=10, distance_func="cosine")
     lsh_result = sorted(lsh_result, key=lambda x: x[1], reverse=False)
     
@@ -254,9 +342,38 @@ st_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_s
     return extra_filtered_result
 
 
+# link_id='1379'
+# lsh_topk=50
+# final_top_k=5
+# threshold=0.3
 
 
-def get_most_similar_links_lsh_ko(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):
+# import time
+# s=time.time()
+# sim = [] 
+# # i = 0
+# for (uid, vec) in tqdm(links_vec.items()):
+    
+#     thisSim = cosine_similarity(np.array(vec).reshape(1, -1), np.array(links_vec['612']).reshape(1, -1))
+#     sim.append((uid, thisSim[0][0]))
+    
+#     # if i == 2:
+#     #     break
+# print(time.time()-s)
+
+
+# processed_data['link_title'][processed_data['link_id'] == 873]
+# processed_data['link_title'][processed_data['link_id'] == 94066]
+# processed_data['link_title'][processed_data['link_id'] == 94071]
+
+# processed_data['link_title'][processed_data['link_id'] == 80815]
+# processed_data['link_title'][processed_data['link_id'] == 605838]
+# round(cos_distance, 5)
+# link_id = '873'
+# resultsss = get_most_similar_links_lsh_ko('873', links_vec, link_lang_dict_detected, link_status_dict, lsh, 50, 5, 0.5)
+# lsh_result[0][0][1]
+
+def get_most_similar_links_lsh_ko(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):
     
     '''
     lsh_result[0][0][1] ## similarity
@@ -265,8 +382,8 @@ def get_most_similar_links_lsh_ko(link_id, processed_data, link_lang_dict_detect
     # import time
     # s=time.time()
     ##실시간 LSH쿼리를 하기위해서는 실시간으로 이미 트레이닝된 lsh테이블에 쿼리를 할 것도 인덱싱해줘야 그다음 쿼리를 할 수 있다
-    lsh.index(np.array(processed_data['final_vec'][processed_data['link_id'] == int(link_id)][0]), extra_data = processed_data['link_id'][processed_data['link_id']== 1379][0])
-    lsh_result = lsh.query(np.array(processed_data['final_vec'][processed_data['link_id'] == int(link_id)][0]) , num_results=lsh_topk, distance_func="cosine")
+    lsh.index(links_vec[link_id], extra_data = int(link_id))
+    lsh_result = lsh.query(links_vec[link_id] , num_results=lsh_topk, distance_func="cosine")
     # lsh_result = lsh.query(links_vec[link_id] , num_results=10, distance_func="cosine")
     lsh_result = sorted(lsh_result, key=lambda x: x[1], reverse=False)
     # print(time.time()-s)
@@ -304,10 +421,84 @@ def get_most_similar_links_lsh_ko(link_id, processed_data, link_lang_dict_detect
                             break
                         
     return extra_filtered_result
+
  
                 
        
                 
+# from tqdm import tqdm 
+# import time
+# s=time.time()
+# sim = [] 
+# # i = 0
+# for (uid, vec) in tqdm(links_vec.items()):
+    
+#     thisSim = cosine_similarity(np.array(vec).reshape(1, -1), np.array(links_vec['612']).reshape(1, -1))
+#     sim.append((uid, thisSim[0][0]))
+    
+#     # if i == 2:
+#     #     break
+# print(time.time()-s)
+# sim = sorted(sim, key=lambda x: x[1], reverse=True) ##full similarity list
+
+
+# rec_link = []
+# for i in sim[:10]:
+#     rec_link.append(int(i[0]))
+    
+    
+    
+    
+# s=time.time()
+# lsh_result = lsh.query(links_vec['1379'] , num_results=10, distance_func="cosine")
+# print(time.time()-s)
+
+
+# lsh_link = [] 
+# for i in lsh_result[:10]:
+#     lsh_link.append(i[0][1])
+
+
+# len(list(set(rec_link).intersection(lsh_link)))
+# list(set(rec_link).intersection(lsh_link))
+
+# linkid_title_dict['570907']
+# linkid_title_dict['570923']
+# linkid_title_dict['1628']
+# linkid_title_dict['1550']
+
+
+
+
+
+
+
+
+
+
+# result = get_most_similar_links_online_lsh_ko(link_text='FUck you', user_lang_dict_detected=user_lang_dict_detected, link_status_dict=link_status_dict, 
+#                                   lsh=lsh, lsh_topk=30, final_top_k=5, threshold=0.9)
+
+# link_text='How to survive as a startup'
+# lsh_topk=30
+# final_top_k=5
+# threshold=0.4
+# zzz = processed_data[processed_data['link_id'] == 610414]   
+# processed_data['link_title'][processed_data['link_id'] == 64310] 
+# processed_data['link_title'][processed_data['link_id'] == 1821]
+# link_lang_dict_detected['64310']
+
+# z=processed_data['link_title'][processed_data['link_id'] == 1289] 
+# z=processed_data['link_title'][processed_data['link_id'] == 568576] 
+# z=processed_data['link_title'][processed_data['link_id'] == 2027] 
+
+
+
+
+
+
+
+
 def get_most_similar_links_online_lsh_en(link_text, user_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):    
     '''
     lsh_result[0][0][1] ## similarity
@@ -398,6 +589,9 @@ def get_most_similar_links_online_lsh_ko(link_text, user_lang_dict_detected, lin
                         
     return extra_filtered_result_ko
 
+# zz = get_most_similar_links_online_lsh_ko(link_text, user_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+
+
 
     
         
@@ -413,7 +607,16 @@ def get_most_similar_links_online_lsh_ko(link_text, user_lang_dict_detected, lin
         
         
         
-def rec_link_by_lang(link_id, user_id, link_text, processed_data, link_status_dict, link_lang_dict_detected, user_lang_dict_detected, lsh, lsh_topk, final_top_k, threshold):    
+        
+        
+# link_id = '1379'   
+# user_id = '1118723872478234362'
+# link_text = 'hh'
+# zz = rec_link_by_lang(link_id, user_id, link_text, link_status_dict, link_lang_dict_detected, user_lang_dict_detected, lsh, lsh_topk, final_top_k, threshold)
+# processed_data['link_title'][processed_data['link_id'] == 1379] 
+# processed_data['link_title'][processed_data['link_id'] == 570927] 
+
+def rec_link_by_lang(link_id, user_id, link_text, link_status_dict, link_lang_dict_detected, user_lang_dict_detected, lsh, lsh_topk, final_top_k, threshold):    
     # try:
         # if pd.unique(data['language_code'][data['user_id'] == int(user_id)])[0] == 'ko': ##language_cde가 'ko' 인지, 'en'인지,
     if user_id in user_link.keys(): ##등록되어있는 유저들 중에,
@@ -423,12 +626,12 @@ def rec_link_by_lang(link_id, user_id, link_text, processed_data, link_status_di
                 '''
                 유저의 링크들의 합이 가장 많은 수가 한국어 일 때 추천해 는 로직 
                 '''
-                result = get_most_similar_links_lsh_ko(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+                result = get_most_similar_links_lsh_ko(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
                 return result
             
             elif user_lang_dict_detected[user_id] == 'en' and (user_lang_dict_detected[user_id] != 'ko' or user_lang_dict_detected[user_id] != 'kr'):
                 print('유저 존재하고 링크 존재하고 영어 추천을 한다')
-                result = get_most_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+                result = get_most_similar_links_lsh_en(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
                 return result
             
 
@@ -458,12 +661,12 @@ def rec_link_by_lang(link_id, user_id, link_text, processed_data, link_status_di
         if link_id in link_lang_dict_detected.keys(): ##링크도 이미 등록되어 있다면
             if (link_lang_dict_detected[link_id] == 'ko' or link_lang_dict_detected[link_id] == 'kr'):
                 print('유저 존재하지 않지만 링크는 존재하며 한국어 추천을 한다')
-                result = get_most_similar_links_lsh_ko(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+                result = get_most_similar_links_lsh_ko(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
                 return result
             
             elif link_lang_dict_detected[link_id] == 'en' and (link_lang_dict_detected[link_id] != 'ko' or link_lang_dict_detected[link_id] != 'kr'):
                 print('유저 존재하지 않지만 링크는 존재하며 영어 추천을 한다')
-                result = get_most_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
+                result = get_most_similar_links_lsh_en(link_id, links_vec, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold)
                 return result
             
 
@@ -484,6 +687,7 @@ def rec_link_by_lang(link_id, user_id, link_text, processed_data, link_status_di
     
         
         return None
+            
 
 
 # zz = rec_link_by_lang('1379', '17', 'hh', link_status_dict, link_lang_dict_detected, user_lang_dict_detected, lsh, lsh_topk, final_top_k, threshold)

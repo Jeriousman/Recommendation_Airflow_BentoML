@@ -155,43 +155,6 @@ with DAG(
     )
     
     
-    '''
-    픽타이틀을 huggingface로 embedding하여 데이터로더를 만든다 
-    '''
-    task_cattitle_data_process_to_torch = PythonOperator(
-        task_id="cattitle_data_to_torch",
-        python_callable=process_tensor_to_dataloader.process_sent_tensor_to_torchdata,
-        op_kwargs={
-            "tokenizer_name": 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking', 
-            'processed_data': '/opt/airflow/dags/data/processed_data.csv',
-            'tokenizing_col': 'cat_title',
-            'max_len' : 24,
-            'return_tensors': 'pt',
-            'padding': 'max_length',
-            'truncation': True,
-            'batch_size': 256,
-            'saving_dataloader_path': '/opt/airflow/dags/data/cat_title_dataloader.pickle'
-        }
-    )
-    
-    
-    task_linkdesc_data_process_to_torch = PythonOperator(
-        task_id="linkdesc_data_to_torch",
-        python_callable=process_tensor_to_dataloader.process_sent_tensor_to_torchdata,
-        op_kwargs={
-            "tokenizer_name": 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking', 
-            'processed_data': '/opt/airflow/dags/data/processed_data.csv',
-            'tokenizing_col': 'link_description',
-            'max_len' : 512,
-            'return_tensors': 'pt',
-            'padding': 'max_length',
-            'truncation': True,
-            'batch_size': 256,
-            'saving_dataloader_path': '/opt/airflow/dags/data/link_description_dataloader.pickle'
-        }
-    )
-    
-    
     task_calculate_linktitle_emb_vector_and_pik_vector = PythonOperator(
         task_id="calculate_linktitle_emb_vector",
         python_callable=calculate_emb_vectors.calculate_emb,
@@ -200,30 +163,14 @@ with DAG(
             "processed_data_path": '/opt/airflow/dags/data/processed_data.csv', 
             'tokenizer_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
             'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'which_emb': 'cat_title',
-            'dataloader_path' : '/opt/airflow/dags/data/link_title_dataloader.pickle',  ##f'{default_path}/data/{which_emb}_dataloader.pickle',
+            'dataloader_path' : '/opt/airflow/dags/data/link_title_dataloader.pickle',
+            'which_emb': 'linktitle_emb',
             'link_rec_on': True,
             'device' : 'cuda'  ##'cuda'
         }
     )
 
 
-    
-    task_calculate_cattitle_emb_vector = PythonOperator(
-        task_id="calculate_cattitle_emb_vector",
-        python_callable=calculate_emb_vectors.calculate_emb,
-        op_kwargs={
-            'default_path' : '/opt/airflow/dags',
-            "processed_data_path": '/opt/airflow/dags/data/processed_data.csv', 
-            'tokenizer_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'which_emb': 'cat_title',
-            'dataloader_path' : '/opt/airflow/dags/data/cat_title_dataloader.pickle', #'dataloader_path' : f'{default_path}/data/{which_emb}_dataloader.pickle',
-            'link_rec_on': True,
-            'device' : 'cuda'  ##'cuda'
-        }
-    )
-    
     
     task_calculate_piktitle_emb_vector = PythonOperator(
         task_id="calculate_piktitle_emb_vector",
@@ -233,29 +180,14 @@ with DAG(
             "processed_data_path": '/opt/airflow/dags/data/processed_data.csv', 
             'tokenizer_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
             'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'which_emb': 'pik_title',
-            'dataloader_path' : '/opt/airflow/dags/data/pik_title_dataloader.pickle', #'dataloader_path' : f'{default_path}/data/{which_emb}_dataloader.pickle',
+            'dataloader_path' : '/opt/airflow/dags/data/pik_title_dataloader.pickle',
+            'which_emb': 'piktitle_emb',
             'link_rec_on': True,
             'device' : 'cuda'  ##'cuda'
         }
     )
     
-
-    task_calculate_linkdesc_emb_vector = PythonOperator(
-        task_id="calculate_linkdesc_emb_vector",
-        python_callable=calculate_emb_vectors.calculate_emb,
-        op_kwargs={
-            'default_path' : '/opt/airflow/dags',
-            "processed_data_path": '/opt/airflow/dags/data/processed_data.csv', 
-            'tokenizer_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'model_name': 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-            'which_emb': 'link_description',
-            'dataloader_path' : '/opt/airflow/dags/data/link_description_dataloader.pickle', #'dataloader_path' : f'{default_path}/data/{which_emb}_dataloader.pickle',
-            'link_rec_on': True,
-            'device' : 'cuda'  ##'cuda'
-        }
-    )
-
+    
 
     
     task_make_bento_model = PythonOperator(
@@ -302,5 +234,5 @@ with DAG(
 
 
     # chain(task_data_process, task_save_processed_data, [task_linktitle_data_process_to_torch,  task_piktitle_data_process_to_torch],  [task_calculate_linktitle_emb_vector_and_pik_vector ,task_calculate_piktitle_emb_vector], task_make_bento_model, task_create_bento, task_serve_bentoml)
-    task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_cattitle_data_process_to_torch >> task_piktitle_data_process_to_torch >>  task_linkdesc_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_cattitle_emb_vector >> task_calculate_piktitle_emb_vector >>  task_calculate_linkdesc_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
+    task_clear_bento >> task_db_data_fetching >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
     # task_clear_bento >> task_data_process >> task_save_processed_data >> task_linktitle_data_process_to_torch >>  task_piktitle_data_process_to_torch >> task_calculate_linktitle_emb_vector_and_pik_vector >> task_calculate_piktitle_emb_vector >> task_make_bento_model >> task_create_bento >> task_serve_bentoml
