@@ -207,8 +207,7 @@ def preprocess(document: str) -> str:
     return document
 
 
-
-st_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):    
+def get_most_similar_links_lsh_en(link_id, processed_data, link_lang_dict_detected, link_status_dict, lsh, lsh_topk, final_top_k, threshold):    
     '''
     lsh_result[0][0][1] ## similarity
     lsh_result[0][1] ## link_id

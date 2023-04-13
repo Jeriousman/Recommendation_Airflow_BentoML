@@ -11,6 +11,7 @@ apache-airflow-providers-sqlite
 numpy
 pandas
 scikit-learn
+sentence-transformers
 lshashpy3
 torch
 torchvision
