@@ -10,6 +10,8 @@ import torch
 from transformers import BertTokenizer, BertModel, XLMRobertaTokenizer, XLMRobertaModel, AutoTokenizer, AutoModel, Trainer, TrainingArguments
 import bentoml
 from transformers import pipeline
+from sentence_transformers import SentenceTransformer
+import fasttext
 
 def load_model_tokenizer(model_name, tokenizer_name):
 
@@ -29,3 +31,23 @@ def make_bento_model(**kwargs):
     emb_extractor = pipeline(huggingface_pipeline_name, model=model, tokenizer=tokenizer)
     bentoml.transformers.save_model(name=bentoml_model_name, pipeline=emb_extractor)
 
+
+
+    sentence_transformer_model = SentenceTransformer('sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')
+
+    bentoml.picklable_model.save_model(
+        'sentence_transformer_model',
+        sentence_transformer_model,
+        # signatures={"__call__": {"batchable": True}}
+    )
+
+
+    path_to_pretrained_model = '/opt/airflow/dags/data/lid.176.bin'
+
+    fasttext_model = fasttext.load_model(path_to_pretrained_model)
+
+    bentoml.picklable_model.save_model(
+        'fasttext_model',
+        fasttext_model,
+        # signatures={"__call__": {"batchable": True}}
+    )
