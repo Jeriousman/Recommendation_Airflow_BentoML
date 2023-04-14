@@ -157,40 +157,73 @@ def db_data_fetching(**kwargs):
     conn = psycopg2.connect(host=hostname, dbname=dbname, user=username, password=password, port=portnumber)
     cur = conn.cursor()
 
+    # # export to csv
+    # fid = open(f'{default_path}/piks_category.csv', 'w')
+    # sql = "COPY (SELECT id, title, pik_id, user_id, created, is_deleted FROM piks_category) TO STDOUT WITH CSV HEADER"
+    # cur.copy_expert(sql, fid)
+    # fid.close()
+
+
+    # # export to csv
+    # fid = open(f'{default_path}/piks_pik.csv', 'w')
+    # sql = "COPY (SELECT id, slug, title, status, language, is_draft, created, is_deleted FROM piks_pik) TO STDOUT WITH CSV HEADER"
+    # cur.copy_expert(sql, fid)
+    # fid.close()
+
+
+    # # export to csv
+    # fid = open(f'{default_path}/users_user.csv', 'w')
+    # sql = "COPY (SELECT id, language_code FROM users_user) TO STDOUT WITH CSV HEADER"
+    # cur.copy_expert(sql, fid)
+    # fid.close()
+
+
+    # # export to csv
+    # fid = open(f'{default_path}/linkhub_link.csv', 'w')
+    # sql = "COPY (SELECT id, category_id, title, description, memo, url, is_draft, created, is_deleted FROM linkhub_link) TO STDOUT WITH CSV HEADER"
+    # cur.copy_expert(sql, fid)
+    # fid.close()
+
+
+    # # export to csv
+    # fid = open(f'{default_path}/users_following.csv', 'w')
+    # sql = "COPY (SELECT id, from_user_id, to_user_id, is_deleted FROM users_following) TO STDOUT WITH CSV HEADER"
+    # cur.copy_expert(sql, fid)
+    # fid.close()
+
     # export to csv
     fid = open(f'{default_path}/piks_category.csv', 'w')
-    sql = "COPY (SELECT id, title, pik_id, user_id, created, is_deleted FROM piks_category) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT * FROM piks_category) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
 
     # export to csv
     fid = open(f'{default_path}/piks_pik.csv', 'w')
-    sql = "COPY (SELECT id, slug, title, status, language, is_draft, created, is_deleted FROM piks_pik) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT * FROM piks_pik) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
 
     # export to csv
     fid = open(f'{default_path}/users_user.csv', 'w')
-    sql = "COPY (SELECT id, language_code FROM users_user) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT * FROM users_user) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
 
     # export to csv
     fid = open(f'{default_path}/linkhub_link.csv', 'w')
-    sql = "COPY (SELECT id, category_id, title, description, memo, url, is_draft, created, is_deleted FROM linkhub_link) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT * FROM linkhub_link) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
 
 
     # export to csv
     fid = open(f'{default_path}/users_following.csv', 'w')
-    sql = "COPY (SELECT id, from_user_id, to_user_id, is_deleted FROM users_following) TO STDOUT WITH CSV HEADER"
+    sql = "COPY (SELECT * FROM users_following) TO STDOUT WITH CSV HEADER"
     cur.copy_expert(sql, fid)
     fid.close()
-
 
 
 
@@ -207,7 +240,7 @@ def raw_data_preprocess(**kwargs):
     
     
     #model_name = kwargs.get('model_name', 'sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking')
-    # path = '/home/hojun/python/rec_airflow_aws/dags/data'   
+    # path = '/home/hannah/rec_airflow_aws/dags/data'   
     path = '/opt/airflow/dags/data'  
 
     
